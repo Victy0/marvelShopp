@@ -1,0 +1,165 @@
+@charset "UTF-8";/*para utilizar acentos*/
+
+@font-face { /* definição de uma fonte externa*/
+	font-family: 'FonteLogo'; /*para definir um nome para fonte que sera usada*/
+	src: url("../fonts/BentonSans Comp Black Regular.ttf"); /*caminho onde esta a fonte. o dois pontos é para voltar uma pasta no diretorio*/
+}
+
+body{/*formata todo conteudo do body*/
+    font-family: Arial, sans-serif;
+    background-image: url("../imagens/fundoMarvel.jpg") ;/*imagem de fundo do site*/
+    color: rgba(0,0,0,1);
+}
+
+/*formatação da interface*/
+div#interface{
+    width: 85%;/*largura da interface*/
+    background-color: #ffffff;/*cor do fundo da iterface*/
+    margin: 50px auto 0px auto;/*margem top direita baixo esquerda*/
+    padding: 10px 10px 10px 10px;/*espaço interno dentro do objeto*/
+}
+
+/*formatação cabecalho*/
+header#cabecalho{/*cor e posição do cabeçalho*/
+    background-image: url("../imagens/navBar.jpg") ;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    padding-top: 10px;
+    padding-right: 110px;
+    padding-left: 0px;
+    padding-bottom: 20px;
+    margin: -10px;    
+}
+
+/*formatação logo*/
+header#cabecalho img#logo{
+    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    left: 3%;
+    top: 0px;
+    width: 22%; /* alterar largura*/
+    height: 40%; /* alterar altura*/
+}
+
+/*Formatação do menu*/
+nav#menu{
+    display:block;
+}
+nav#menu ul{
+    list-style: none;/*tirar os marcadores*/
+    text-transform: uppercase;/*todo o texto em caixa alta*/
+    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    top:-50px;/*posição em relação ao topo*/
+    left: 20%;/*posção em relação a margem esquerda*/
+}
+nav#menu li{
+    display: inline-block; /*colocar o menu em linha*/
+    margin:20px;
+    margin-right: 55px;/*margem em relação a esquerda*/
+    font-weight: bold;/*colocar em negrito*/
+    transition: color 0.3s;
+}
+
+nav#menu a{
+    color:white;
+}
+nav#menu a:hover{
+    color: #FF4500;
+}
+
+/*formatação img carrinho de compras*/
+nav#carrinho ul{
+    list-style: none;/*tirar os marcadores*/
+}
+nav#carrinho img#carrinho{
+    position: absolute;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    left: 90%;
+    top: 45px;
+    width: 8%; /* alterar largura*/
+    height: 60%; /* alterar altura*/
+}
+
+/*Formatação do menu busca*/
+form#busca{/*formata a posição do campo de busca*/
+    position: relative;
+    margin-top: -150px;
+    margin-left: 30%;
+    padding-bottom: 15px;
+}
+label {
+    display:block;
+}
+input {
+    width: 550px;/* define a largura do campo igual a largura do container */
+} 
+input,  button {/*define a largura do campo de busca*/
+	padding: 9px;
+}
+
+/*Formatação do corpo*/
+section#corpo{
+    position: relative;
+    margin-top: 250px;
+    padding-bottom: 100px;
+    padding-left: 380px;
+}
+
+/*formatação dno rodapé*/
+
+footer#rodape{
+    background-color: #dddddd;
+    margin:-10px;
+    padding: -20px;
+}
+footer#rodape img#home{
+    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    left: -10px;
+    
+    width: 22%; /* alterar largura*/
+    height: 40%; /* alterar altura*/
+}
+
+footer#rodape p#endereco{
+    position: relative;
+    font-size: 10pt; /*tamanho da fonte*/
+    margin-left: 20%;
+    margin-top: -110px;
+    margin-bottom: -50px;
+}
+
+footer#rodape img#facebook{
+    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    left: 50%;
+    top: -25px;
+    width: 8%; /* alterar largura*/
+    height: 43%; /* alterar altura*/
+}
+footer#rodape img#instagran{
+    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    left: 51%;
+    top: -25px;
+    width: 8%; /* alterar largura*/
+    height: 43%; /* alterar altura*/
+}
+footer#rodape img#twitter{
+    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    left: 52%;
+    top: -35px;
+    width: 6.5%; /* alterar largura*/
+    height: 41.5%; /* alterar altura*/
+}
+footer#rodape img#whatsapp{
+    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    left: 53%;
+    top: -35px;
+    width: 6.5%; /* alterar largura*/
+    height: 41.5%; /* alterar altura*/
+}
+footer#rodape img#youtube{
+    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+    left: 54%;
+    top: -35px;
+    width: 6.5%; /* alterar largura*/
+    height: 41.5%; /* alterar altura*/
+}
+
