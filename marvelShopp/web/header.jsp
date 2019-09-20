@@ -15,7 +15,7 @@
                 <li><a href="top10.html">Top 10</a></li>
                 <li><a href="promocao.html">Promoção</a></li>
                 <li><a href="faleConosco.html">Fale Conosco</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="login.jsp">Login</a></li>
             </ul>
         </nav>
         <nav id="carrinho">
