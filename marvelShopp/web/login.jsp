@@ -28,7 +28,7 @@
                             <input type="password" name="nSenha" id="iSenha" size="15" maxlength="20" placeholder="Digite sua senha">
                         </p>
                         <p>
-                            <input type="submit" value="Enviar">
+                            <input type="submit" value="Entrar">
                         </p>
                         <p>
                             Não é cliente? <a href="">Cadastre-se</a>
