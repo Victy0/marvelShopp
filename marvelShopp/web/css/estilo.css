@@ -162,4 +162,43 @@ footer#rodape img#youtube{
     width: 6.5%; /* alterar largura*/
     height: 41.5%; /* alterar altura*/
 }
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+   
+    padding: 10px;
+  }
+.label {
+    margin-left: 800px;
+    margin-top: -300px; 
+    
+  }
 
+  .grid-item.descri{
+      font-size:15px;
+       width: 50%;
+       border:1px black solid;
+       margin-right: 20px;
+      margin-left: 10px;
+       margin-top: 200px;
+       float: left;
+  }
+ .grid-item.ficha{
+      font-size:15px;
+       width: 50%;
+       border:1px black solid;
+       margin-right: 20px;
+      margin-left: 10px;
+       margin-top: 50px;
+       float: left;
+  }
+ .comment {
+ margin-top: 100px;
+}
+.grid-item{
+    margin-top:50px;
+}
+.labels{
+    position:relative;
+    right:-22%;
+}
