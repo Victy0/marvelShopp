@@ -31,7 +31,7 @@
                             <input type="submit" value="Entrar">
                         </p>
                         <p>
-                            Não é cliente? <a href="">Cadastre-se</a>
+                            Não é cliente? <a href="cadastroUsuario.jsp">Cadastre-se</a>
                         </p>
                     </fieldset>
 

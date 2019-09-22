@@ -12,15 +12,15 @@
         <nav id="menu">
             <ul type="disk">
                 <li><a href="index.jsp">Home</a></li>
-                <li><a href="top10.html">Top 10</a></li>
-                <li><a href="promocao.html">Promoção</a></li>
-                <li><a href="faleConosco.html">Fale Conosco</a></li>
+                <li><a href="top10.jsp">Top 10</a></li>
+                <li><a href="promocao.jsp">Promoção</a></li>
+                <li><a href="faleConosco.jsp">Fale Conosco</a></li>
                 <li><a href="login.jsp">Login</a></li>
             </ul>
         </nav>
         <nav id="carrinho">
             <ul type="disk">
-                <li><a href="carrinhoDeCompras.html"><img id="carrinho" src="imagens/carrinhoDeCompras.png"/></a></li>
+                <li><a href="carrinhoDeCompras.jsp"><img id="carrinho" src="imagens/carrinhoDeCompras.png"/></a></li>
             </ul>                    
         </nav>    
                 
