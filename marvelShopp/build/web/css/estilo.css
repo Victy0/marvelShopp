@@ -5,6 +5,8 @@
 	src: url("../fonts/BentonSans Comp Black Regular.ttf"); /*caminho onde esta a fonte. o dois pontos é para voltar uma pasta no diretorio*/
 }
 
+
+
 body{/*formata todo conteudo do body*/
     font-family: Arial, sans-serif;
     background-image: url("../imagens/fundoMarvel.jpg") ;/*imagem de fundo do site*/
@@ -17,6 +19,7 @@ div#interface{
     background-color: #ffffff;/*cor do fundo da iterface*/
     margin: 50px auto 0px auto;/*margem top direita baixo esquerda*/
     padding: 10px 10px 10px 10px;/*espaço interno dentro do objeto*/
+    
 }
 
 /*formatação cabecalho*/
@@ -25,11 +28,11 @@ header#cabecalho{/*cor e posição do cabeçalho*/
     background-repeat: no-repeat;
     background-size: 100%;
     position: relative;
-    padding-top: 10px;
     padding-right: 110px;
     padding-left: 0px;
-    padding-bottom: 20px;
-    margin: -10px;    
+    padding-bottom: 10px;
+    margin: -10px; 
+    
 }
 
 /*formatação logo*/
@@ -49,15 +52,17 @@ nav#menu ul{
     list-style: none;/*tirar os marcadores*/
     text-transform: uppercase;/*todo o texto em caixa alta*/
     position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
-    top:-50px;/*posição em relação ao topo*/
+    top:-150px;/*posição em relação ao topo*/
     left: 20%;/*posção em relação a margem esquerda*/
+    
 }
 nav#menu li{
     display: inline-block; /*colocar o menu em linha*/
-    margin:20px;
+    margin:25px;
     margin-right: 55px;/*margem em relação a esquerda*/
     font-weight: bold;/*colocar em negrito*/
     transition: color 0.3s;
+    font-size: 15pt;
 }
 
 nav#menu a{
@@ -73,8 +78,8 @@ nav#carrinho ul{
 }
 nav#carrinho img#carrinho{
     position: absolute;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
-    left: 90%;
-    top: 45px;
+    left: 87%;
+    top: 70px;
     width: 8%; /* alterar largura*/
     height: 60%; /* alterar altura*/
 }
@@ -98,10 +103,7 @@ input,  button {/*define a largura do campo de busca*/
 
 /*Formatação do corpo*/
 section#corpo{
-    position: relative;
-    margin-top: 250px;
-    padding-bottom: 100px;
-    padding-left: 380px;
+    position: relative;    
 }
 
 /*formatação dno rodapé*/

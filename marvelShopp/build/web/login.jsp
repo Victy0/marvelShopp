@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Marvel Shopp - Login</title>
         <link rel="stylesheet" href="css/estilo.css" />
+        <link rel="stylesheet" href="css/form.css" />
     </head>
     <body>
         <div id="interface">
@@ -28,7 +29,7 @@
                             <input type="password" name="nSenha" id="iSenha" size="15" maxlength="20" placeholder="Digite sua senha">
                         </p>
                         <p>
-                            <input type="submit" value="Entrar">
+                            <input type="submit" value="Entrar" id="bEntrar">
                         </p>
                         <p>
                             Não é cliente? <a href="cadastroUsuario.jsp">Cadastre-se</a>
