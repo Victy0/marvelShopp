@@ -25,6 +25,7 @@
                         <h3>Preencha o formulário abaixo</h3>
                         <p><label for="cMail">E-mail: <input type="email" name="tMail" id="cMail" size="20" maxlength="40"placeholder="Email@provedor.com.br"/></label></p>
                         <p><label for="cSenha">Senha: <input type="password" name="tSenha" id="cSenha" size="8" maxlength="8" placeholder="Mínimo de 8 dígitos"/></label></p>
+                        <p><label for="cSenha2">Confirme sua Senha: <input type="password" name="tSenha2" id="cSenha2" size="8" maxlength="8" placeholder="Mínimo de 8 dígitos"/></label></p>
                         <p><label for="cSenha">CPF: <input type="number" name="tSenha" id="cSenha" size="8" maxlength="8" placeholder="Somente números"/></label></p>
                         <p><label for="cNome">Nome: <input type="text" name="tNome" id="cNome" size="10" maxlength="30" placeholder="Nome Completo"/></label></p><!--input: cria um objeto. type="text": cira uma caixa de texto. size: indica o tamanho da caixa, quantos caracteres vao aparecer. maxlength: quantidade maxima de caracteres que serão aceitos. placeholder: dica de qual sera o conteudo da caixa. o label for serve para tornar o nome clicavel-->
                         <p><label for="cNasc">Data de Nascimento: <input type="date" name="tNasc" id="cNasc"/></label></p>

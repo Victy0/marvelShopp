@@ -5,7 +5,7 @@
  */
 package br.com.marvelShopp.service;
 
-import br.com.marvelShopp.dao.TipoSexoDao;
+import br.com.marvelShopp.Dao.TipoSexoDao;
 import br.com.marvelShopp.model.TipoSexo;
 import java.util.List;
 

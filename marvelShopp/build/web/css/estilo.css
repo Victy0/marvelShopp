@@ -11,6 +11,7 @@ body{/*formata todo conteudo do body*/
     font-family: Arial, sans-serif;
     background-image: url("../imagens/fundoMarvel.jpg") ;/*imagem de fundo do site*/
     color: rgba(0,0,0,1);
+    width: 98%;
 }
 
 /*formatação da interface*/

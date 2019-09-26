@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/estilo.css" />
+        <link rel="stylesheet" href="css/form.css" />
         <title>Cadastro de Produto</title>
     </head>
     <body>
@@ -35,7 +36,7 @@
                         </p>
                         <p>
                             <label for="iDescricao">Descrição</label>
-                            <textarea name="nDescricao" id="iDescricao" cols="80" rows="10" placeholder="Descrição do Produto" ></textarea>
+                            <textarea name="nDescricao" id="iDescricao" cols="61" rows="10" placeholder="Descrição do Produto" ></textarea>
                         </p>
                         <p>
                             <label for="iPreco">Preço</label>
