@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/web/promocao.html</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/Comentarios.java</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/web/pagproduto.jsp</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/web/css/estilo.css</file>
+            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/Controller/TipoSexoController.java</file>
+            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/Utilities/Conexao.java</file>
+            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/Dao/TipoSexoDao.java</file>
+            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/web/result.jsp</file>
         </group>
     </open-files>
 </project-private>
