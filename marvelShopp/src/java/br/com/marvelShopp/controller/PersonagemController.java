@@ -5,9 +5,13 @@
  */
 package br.com.marvelShopp.controller;
 
+import br.com.marvelShopp.dao.PersonagemDao;
 import br.com.marvelShopp.dao.TipoCategoriaDao;
 import br.com.marvelShopp.dao.TipoOcupacaoDao;
 import br.com.marvelShopp.dao.TipoSexoDao;
+import br.com.marvelShopp.model.Personagem;
+import br.com.marvelShopp.model.TipoCategoria;
+import br.com.marvelShopp.model.TipoOcupacao;
 import br.com.marvelShopp.model.TipoSexo;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,6 +33,7 @@ public class PersonagemController extends HttpServlet {
         sexoDao = new TipoSexoDao();
         ocupacaoDao = new TipoOcupacaoDao();
         categoriaDao = new TipoCategoriaDao();
+        personagemDao = new PersonagemDao();
     }
     
     private TipoSexoDao sexoDao;
@@ -36,6 +41,9 @@ public class PersonagemController extends HttpServlet {
     private TipoOcupacaoDao ocupacaoDao;
     
     private TipoCategoriaDao categoriaDao;
+    
+    private PersonagemDao personagemDao;
+    
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -77,6 +85,7 @@ public class PersonagemController extends HttpServlet {
             throws ServletException, IOException {
 //        String acao = request.getParamater("acao");
 //        if("create".equals(acao))
+
         request.setAttribute("sexoLista", sexoDao.list());
         request.setAttribute("ocupacaoLista", ocupacaoDao.list());
         request.setAttribute("categoriaLista", categoriaDao.list());
@@ -98,6 +107,23 @@ public class PersonagemController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        Personagem persona = new Personagem();
+        TipoCategoria categoria = categoriaDao.getById(request.getParameter("categoria"));
+        persona.setCategoria(categoria);
+        persona.setDescricao(request.getParameter("descricao"));
+        persona.setIdentidade(request.getParameter("identidade"));
+        persona.setImagemRef(request.getParameter("imagemRef"));
+        persona.setLugar(request.getParameter("lugar"));
+        persona.setNomeReal(request.getParameter("nomeReal"));
+        TipoOcupacao ocupacao = ocupacaoDao.getById(request.getParameter("ocupacao"));
+        persona.setOcupacao(ocupacao);
+        persona.setPreco(Double.parseDouble(request.getParameter("preco")));
+        persona.setQtdEstoque(Integer.parseInt(request.getParameter("estoque")));
+        TipoSexo sexo = sexoDao.getById(request.getParameter("sexo"));
+        persona.setSexo(sexo);
+        
+        this.personagemDao.create(persona);
+        doGet(request,response);
     }
 
     /**

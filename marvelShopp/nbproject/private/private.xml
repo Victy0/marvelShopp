@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/TipoSexoController.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/TipoOcupacaoDao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/web/cadastroDeProduto.jsp</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/TipoSexoDao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/TipoCategoriaDao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/PersonagemController.java</file>
         </group>
     </open-files>
 </project-private>

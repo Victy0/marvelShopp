@@ -35,6 +35,28 @@ public class TipoCategoriaDao {
         }
     }
     
+    public TipoCategoria getById ( String id){
+//        Long id = Long.parseLong(idSTR);
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm; 
+        ResultSet resultado = null;
+        TipoCategoria categoria = new TipoCategoria();
+        try{
+             stm = con.prepareStatement("select * from tipo_categoria where id =?");
+             stm.setString(1, id);
+             resultado = stm.executeQuery();
+             while(resultado.next()){
+                categoria.setId(resultado.getLong("id"));
+                categoria.setNome(resultado.getString("nome"));
+             }
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return categoria;
+    }
+    
     public List<TipoCategoria> list(){
         Connection con = Conexao.getConnection();
         Statement st;

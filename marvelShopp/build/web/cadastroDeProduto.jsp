@@ -15,26 +15,27 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/estilo.css" />
         <link rel="stylesheet" href="css/form.css" />
-        <title>Cadastro de Produto</title>
+        <title>MarvelShopp</title>
+        <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
     </head>
     <body>
         <div id="interface">
             <%@ include file="header.jsp"%>
             
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <form method="POST" id="cadastroProduto" action="">
+                <form method="POST" id="cadastroProduto" action="PersonagemController">
                     <fieldset id="cadastroProduto"> <legend>Cadastro de Produto</legend> <!-- <fieldset> que dizer conjunto de campos -->
                         <p>
                             <label for="nomeReal">Nome Real</label>
-                            <input type="text" name="nNomeReal" id="nomeReal" size="30" maxlength="50" placeholder="Ex.: Antony Edward 'Tony' Stark">
+                            <input type="text" name="nomeReal" id="nomeReal" size="30" maxlength="50" placeholder="Ex.: Antony Edward 'Tony' Stark">
                         </p>
                         <p>
                             <label for="identidade">Identidade</label>
-                            <input type="text" name="nIdentidade" id="identidade" size="30" maxlength="50" placeholder="Ex.: Homem de Ferro">
+                            <input type="text" name="identidade" id="identidade" size="30" maxlength="50" placeholder="Ex.: Homem de Ferro">
                         </p>
                         <p>
                             <label for="categoria">Categoria</label>
-                            <select name="nCategoria" id="categoria">
+                            <select name="categoria" id="categoria">
                                 <option> Selecione... </option>
                                 <% List<TipoCategoria> listaCategoria = (List)request.getAttribute("categoriaLista");
                                     for(int i = 0; i < listaCategoria.size(); i++){
@@ -44,15 +45,15 @@
                         </p>
                         <p>
                             <label for="descricao">Descrição</label>
-                            <textarea name="nDescricao" id="descricao" cols="61" rows="10" placeholder="Descrição do Produto" ></textarea>
+                            <textarea name="descricao" id="descricao" cols="61" rows="10" placeholder="Descrição do Produto" ></textarea>
                         </p>
                         <p>
                             <label for="preco">Preço</label>
-                            <input type="text" name="nPreco" id="preco" size="10" maxlength="10" placeholder="R$ 999,99" />
+                            <input type="text" name="preco" id="preco" size="10" maxlength="10" placeholder="R$ 999,99" />
                         </p>
                         <p>
                             <label for="ocupacao">Ocupação</label>
-                            <select name="nOcupacao" id="ocupacao">
+                            <select name="ocupacao" id="ocupacao">
                                 <option> Selecione... </option>
                                 <% List<TipoOcupacao> listaOcupacao = (List)request.getAttribute("ocupacaoLista");
                                     for(int i = 0; i < listaOcupacao.size(); i++){
@@ -62,7 +63,7 @@
                         </p>
                         <p>
                             <label>Sexo</label>
-                            <select name="nSexo" id="sexo">
+                            <select name="sexo" id="sexo">
                                 <option> Selecione... </option>
                                  <% List<TipoSexo> listaSexo = (List)request.getAttribute("sexoLista");
                                     for(int i = 0; i < listaSexo.size(); i++){
@@ -72,15 +73,15 @@
                         </p>
                         <p>
                             <label for="estoque">Quantidade inicial em estoque</label>
-                            <input type="number" name="nEstoque" id="estoque" value="0" min="0" max="1000000000" size="10" maxlength="11" />
+                            <input type="number" name="estoque" id="estoque" value="0" min="0" max="1000000000" size="10" maxlength="11" />
                         </p>
                         <p>
                             <label for="lugar">Local de atuação</label>
-                            <input type="Text" name="nLugar" id="lugar" size="30" maxlength="50" placeholder="Ex.: Nova York"/>
+                            <input type="Text" name="lugar" id="lugar" size="30" maxlength="50" placeholder="Ex.: Nova York"/>
                         </p>
                         <p>
                             <label for="imagemRef">Referência da imagem do produto</label>
-                            <input type="" name="nImagemRef" id="imagemRef" size="30" maxlength="50" placeholder="Ex.: imagens/produtos/homemDeFerro.jpg">
+                            <input type="" name="imagemRef" id="imagemRef" size="30" maxlength="50" placeholder="Ex.: imagens/produtos/homemDeFerro.jpg">
                         </p>
                         
                         <p>

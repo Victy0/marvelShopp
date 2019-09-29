@@ -35,6 +35,27 @@ public class TipoOcupacaoDao {
         }
     }
     
+     public TipoOcupacao getById ( String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm;
+        ResultSet resultado = null;
+        TipoOcupacao ocupacao = new TipoOcupacao();
+        try{
+             stm = con.prepareStatement("select * from tipo_ocupacao where id =?");
+             stm.setString(1, id);
+             resultado = stm.executeQuery();
+             while(resultado.next()){
+                ocupacao.setId(resultado.getLong("id"));
+                ocupacao.setNome(resultado.getString("nome"));
+             }
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return ocupacao;
+    } 
+     
     public List<TipoOcupacao> list(){
         Connection con = Conexao.getConnection();
         Statement st;

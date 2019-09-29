@@ -36,6 +36,27 @@ public class TipoSexoDao {
         }
     }
     
+     public TipoSexo getById ( String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm;
+        ResultSet resultado = null;
+        TipoSexo sexo = new TipoSexo();
+        try{
+            stm = con.prepareStatement("select * from tipo_ocupacao where id =?");
+            stm.setString(1, id);
+            resultado = stm.executeQuery();
+            while(resultado.next()){
+                sexo.setId(resultado.getLong("id"));
+                sexo.setNome(resultado.getString("nome"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return sexo;
+    }
+    
     public List<TipoSexo> list(){
         Connection con = Conexao.getConnection();
         Statement st;
