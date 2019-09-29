@@ -176,7 +176,7 @@ footer#rodape img#youtube{
 
   .grid-item.descri{
       font-size:15px;
-       width: 50%;
+       width: 49%;
        border:1px black solid;
        margin-right: 20px;
       margin-left: 10px;
@@ -185,7 +185,7 @@ footer#rodape img#youtube{
   }
  .grid-item.ficha{
       font-size:15px;
-       width: 50%;
+       width: 49%;
        border:1px black solid;
        margin-right: 20px;
       margin-left: 10px;
@@ -202,3 +202,14 @@ footer#rodape img#youtube{
     position:relative;
     right:-22%;
 }
+.grid-item.ava{
+    
+      font-size:15px;
+       width: 45%;
+       border:1px black solid;
+       margin-right: 20px;
+      margin-left: 50px;
+       margin-top: 10px;
+       float:right;
+       
+  }
