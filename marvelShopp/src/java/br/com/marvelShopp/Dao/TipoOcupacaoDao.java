@@ -5,7 +5,7 @@
  */
 package br.com.marvelShopp.dao;
 
-import br.com.marvelShopp.model.TipoSexo;
+import br.com.marvelShopp.model.TipoOcupacao;
 import br.com.marvelShopp.utilities.Conexao;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,15 +17,14 @@ import java.util.logging.Logger;
  *
  * @author Victor
  */
-public class TipoSexoDao {
+public class TipoOcupacaoDao {
     
-    
-    public void create(){
+     public void create(){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
         
         try {
-            stm = con.prepareStatement("INSERT INTO tipo_sexo(nome) VALUES(?)");
+            stm = con.prepareStatement("INSERT INTO tipo_ocupacao(nome) VALUES(?)");
             stm.setString(1,"mais um");
             stm.executeUpdate();
             
@@ -36,24 +35,24 @@ public class TipoSexoDao {
         }
     }
     
-    public List<TipoSexo> list(){
+    public List<TipoOcupacao> list(){
         Connection con = Conexao.getConnection();
         Statement st;
         ResultSet resultado = null;
-        List<TipoSexo> listaSexo = new ArrayList();
+        List<TipoOcupacao> listaOcupacao = new ArrayList();
         try{
              st = con.createStatement();
-             resultado = st.executeQuery("select * from tipo_sexo");
+             resultado = st.executeQuery("select * from tipo_ocupacao");
         
             while(resultado.next()) {
 
-                TipoSexo sexo = new TipoSexo();
+                TipoOcupacao ocupacao = new TipoOcupacao();
 
 
-                sexo.setId(resultado.getLong("id"));
-                sexo.setNome(resultado.getString("nome"));
+                ocupacao.setId(resultado.getLong("id"));
+                ocupacao.setNome(resultado.getString("nome"));
 
-                listaSexo.add(sexo);
+                listaOcupacao.add(ocupacao);
            }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
@@ -61,7 +60,6 @@ public class TipoSexoDao {
             Conexao.closeConnection(con, null, resultado);
         }
 
-        return listaSexo;
+        return listaOcupacao;
    }
 }
-

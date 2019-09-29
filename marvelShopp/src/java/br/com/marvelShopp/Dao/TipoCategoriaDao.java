@@ -5,7 +5,7 @@
  */
 package br.com.marvelShopp.dao;
 
-import br.com.marvelShopp.model.TipoSexo;
+import br.com.marvelShopp.model.TipoCategoria;
 import br.com.marvelShopp.utilities.Conexao;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,15 +17,14 @@ import java.util.logging.Logger;
  *
  * @author Victor
  */
-public class TipoSexoDao {
-    
+public class TipoCategoriaDao {
     
     public void create(){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
         
         try {
-            stm = con.prepareStatement("INSERT INTO tipo_sexo(nome) VALUES(?)");
+            stm = con.prepareStatement("INSERT INTO tipo_categoria(nome) VALUES(?)");
             stm.setString(1,"mais um");
             stm.executeUpdate();
             
@@ -36,24 +35,24 @@ public class TipoSexoDao {
         }
     }
     
-    public List<TipoSexo> list(){
+    public List<TipoCategoria> list(){
         Connection con = Conexao.getConnection();
         Statement st;
         ResultSet resultado = null;
-        List<TipoSexo> listaSexo = new ArrayList();
+        List<TipoCategoria> listaCategoria = new ArrayList();
         try{
              st = con.createStatement();
-             resultado = st.executeQuery("select * from tipo_sexo");
+             resultado = st.executeQuery("select * from tipo_categoria");
         
             while(resultado.next()) {
 
-                TipoSexo sexo = new TipoSexo();
+                TipoCategoria categoria = new TipoCategoria();
 
 
-                sexo.setId(resultado.getLong("id"));
-                sexo.setNome(resultado.getString("nome"));
+                categoria.setId(resultado.getLong("id"));
+                categoria.setNome(resultado.getString("nome"));
 
-                listaSexo.add(sexo);
+                listaCategoria.add(categoria);
            }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
@@ -61,7 +60,6 @@ public class TipoSexoDao {
             Conexao.closeConnection(con, null, resultado);
         }
 
-        return listaSexo;
+        return listaCategoria;
    }
 }
-

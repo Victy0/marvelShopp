@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.utilitarios;
+package br.com.marvelShopp.utilities;
 
 import java.sql.*;
 import java.util.logging.Level;
@@ -14,13 +14,10 @@ import java.util.logging.Logger;
  * @author Victor
  */
 public class Conexao {
-//    static Connection currentCon = null;
-//    static Statement statement = null;
-//    static ResultSet result = null;
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/marvel_shopp";
+    private static final String URL = "jdbc:mysql://localhost:3306/marvel_shopp?useTimezone=true&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "root";
     
      public static Connection getConnection(){
     
