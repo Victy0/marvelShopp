@@ -8,42 +8,49 @@
  *
  * @author victo
  */
+package br.com.marvelShopp.model;
 public class Comentarios {
-//    int id;
-//    Usuario usuario;
-//    Personagem personagem;
-//    String  descricao;
-//    int nota;
-//
-//public String getdescricao(){
-//    return this.descricao;
-//}
-//
-//public int nota(){
-//    return this.nota;
-//    }
-//
-//public void setdescricao(String descricao){
-//     this.descricao=descricao;
-//}
-//
-//public void setnota (int nota){
-//    this.nota =nota;
-//}
-//public Usuario getusuario(){
-//    return this.usuario;
-//}
-//
-//public Personagem getpersonagem(){
-//    return this.personagem;
-//}
-//
-//public void  setpersonagem(Personagem perso){
-//    this.personagem=perso;
-//}
-//public void setusuario(Usuario usu){
-//    this.usuario=usu;
-//}
+     long id;
+    long usuario;
+    long personagem;
+    String descricao;
+    int nota;
+
+ public long getId(){
+     return this.id;
+ } 
+ public void setID(int id){
+     this.id=id;
+ }
+public String getDescricao(){
+  return this.descricao;
+}
+
+public int getNota(){
+    return this.nota;
+    }
+
+public void setDescricao(String descricao){
+     this.descricao=descricao;
+}
+
+public void setNota (int nota){
+   this.nota=nota;
+}
+public long getUsuario(){
+   return this.usuario;
+}
+
+public long getPersonagem(){
+   return this.personagem;
+}
+
+public void  setPersonagem(long perso){
+    this.personagem=perso;
+}
+public void setUsuario(long usu){
+    this.usuario=usu;
+}
 }
 
 

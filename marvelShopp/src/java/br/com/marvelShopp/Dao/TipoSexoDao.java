@@ -20,21 +20,21 @@ import java.util.logging.Logger;
 public class TipoSexoDao {
     
     
-//    public void create(){
-//        Connection con = Conexao.getConnection();
-//        PreparedStatement stm = null;
-//        
-//        try {
-//            stm = con.prepareStatement("INSERT INTO tipo_sexo(nome) VALUES(?)");
-//            stm.setString(1,"mais um");
-//            stm.executeUpdate();
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(tipoSexoDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally{
-//            Conexao.closeConnection(con, stm);
-//        }
-//    }
+    public void create(){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm = null;
+        
+        try {
+            stm = con.prepareStatement("INSERT INTO tipo_sexo(nome) VALUES(?)");
+            stm.setString(1,"mais um");
+            stm.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TipoSexoDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stm);
+        }
+    }
     
     public List<TipoSexo> list(){
         Connection con = Conexao.getConnection();

@@ -18,9 +18,9 @@ public class Conexao {
 //    static Statement statement = null;
 //    static ResultSet result = null;
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/marvel_shopp";
+    private static final String URL = "jdbc:mysql://localhost:3306/marvel_shopp?useTimezone=true&serverTimezone=UTC";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "root";
     
      public static Connection getConnection(){
     
