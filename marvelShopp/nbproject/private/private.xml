@@ -2,12 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
 
+
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/Model/Comentarios.java</file>
             <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/Controller/ComentariosController.java</file>
             <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/Dao/ComentariosDao.java</file>
             <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/web/pagproduto.jsp</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/TipoOcupacaoDao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/web/cadastroDeProduto.jsp</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/TipoSexoDao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/TipoCategoriaDao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/PersonagemController.java</file>
         </group>
     </open-files>
 

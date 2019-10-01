@@ -11,7 +11,7 @@ package br.com.marvelShopp.model;
  */
 public class TipoSexo {
     
-    private Integer id;
+    private Long id;
     
     private String nome;
     
@@ -19,7 +19,7 @@ public class TipoSexo {
         return this.nome;
     }
     
-    public Integer getId(){
+    public Long getId(){
         return this.id;
     }
     
@@ -27,7 +27,7 @@ public class TipoSexo {
         this.nome=nome;
     }
     
-    public void setId(Integer id){
+    public void setId(Long id){
         this.id = id;
     }
 }

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Dao;
+package br.com.marvelShopp.dao;
 
 import br.com.marvelShopp.model.TipoSexo;
-import br.com.marvelShopp.utilitarios.Conexao;
+import br.com.marvelShopp.utilities.Conexao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,35 +35,26 @@ public class TipoSexoDao {
             Conexao.closeConnection(con, stm);
         }
     }
-    
-    public List<TipoSexo> list(){
+
+     public TipoSexo getById ( String id){
         Connection con = Conexao.getConnection();
-        Statement st;
+        PreparedStatement stm;
         ResultSet resultado = null;
-        List<TipoSexo> listaSexo = new ArrayList();
+        TipoSexo sexo = new TipoSexo();
         try{
-             st = con.createStatement();
-             //executa consulta e armazena dados
-             resultado = st.executeQuery("select * from tipo_sexo");
-        
-            while(resultado.next()) {
-
-                //Instanciando a classe Telefone
-                TipoSexo sexo = new TipoSexo();
-
-
-                sexo.setId(resultado.getInt("id"));
+            stm = con.prepareStatement("select * from tipo_ocupacao where id =?");
+            stm.setString(1, id);
+            resultado = stm.executeQuery();
+            while(resultado.next()){
+                sexo.setId(resultado.getLong("id"));
                 sexo.setNome(resultado.getString("nome"));
-
-                listaSexo.add(sexo);
-           }
+            }
         } catch (SQLException ex) {
-            System.out.println("Driver nao pode ser carregado!");
+            System.out.println("Driver nao pode ser carregado:"+ex);
         } finally{
             Conexao.closeConnection(con, null, resultado);
         }
+        return sexo;
+    }
 
-        return listaSexo;
-   }
-}
 
