@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Dao;
+package br.com.marvelShopp.dao;
 
-import br.com.marvelShopp.Model.Usuario;
+import br.com.marvelShopp.model.Usuario;
 
 import br.com.marvelShopp.utilitarios.Conexao;
 import java.sql.Connection;

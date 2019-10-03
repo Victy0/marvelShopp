@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Controller;
+package br.com.marvelShopp.controller;
 
-import br.com.marvelShopp.Model.Usuario;
+import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;

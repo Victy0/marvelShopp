@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Dao;
+package br.com.marvelShopp.dao;
 
 import br.com.marvelShopp.model.TipoSexo;
 import br.com.marvelShopp.utilitarios.Conexao;
@@ -70,7 +70,7 @@ public class TipoSexoDao {
              resultado = st.executeQuery("select * from tipo_sexo");
         
             while(resultado.next()) {
-                //Instanciando a classe Telefone
+       
                 TipoSexo sexo = new TipoSexo();
                 sexo.setId(resultado.getLong("id"));
                 sexo.setNome(resultado.getString("nome"));
