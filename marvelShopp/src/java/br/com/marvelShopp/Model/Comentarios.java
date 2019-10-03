@@ -1,4 +1,5 @@
-package br.com.marvelShopp.model;
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,6 +12,8 @@ package br.com.marvelShopp.model;
  * @author victo
  */
 package br.com.marvelShopp.model;
+
+
 public class Comentarios {
      long id;
     long usuario;

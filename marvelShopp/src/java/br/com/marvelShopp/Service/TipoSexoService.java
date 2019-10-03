@@ -5,7 +5,7 @@
  */
 package br.com.marvelShopp.service;
 
-import br.com.marvelShopp.dao.TipoSexoDao;
+import br.com.marvelShopp.Dao.TipoSexoDao;
 import br.com.marvelShopp.model.TipoSexo;
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class TipoSexoService {
     
-    public List<TipoSexo> getAllTipoSexo(){
+   // public List<TipoSexo> getAllTipoSexo(){
         TipoSexoDao dao = new TipoSexoDao();
-        List<TipoSexo> listAll = dao.list();
-        return listAll;
-    }
+        //List<TipoSexo> listAll = dao.list();
+        //return listAll;
+   // }
 }

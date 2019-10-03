@@ -72,7 +72,7 @@
                     
                     
                      <input type="radio"  id="star-3" name="nota"value="3">
-                     <label  class="labels" ></label>
+                     <label  class="labels" >3</label>
                      
                      
                      <input type="radio" class="star star-2" id="star-2" name="nota"value="2">

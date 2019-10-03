@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.controller;
+package br.com.marvelShopp.Controller;
 
-import br.com.marvelShopp.dao.PersonagemDao;
-import br.com.marvelShopp.dao.TipoCategoriaDao;
-import br.com.marvelShopp.dao.TipoOcupacaoDao;
-import br.com.marvelShopp.dao.TipoSexoDao;
+import br.com.marvelShopp.Dao.PersonagemDao;
+import br.com.marvelShopp.Dao.TipoCategoriaDao;
+import br.com.marvelShopp.Dao.TipoOcupacaoDao;
+import br.com.marvelShopp.Dao.TipoSexoDao;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.TipoCategoria;
 import br.com.marvelShopp.model.TipoOcupacao;
 import br.com.marvelShopp.model.TipoSexo;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,27 +23,22 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Victor
+ * @author victo
  */
 public class PersonagemController extends HttpServlet {
+     private TipoSexoDao sexoDao;
+     private TipoOcupacaoDao ocupacaoDao;
+     private TipoCategoriaDao  categoriaDao ;
+     private PersonagemDao     personagemDao;
     
-    public PersonagemController(){
-        super();
-        sexoDao = new TipoSexoDao();
-        ocupacaoDao = new TipoOcupacaoDao();
-        categoriaDao = new TipoCategoriaDao();
-        personagemDao = new PersonagemDao();
-    }
-    
-    private TipoSexoDao sexoDao;
-    
-    private TipoOcupacaoDao ocupacaoDao;
-    
-    private TipoCategoriaDao categoriaDao;
-    
-    private PersonagemDao personagemDao;
-    
-    
+  public PersonagemController(){
+      super();
+      sexoDao=new TipoSexoDao();
+      ocupacaoDao=new TipoOcupacaoDao();
+      categoriaDao=new TipoCategoriaDao();
+      personagemDao= new PersonagemDao();
+      }
+   
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -54,22 +48,7 @@ public class PersonagemController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet PersonagemController</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet PersonagemController at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
-//    }
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -83,16 +62,12 @@ public class PersonagemController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String acao = request.getParamater("acao");
-//        if("create".equals(acao))
-
         request.setAttribute("sexoLista", sexoDao.list());
-        request.setAttribute("ocupacaoLista", ocupacaoDao.list());
+        request.setAttribute("ocupacaoLista",ocupacaoDao.list());
         request.setAttribute("categoriaLista", categoriaDao.list());
-        RequestDispatcher view = request.getRequestDispatcher("/cadastroDeProduto.jsp");
+        RequestDispatcher view= request.getRequestDispatcher("/cadastroDeProduto.jsp");
         view.forward(request, response);
-        
-//        processRequest(request, response);
+       
     }
 
     /**
@@ -106,8 +81,8 @@ public class PersonagemController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        Personagem persona = new Personagem();
+        
+        Personagem persona= new Personagem();
         TipoCategoria categoria = categoriaDao.getById(request.getParameter("categoria"));
         persona.setCategoria(categoria);
         persona.setDescricao(request.getParameter("descricao"));
@@ -115,7 +90,7 @@ public class PersonagemController extends HttpServlet {
         persona.setImagemRef(request.getParameter("imagemRef"));
         persona.setLugar(request.getParameter("lugar"));
         persona.setNomeReal(request.getParameter("nomeReal"));
-        TipoOcupacao ocupacao = ocupacaoDao.getById(request.getParameter("ocupacao"));
+        TipoOcupacao ocupacao= ocupacaoDao.getById(request.getParameter("ocupacao"));
         persona.setOcupacao(ocupacao);
         persona.setPreco(Double.parseDouble(request.getParameter("preco")));
         persona.setQtdEstoque(Integer.parseInt(request.getParameter("estoque")));
@@ -124,6 +99,9 @@ public class PersonagemController extends HttpServlet {
         
         this.personagemDao.create(persona);
         doGet(request,response);
+        
+        
+        
     }
 
     /**

@@ -5,7 +5,7 @@
  */
 package br.com.marvelShopp.Dao;
 
-import br.com.marvelShopp.model.*;
+import br.com.marvelShopp.model.Comentarios;
 import br.com.marvelShopp.utilitarios.Conexao;
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,12 +23,12 @@ public class ComentariosDao {
          Connection con = Conexao.getConnection();
          PreparedStatement stm= null;
           try {
-              stm=con.prepareStatement("INSERT INTO comentario(id,descricao,nota,usuario,personagem) VALUES (?,?,?,?,?) ");
-              stm.setLong(1,com.getId());
-              stm.setString(2,com.getDescricao());
-              stm.setInt(3, com.getNota());
-              stm.setLong(4, com.getUsuario());
-              stm.setLong(5, com.getPersonagem());
+              stm=con.prepareStatement("INSERT INTO comentario(descricao,nota,usuario,personagem) VALUES (?,?,?,?) ");
+              
+              stm.setString(1,com.getDescricao());
+              stm.setInt(2, com.getNota());
+              stm.setLong(3, com.getUsuario());
+              stm.setLong(4, com.getPersonagem());
             stm.executeUpdate();
           }catch (SQLException ex) {
             Logger.getLogger(Comentarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,7 +52,7 @@ public class ComentariosDao {
             while(resultado.next()) {
 
                 //Instanciando a classe Telefone
-                Comentarios coment = new Comentarios();
+                Comentarios coment= new Comentarios();
 
                 coment.setID (resultado.getInt("id"));
                 coment.setDescricao(resultado.getString("descricao"));

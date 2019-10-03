@@ -2,11 +2,15 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
         <servlet-name>TipoSexoController</servlet-name>
-        <servlet-class>br.com.marvelShopp.controller.TipoSexoController</servlet-class>
+        <servlet-class>br.com.marvelShopp.Controller.TipoSexoController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PersonagemController</servlet-name>
-        <servlet-class>br.com.marvelShopp.controller.PersonagemController</servlet-class>
+        <servlet-class>br.com.marvelShopp.Controller.PersonagemController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UsuarioController</servlet-name>
+        <servlet-class>br.com.marvelShopp.Controller.UsuarioController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TipoSexoController</servlet-name>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>PersonagemController</servlet-name>
         <url-pattern>/PersonagemController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuarioController</servlet-name>
+        <url-pattern>/UsuarioController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

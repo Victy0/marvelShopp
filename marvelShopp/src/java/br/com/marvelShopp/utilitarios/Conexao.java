@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.utilities;
+package br.com.marvelShopp.utilitarios;
 
 import java.sql.*;
 import java.util.logging.Level;
@@ -28,7 +28,7 @@ public class Conexao {
            
             
         } catch (ClassNotFoundException | SQLException ex) {
-            throw new RuntimeException("Erro na conexão: ", ex);
+            throw new RuntimeException("Erro na conexão:"+ex , ex);
         }
     }
      

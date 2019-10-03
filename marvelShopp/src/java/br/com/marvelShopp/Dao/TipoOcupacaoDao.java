@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.dao;
+package br.com.marvelShopp.Dao;
 
 import br.com.marvelShopp.model.TipoOcupacao;
-import br.com.marvelShopp.utilities.Conexao;
+import br.com.marvelShopp.utilitarios.Conexao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
