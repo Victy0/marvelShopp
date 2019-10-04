@@ -1,0 +1,18 @@
+SMAP
+tipoOcupacao_jsp.java
+JSP
+*S JSP
+*F
++ 0 tipoOcupacao.jsp
+tipoOcupacao.jsp
++ 1 header.jsp
+header.jsp
++ 2 footer.jsp
+footer.jsp
+*L
+5,15:50
+5#1,29:65
+19#0,15:93
+5#2,19:108
+33#0,5:126
+*E

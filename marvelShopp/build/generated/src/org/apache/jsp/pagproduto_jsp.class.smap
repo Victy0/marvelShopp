@@ -1,0 +1,20 @@
+SMAP
+pagproduto_jsp.java
+JSP
+*S JSP
+*F
++ 0 pagproduto.jsp
+pagproduto.jsp
++ 1 header.jsp
+header.jsp
++ 2 footer.jsp
+footer.jsp
+*L
+5,18:52
+5#1,29:70
+22#0,70:98
+92,10:169
+101,12:179
+5#2,19:191
+112#0,4:209
+*E
