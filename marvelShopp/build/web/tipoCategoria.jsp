@@ -4,6 +4,9 @@
     Author     : Gleison
 --%>
 
+<%@page import="br.com.marvelShopp.model.TipoCategoria"%>
+<%@page import="java.util.List"%>
+<%@page import="br.com.marvelShopp.dao.TipoCategoriaDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,7 +21,7 @@
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <form action="" method="get" id="tipoCat">            
+                <form action="TipoCategoriaController" method="get" id="tipoCat">            
                     <h1>Tipo Categoria</h1>
                     <table>
                         <tr>
@@ -27,6 +30,25 @@
                             <td><input type="submit" value="Enviar" id="bCat"/></td>
                         </tr>
                         
+                    </table>
+                    <br/>
+                    <br/>
+                    <table>
+                        <tr>
+                            <td>ID</td>
+                            <td>Nome</td>
+                        </tr>
+
+                       <%
+                           TipoCategoriaDao tcl = new TipoCategoriaDao();
+                           List<TipoCategoria> tipoCategoria = tcl.list();
+                           for (TipoCategoria tc : tipoCategoria){               
+                       %>
+                       <tr>
+                           <td><%= tc.getId()%> </td>
+                           <td><%= tc.getNome()%> </td>
+                       </tr>
+                       <% } %>
                     </table>
                 </form>
             </section>
