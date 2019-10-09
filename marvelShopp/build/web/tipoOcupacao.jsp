@@ -4,6 +4,9 @@
     Author     : Gleison
 --%>
 
+<%@page import="br.com.marvelShopp.model.TipoOcupacao"%>
+<%@page import="java.util.List"%>
+<%@page import="br.com.marvelShopp.dao.TipoOcupacaoDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,15 +21,34 @@
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <form action="" method="get" id="tipoOcup">            
+                <form action="TipoOcupacaoController" method="get" id="tipoOcup">            
                     <h1>Tipo Ocupação</h1>
-                    <table>
+                    
+                    <table id="exibeOcupCad">
                         <tr>
-                            <td>Tipo Ocupação: </td>
-                            <td><input type="text" name="tOcup" id="tOcup"/></td>
-                            <td><input type="submit" value="Enviar" id="bOcup"/></td>
+                            <td>ID</td>
+                            <td>Nome</td>
+                            <td>Deletar</td>
                         </tr>
-                        
+
+                       <%
+                           TipoOcupacaoDao tol = new TipoOcupacaoDao();
+                           List<TipoOcupacao> tipoOcupacao = tol.list();
+                           for (TipoOcupacao to : tipoOcupacao){               
+                       %>
+                       <tr>
+                           <td><%= to.getId()%> </td>
+                           <td><%= to.getNome()%> </td>
+                           <td><a href="TipoOcupacaoController"><img id="delete" src="imagens/delete.png"/></td>
+                       </tr>
+                       <% } %>
+                    </table>
+                    <table id="cadOcup">
+                        <tr>
+                            <td>Cadastrar Novo: </td>
+                            <td><input type="text" name="tOcup" id="tOcup"/></td>
+                            <td><input type="submit" value="Cadastrar" id="bOcup"/></td>
+                        </tr>
                     </table>
                 </form>
             </section>

@@ -35,6 +35,24 @@ public class TipoCategoriaDao {
         }
     }
     
+    public TipoCategoria delete (String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm; 
+        ResultSet resultado = null;
+        TipoCategoria categoria = new TipoCategoria();
+        try{
+            stm = con.prepareStatement("delete from tipo_categoria where id =?");
+            stm.setString(1, id);
+            stm.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return categoria;
+    }
+    
     public TipoCategoria getById ( String id){
 //        Long id = Long.parseLong(idSTR);
         Connection con = Conexao.getConnection();

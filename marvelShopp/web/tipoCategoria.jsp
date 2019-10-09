@@ -23,20 +23,11 @@
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
                 <form action="TipoCategoriaController" method="get" id="tipoCat">            
                     <h1>Tipo Categoria</h1>
-                    <table>
-                        <tr>
-                            <td>Tipo Categoria: </td>
-                            <td><input type="text" name="tCat" id="tCat"/></td>
-                            <td><input type="submit" value="Enviar" id="bCat"/></td>
-                        </tr>
-                        
-                    </table>
-                    <br/>
-                    <br/>
-                    <table>
+                    <table id="exibeCatCad">
                         <tr>
                             <td>ID</td>
                             <td>Nome</td>
+                            <td>Deletar</td>
                         </tr>
 
                        <%
@@ -47,8 +38,16 @@
                        <tr>
                            <td><%= tc.getId()%> </td>
                            <td><%= tc.getNome()%> </td>
+                           <td><a href="TipoCategoriaController"><img id="delete" src="imagens/delete.png"/></td>
                        </tr>
                        <% } %>
+                    </table>
+                    <table id="cadCat">
+                        <tr>
+                            <td>Cadastrar Novo: </td>
+                            <td><input type="text" name="tCat" id="tCat"/></td>
+                            <td><input type="submit" value="Cadastrar" id="bCat"/></td>
+                        </tr>
                     </table>
                 </form>
             </section>

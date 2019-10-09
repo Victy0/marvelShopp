@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import br.com.marvelShopp.model.TipoSexo;
+import java.util.List;
+import br.com.marvelShopp.dao.TipoSexoDao;
 
 public final class tipoSexo_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -50,6 +53,9 @@ public final class tipoSexo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -92,15 +98,42 @@ public final class tipoSexo_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</html>\r\n");
       out.write("\n");
       out.write("            <section id=\"corpo\"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->\n");
-      out.write("                <form action=\"\" method=\"get\" id=\"tipoSexo\">            \n");
+      out.write("                <form action=\"TipoSexoController\" method=\"get\" id=\"tipoSexo\">            \n");
       out.write("                    <h1>Tipo Sexo</h1>\n");
-      out.write("                    <table>\n");
+      out.write("                    \n");
+      out.write("                    <table id=\"exibeSexoCad\">\n");
       out.write("                        <tr>\n");
-      out.write("                            <td>Tipo Sexo: </td>\n");
-      out.write("                            <td><input type=\"text\" name=\"tSexo\" id=\"tSexo\"/></td>\n");
-      out.write("                            <td><input type=\"submit\" value=\"Enviar\" id=\"bSexo\"/></td>\n");
+      out.write("                            <td>ID</td>\n");
+      out.write("                            <td>Nome</td>\n");
+      out.write("                            <td>Deletar</td>\n");
       out.write("                        </tr>\n");
-      out.write("                        \n");
+      out.write("\n");
+      out.write("                       ");
+
+                           TipoSexoDao tsl = new TipoSexoDao();
+                           List<TipoSexo> tipoSexo = tsl.list();
+                           for (TipoSexo ts : tipoSexo){               
+                       
+      out.write("\n");
+      out.write("                       <tr>\n");
+      out.write("                           <td>");
+      out.print( ts.getId());
+      out.write(" </td>\n");
+      out.write("                           <td>");
+      out.print( ts.getNome());
+      out.write(" </td>\n");
+      out.write("                           <td><a href=\"TipoSexoController\"><img id=\"delete\" src=\"imagens/delete.png\"/></td>\n");
+      out.write("                       </tr>\n");
+      out.write("                       ");
+ } 
+      out.write("\n");
+      out.write("                    </table>\n");
+      out.write("                    <table id=\"cadSexo\">\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>Cadastrar novo: </td>\n");
+      out.write("                            <td><input type=\"text\" name=\"tSexo\" id=\"tSexo\"/></td>\n");
+      out.write("                            <td><input type=\"submit\" value=\"Cadastrar\" id=\"bSexo\"/></td>\n");
+      out.write("                        </tr>\n");
       out.write("                    </table>\n");
       out.write("                </form>\n");
       out.write("            </section>\n");

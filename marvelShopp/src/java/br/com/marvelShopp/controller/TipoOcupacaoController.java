@@ -5,27 +5,31 @@
  */
 package br.com.marvelShopp.controller;
 
-import br.com.marvelShopp.dao.TipoSexoDao;
-import br.com.marvelShopp.model.TipoSexo;
+import br.com.marvelShopp.dao.TipoOcupacaoDao;
+import br.com.marvelShopp.model.TipoOcupacao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Victor
+ * @author Gleison
  */
-public class TipoSexoController extends HttpServlet {
-@Override
+@WebServlet(name = "TipoOcupacaoController", urlPatterns = {"/TipoOcupacaoController"})
+public class TipoOcupacaoController extends HttpServlet {
+
+    @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
        
-        TipoSexo ts = new TipoSexo();
-        ts.setNome(request.getParameter("tSexo"));
-        TipoSexoDao tsDao = new TipoSexoDao();
-        tsDao.create(ts);
-        response.sendRedirect("tipoSexo.jsp");
+        TipoOcupacao to = new TipoOcupacao();
+        to.setNome(request.getParameter("tOcup"));
+        TipoOcupacaoDao toDao = new TipoOcupacaoDao();
+        toDao.create(to);
+        response.sendRedirect("tipoOcupacao.jsp");
     }
+
 }

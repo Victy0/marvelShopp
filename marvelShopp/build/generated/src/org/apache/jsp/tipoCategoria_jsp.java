@@ -98,42 +98,42 @@ public final class tipoCategoria_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("</html>\r\n");
       out.write("\n");
       out.write("            <section id=\"corpo\"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->\n");
-      out.write("                <form action=\"\" method=\"get\" id=\"tipoCat\">            \n");
+      out.write("                <form action=\"TipoCategoriaController\" method=\"get\" id=\"tipoCat\">            \n");
       out.write("                    <h1>Tipo Categoria</h1>\n");
-      out.write("                    <table>\n");
+      out.write("                    <table id=\"exibeCatCad\">\n");
       out.write("                        <tr>\n");
-      out.write("                            <td>Tipo Categoria: </td>\n");
-      out.write("                            <td><input type=\"text\" name=\"tCat\" id=\"tCat\"/></td>\n");
-      out.write("                            <td><input type=\"submit\" value=\"Enviar\" id=\"bCat\"/></td>\n");
+      out.write("                            <td>ID</td>\n");
+      out.write("                            <td>Nome</td>\n");
+      out.write("                            <td>Deletar</td>\n");
       out.write("                        </tr>\n");
-      out.write("                        \n");
-      out.write("                    </table>\n");
-      out.write("                    <table>\n");
-      out.write("                <tr>\n");
-      out.write("                    <td>Matricula</td>\n");
-      out.write("                    <td>Nome</td>\n");
-      out.write("                    <td>Idade</td>\n");
-      out.write("                </tr>\n");
-      out.write("                \n");
-      out.write("               ");
-
-                   TipoCategoriaDao tcl = new TipoCategoriaDao();
-                   List<TipoCategoria> tipoCategoria = tcl.list();
-                   for (TipoCategoria tc : tipoCategoria){               
-               
       out.write("\n");
-      out.write("               <tr>\n");
-      out.write("                   <td>");
+      out.write("                       ");
+
+                           TipoCategoriaDao tcl = new TipoCategoriaDao();
+                           List<TipoCategoria> tipoCategoria = tcl.list();
+                           for (TipoCategoria tc : tipoCategoria){               
+                       
+      out.write("\n");
+      out.write("                       <tr>\n");
+      out.write("                           <td>");
       out.print( tc.getId());
       out.write(" </td>\n");
-      out.write("                   <td>");
+      out.write("                           <td>");
       out.print( tc.getNome());
       out.write(" </td>\n");
-      out.write("               </tr>\n");
-      out.write("               ");
+      out.write("                           <td><a href=\"TipoCategoriaController\"><img id=\"delete\" src=\"imagens/delete.png\"/></td>\n");
+      out.write("                       </tr>\n");
+      out.write("                       ");
  } 
       out.write("\n");
-      out.write("            </table>\n");
+      out.write("                    </table>\n");
+      out.write("                    <table id=\"cadCat\">\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>Cadastrar Novo: </td>\n");
+      out.write("                            <td><input type=\"text\" name=\"tCat\" id=\"tCat\"/></td>\n");
+      out.write("                            <td><input type=\"submit\" value=\"Cadastrar\" id=\"bCat\"/></td>\n");
+      out.write("                        </tr>\n");
+      out.write("                    </table>\n");
       out.write("                </form>\n");
       out.write("            </section>\n");
       out.write("            ");

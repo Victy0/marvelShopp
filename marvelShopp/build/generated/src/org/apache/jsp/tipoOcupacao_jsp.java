@@ -3,6 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import br.com.marvelShopp.model.TipoOcupacao;
+import java.util.List;
+import br.com.marvelShopp.dao.TipoOcupacaoDao;
 
 public final class tipoOcupacao_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -50,6 +53,9 @@ public final class tipoOcupacao_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -92,15 +98,42 @@ public final class tipoOcupacao_jsp extends org.apache.jasper.runtime.HttpJspBas
       out.write("</html>\r\n");
       out.write("\n");
       out.write("            <section id=\"corpo\"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->\n");
-      out.write("                <form action=\"\" method=\"get\" id=\"tipoOcup\">            \n");
+      out.write("                <form action=\"TipoOcupacaoController\" method=\"get\" id=\"tipoOcup\">            \n");
       out.write("                    <h1>Tipo Ocupação</h1>\n");
-      out.write("                    <table>\n");
+      out.write("                    \n");
+      out.write("                    <table id=\"exibeOcupCad\">\n");
       out.write("                        <tr>\n");
-      out.write("                            <td>Tipo Ocupação: </td>\n");
-      out.write("                            <td><input type=\"text\" name=\"tOcup\" id=\"tOcup\"/></td>\n");
-      out.write("                            <td><input type=\"submit\" value=\"Enviar\" id=\"bOcup\"/></td>\n");
+      out.write("                            <td>ID</td>\n");
+      out.write("                            <td>Nome</td>\n");
+      out.write("                            <td>Deletar</td>\n");
       out.write("                        </tr>\n");
-      out.write("                        \n");
+      out.write("\n");
+      out.write("                       ");
+
+                           TipoOcupacaoDao tol = new TipoOcupacaoDao();
+                           List<TipoOcupacao> tipoOcupacao = tol.list();
+                           for (TipoOcupacao to : tipoOcupacao){               
+                       
+      out.write("\n");
+      out.write("                       <tr>\n");
+      out.write("                           <td>");
+      out.print( to.getId());
+      out.write(" </td>\n");
+      out.write("                           <td>");
+      out.print( to.getNome());
+      out.write(" </td>\n");
+      out.write("                           <td><a href=\"TipoOcupacaoController\"><img id=\"delete\" src=\"imagens/delete.png\"/></td>\n");
+      out.write("                       </tr>\n");
+      out.write("                       ");
+ } 
+      out.write("\n");
+      out.write("                    </table>\n");
+      out.write("                    <table id=\"cadOcup\">\n");
+      out.write("                        <tr>\n");
+      out.write("                            <td>Cadastrar Novo: </td>\n");
+      out.write("                            <td><input type=\"text\" name=\"tOcup\" id=\"tOcup\"/></td>\n");
+      out.write("                            <td><input type=\"submit\" value=\"Cadastrar\" id=\"bOcup\"/></td>\n");
+      out.write("                        </tr>\n");
       out.write("                    </table>\n");
       out.write("                </form>\n");
       out.write("            </section>\n");
