@@ -216,3 +216,8 @@ footer#rodape img#youtube{
        float:right;
        
   }
+img#delete{
+    width: 70%; /* alterar largura*/
+    height: 5%; /* alterar altura*/
+    margin-right:   -950px;
+}

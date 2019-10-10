@@ -5,8 +5,6 @@
  */
 package br.com.marvelShopp.model;
 
-import java.util.Date;
-
 
 /**
  *

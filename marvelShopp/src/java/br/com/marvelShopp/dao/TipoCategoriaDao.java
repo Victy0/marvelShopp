@@ -19,13 +19,13 @@ import java.util.logging.Logger;
  */
 public class TipoCategoriaDao {
     
-    public void create(){
+    public void create(TipoCategoria tc){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
         
         try {
             stm = con.prepareStatement("INSERT INTO tipo_categoria(nome) VALUES(?)");
-            stm.setString(1,"mais um");
+            stm.setString(1,tc.getNome());
             stm.executeUpdate();
             
         } catch (SQLException ex) {
@@ -33,6 +33,24 @@ public class TipoCategoriaDao {
         } finally{
             Conexao.closeConnection(con, stm);
         }
+    }
+    
+    public TipoCategoria delete (String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm; 
+        ResultSet resultado = null;
+        TipoCategoria categoria = new TipoCategoria();
+        try{
+            stm = con.prepareStatement("delete from tipo_categoria where id =?");
+            stm.setString(1, id);
+            stm.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return categoria;
     }
     
     public TipoCategoria getById ( String id){
@@ -59,27 +77,21 @@ public class TipoCategoriaDao {
     
     public List<TipoCategoria> list(){
         Connection con = Conexao.getConnection();
-        Statement st;
-        ResultSet resultado = null;
+        PreparedStatement ltc = null;
         List<TipoCategoria> listaCategoria = new ArrayList();
         try{
-             st = con.createStatement();
-             resultado = st.executeQuery("select * from tipo_categoria");
-        
+            ltc = con.prepareStatement("select * from tipo_categoria");
+            ResultSet resultado = ltc.executeQuery();
             while(resultado.next()) {
-
                 TipoCategoria categoria = new TipoCategoria();
-
-
                 categoria.setId(resultado.getLong("id"));
                 categoria.setNome(resultado.getString("nome"));
-
                 listaCategoria.add(categoria);
            }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
         } finally{
-            Conexao.closeConnection(con, null, resultado);
+            Conexao.closeConnection(con, null);
         }
 
         return listaCategoria;

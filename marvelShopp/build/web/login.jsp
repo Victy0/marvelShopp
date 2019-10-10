@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Marvel Shopp - Login</title>
+        <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
         <link rel="stylesheet" href="css/estilo.css" />
         <link rel="stylesheet" href="css/form.css" />
     </head>

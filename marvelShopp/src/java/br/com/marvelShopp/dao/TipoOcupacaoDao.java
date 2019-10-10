@@ -19,13 +19,13 @@ import java.util.logging.Logger;
  */
 public class TipoOcupacaoDao {
     
-     public void create(){
+     public void create(TipoOcupacao to){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
         
         try {
             stm = con.prepareStatement("INSERT INTO tipo_ocupacao(nome) VALUES(?)");
-            stm.setString(1,"mais um");
+            stm.setString(1,to.getNome());
             stm.executeUpdate();
             
         } catch (SQLException ex) {
