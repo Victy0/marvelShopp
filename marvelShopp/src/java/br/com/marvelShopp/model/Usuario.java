@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Model;
+package br.com.marvelShopp.model;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 /**
  *
@@ -17,7 +18,16 @@ public class Usuario {
      private String email;
      private String senha;
      private String sexo;
-     private Date  dt_nascimento;
+     private String  dt_nascimento;
+     private String cpf;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public Long getId() {
         return id;
@@ -59,11 +69,11 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public Date getDt_nascimento() {
+    public String getDt_nascimento() {
         return dt_nascimento;
     }
 
-    public void setDt_nascimento(Date dt_nascimento) {
+    public void setDt_nascimento(String dt_nascimento) {
         this.dt_nascimento = dt_nascimento;
     }
     

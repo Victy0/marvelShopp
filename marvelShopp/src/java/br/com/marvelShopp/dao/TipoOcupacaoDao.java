@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Dao;
+package br.com.marvelShopp.dao;
 
-import br.com.marvelShopp.model.TipoCategoria;
+import br.com.marvelShopp.model.TipoOcupacao;
 import br.com.marvelShopp.utilitarios.Conexao;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,14 +17,14 @@ import java.util.logging.Logger;
  *
  * @author Victor
  */
-public class TipoCategoriaDao {
+public class TipoOcupacaoDao {
     
-    public void create(){
+     public void create(){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
         
         try {
-            stm = con.prepareStatement("INSERT INTO tipo_categoria(nome) VALUES(?)");
+            stm = con.prepareStatement("INSERT INTO tipo_ocupacao(nome) VALUES(?)");
             stm.setString(1,"mais um");
             stm.executeUpdate();
             
@@ -35,46 +35,45 @@ public class TipoCategoriaDao {
         }
     }
     
-    public TipoCategoria getById ( String id){
-//        Long id = Long.parseLong(idSTR);
+     public TipoOcupacao getById ( String id){
         Connection con = Conexao.getConnection();
-        PreparedStatement stm; 
+        PreparedStatement stm;
         ResultSet resultado = null;
-        TipoCategoria categoria = new TipoCategoria();
+        TipoOcupacao ocupacao = new TipoOcupacao();
         try{
-             stm = con.prepareStatement("select * from tipo_categoria where id =?");
+             stm = con.prepareStatement("select * from tipo_ocupacao where id =?");
              stm.setString(1, id);
              resultado = stm.executeQuery();
              while(resultado.next()){
-                categoria.setId(resultado.getLong("id"));
-                categoria.setNome(resultado.getString("nome"));
+                ocupacao.setId(resultado.getLong("id"));
+                ocupacao.setNome(resultado.getString("nome"));
              }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
         } finally{
             Conexao.closeConnection(con, null, resultado);
         }
-        return categoria;
-    }
-    
-    public List<TipoCategoria> list(){
+        return ocupacao;
+    } 
+     
+    public List<TipoOcupacao> list(){
         Connection con = Conexao.getConnection();
         Statement st;
         ResultSet resultado = null;
-        List<TipoCategoria> listaCategoria = new ArrayList();
+        List<TipoOcupacao> listaOcupacao = new ArrayList();
         try{
              st = con.createStatement();
-             resultado = st.executeQuery("select * from tipo_categoria");
+             resultado = st.executeQuery("select * from tipo_ocupacao");
         
             while(resultado.next()) {
 
-                TipoCategoria categoria = new TipoCategoria();
+                TipoOcupacao ocupacao = new TipoOcupacao();
 
 
-                categoria.setId(resultado.getLong("id"));
-                categoria.setNome(resultado.getString("nome"));
+                ocupacao.setId(resultado.getLong("id"));
+                ocupacao.setNome(resultado.getString("nome"));
 
-                listaCategoria.add(categoria);
+                listaOcupacao.add(ocupacao);
            }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
@@ -82,6 +81,6 @@ public class TipoCategoriaDao {
             Conexao.closeConnection(con, null, resultado);
         }
 
-        return listaCategoria;
+        return listaOcupacao;
    }
 }

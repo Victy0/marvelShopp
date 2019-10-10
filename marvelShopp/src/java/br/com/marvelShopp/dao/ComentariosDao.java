@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Dao;
+package br.com.marvelShopp.dao;
 
 import br.com.marvelShopp.model.Comentarios;
 import br.com.marvelShopp.utilitarios.Conexao;

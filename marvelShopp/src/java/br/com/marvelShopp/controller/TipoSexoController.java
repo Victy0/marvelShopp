@@ -5,7 +5,7 @@
  */
 package br.com.marvelShopp.controller;
 
-import br.com.marvelShopp.Dao.TipoSexoDao;
+import br.com.marvelShopp.dao.TipoSexoDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

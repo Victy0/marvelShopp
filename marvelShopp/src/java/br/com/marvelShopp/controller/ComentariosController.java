@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Controller;
+package br.com.marvelShopp.controller;
 
-import br.com.marvelShopp.Model.Usuario;
+import br.com.marvelShopp.dao.ComentariosDao;
+import br.com.marvelShopp.model.Comentarios;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victo
  */
-public class UsuarioController extends HttpServlet {
+@WebServlet(name = "ComentariosController", urlPatterns = {"/ComentariosController"})
+public class ComentariosController extends HttpServlet {
+    ComentariosDao dao;
+    
+    
+    public ComentariosController() {
+        super();
+        dao = new ComentariosDao();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,7 +39,7 @@ public class UsuarioController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -43,8 +53,16 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        String forward="";
+        String action = "ComentList";
+        
+        request.setAttribute("comentList", dao.list());
+        
+        RequestDispatcher view = request.getRequestDispatcher("/pagproduto.jsp");
+        view.forward(request, response);
     }
+        
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -57,14 +75,18 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          Usuario usu= new Usuario();
-          
-          usu.setNome(request.getParameter("tNome"));
-           usu.setSenha(request.getParameter("tSenha"));
-            usu.setEmail(request.getParameter("tEmail"));
-             usu.setNome(request.getParameter("tNome"));
-             usu.setSexo(request.getParameter("tSexo"));
-//             usu.setDt_nascimento(request.getParameter("tNasc"));
+        Comentarios coment=new Comentarios();
+        
+         
+         coment.setDescricao(request.getParameter("descricao"));
+        coment.setPersonagem(1);
+        coment.setNota(Integer.parseInt(request.getParameter("nota")));
+        coment.setUsuario(2);
+        
+        dao.create(coment);
+         RequestDispatcher view = request.getRequestDispatcher("/pagproduto.jsp");
+        request.setAttribute("comentList", dao.list());
+        view.forward(request, response);
     }
 
     /**

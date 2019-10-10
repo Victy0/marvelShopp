@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.marvelShopp.Controller;
+package br.com.marvelShopp.controller;
 
-import br.com.marvelShopp.Dao.PersonagemDao;
-import br.com.marvelShopp.Dao.TipoCategoriaDao;
-import br.com.marvelShopp.Dao.TipoOcupacaoDao;
-import br.com.marvelShopp.Dao.TipoSexoDao;
+import br.com.marvelShopp.dao.PersonagemDao;
+import br.com.marvelShopp.dao.TipoCategoriaDao;
+import br.com.marvelShopp.dao.TipoOcupacaoDao;
+import br.com.marvelShopp.dao.TipoSexoDao;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.TipoCategoria;
 import br.com.marvelShopp.model.TipoOcupacao;
