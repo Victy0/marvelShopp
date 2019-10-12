@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/ComentariosController.java</file>
-            <file>file:/C:/Users/victo/Documents/GitHub/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/UsuarioController.java</file>
-            <file>file:/C:/Users/Gleison/Desktop/Nova%20pasta/marvelShopp/marvelShopp/web/tipoOcupacao.jsp</file>
-            <file>file:/C:/Users/Gleison/Desktop/Nova%20pasta/marvelShopp/marvelShopp/web/tipoSexo.jsp</file>
-            <file>file:/C:/Users/Gleison/Desktop/Nova%20pasta/marvelShopp/marvelShopp/web/tipoCategoria.jsp</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/TipoOcupacaoDao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/web/cadastroDeProduto.jsp</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/utilitarios/Conexao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/PersonagemController.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/UsuarioController.java</file>
         </group>
     </open-files>
 </project-private>
