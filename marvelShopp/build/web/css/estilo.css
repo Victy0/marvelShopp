@@ -77,7 +77,7 @@ nav#menu a:hover{
 nav#carrinho ul{
     list-style: none;/*tirar os marcadores*/
 }
-nav#carrinho img#carrinho{
+form#carrinho input#carrinho{
     position: absolute;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
     left: 87%;
     top: 70px;
@@ -220,4 +220,45 @@ img#delete{
     width: 70%; /* alterar largura*/
     height: 5%; /* alterar altura*/
     margin-right:   -950px;
+}
+
+section#carrinho h1#titulo{
+    margin-left: 550px;
+    font-size: 40pt;
+}
+
+div#item{
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    margin: 15px;
+    margin-left: 100px;
+    width: 500px;
+}
+
+div#item h1 {
+    margin-left: 200px;
+    margin-top: -10px;
+}
+
+div#item h3 {
+    margin-left: 200px;
+    margin-top: -10px;
+    padding-bottom: 10px;
+    border-bottom: 1px #606060 solid; 
+    border-bottom-width: 5px;
+}
+
+div#item p {
+    margin-left: 200px;
+    margin-top: -10px;
+}
+
+div#item input#percentual{
+    width: 10px;
+}
+
+div#item form#qtd{
+    margin-left: 200px;
 }
