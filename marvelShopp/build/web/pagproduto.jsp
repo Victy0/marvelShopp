@@ -21,23 +21,20 @@
         <div id="interface">
              <%@ include file="header.jsp"%>
              <fieldset class="content">
-          <a href="form .html">  <img src="imagens/maxresdefault.jpg"  width="600px" height="400px" class="grid-item"></a>
+          <a href="form .html">  <img src="imagens/<%= request.getAttribute("imagemRef") %>"  width="600px" height="400px" class="grid-item"></a>
      
           <div class=" label">
        
-              <h1 > <%out.print(request.getAttribute("identidade")); %></h1>
-            <p> R$ 39,00</p>
+              <h1> <%= request.getAttribute("identidade") %> </h1>
+              <h2> <%= request.getAttribute("nomeReal") %> </h2>
+            <p> R$ <%= request.getAttribute("preco") %> </p>
              <button type="button" value="Comprar">Comprar</button>
           </div>
  
           <div class="grid-item descri">
           <h2 >Descrição</h2><br>
    
-       <p>Spoiler <br>
-        Ela é a prtaicamente é a mãe do shinji <br>
-         transformada em um eva , absurdo né não<br>
-         imagina sua mâe transformada em uma eva<br>
-         traumatizante</p>
+       <p><%= request.getAttribute("descricao") %></p>
           </div>
 
     <div class ="grid-item ficha">
@@ -88,7 +85,7 @@
          </div>
           
           <h2> Avaliações</h2>
-            
+             
                   </fieldset>   
                  
              

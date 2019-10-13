@@ -27,10 +27,10 @@
                 %>
                     
                     <div id='personagem'>
-                        <a href='/marvelShopp/PagProdutoController?id=<%out.print(personagem.getId());%>'>
-                            <img id='imgProduto' src="<%out.print(personagem.getImagemRef());%>"/> <br>
-                            <%out.print(personagem.getNomeReal());%> <br>
-                            <%out.print(personagem.getIdentidade());%> <br>
+                        <a href='/marvelShopp/PagProdutoController?id=<%= personagem.getId() %>'>
+                            <img id='imgProduto' src="imagens/<%= personagem.getImagemRef() %>" height="150" width="100"/> <br>
+                            <%= personagem.getNomeReal()%> <br>
+                            <%= personagem.getIdentidade()%> <br>
                         </a>
                     </div>
                 

@@ -98,10 +98,7 @@ public class PersonagemDao {
              //   stm.setString(i, termo);
              resultado = stm.executeQuery();
              while(resultado.next()){
-                Personagem personagem = new Personagem();
-                personagem.setId(resultado.getLong("id"));
-                personagem.setNomeReal(resultado.getString("nome_real"));
-                personagem.setIdentidade(resultado.getString("identidade"));
+                Personagem personagem = this.getById(resultado.getString("id"));
                 listaPersonagem.add(personagem);
              }
         } catch (SQLException ex) {
