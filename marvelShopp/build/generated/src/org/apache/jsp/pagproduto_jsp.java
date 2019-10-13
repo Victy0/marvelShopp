@@ -89,8 +89,8 @@ public final class pagproduto_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            </ul>                    \r\n");
       out.write("        </nav>    \r\n");
       out.write("                \r\n");
-      out.write("        <form action=\" \" method=\"post\" id= \"busca\">\t\t\t\r\n");
-      out.write("            <input type=\"search\" id=\"busca\" name=\"q\">\r\n");
+      out.write("        <form action=\"BuscaController\" method=\"get\" id= \"busca\">\t\t\t\r\n");
+      out.write("            <input type=\"search\" id=\"busca\" name=\"busca\">\r\n");
       out.write("            <button type=\"submit\">Buscar</button>\r\n");
       out.write("        </form>\r\n");
       out.write("    </header>     \r\n");
@@ -164,19 +164,7 @@ public final class pagproduto_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("         </div>\r\n");
       out.write("          \r\n");
       out.write("          <h2> Avaliações</h2>\r\n");
-      out.write("           ");
-  
-                        List<Comentarios> coment = (List<Comentarios>) request.getAttribute("comentList");  
-                        for (int i = 0; i < coment.size(); i++) {  
-                           out.println("<div class= 'grid-item ava'>");
-                            out.println("Usuario :"+coment.get(i).getUsuario() + "<br>");
-                             out.println("Personagem :"+coment.get(i).getPersonagem() + "<br>");
-                              out.println("Nota:"+coment.get(i).getNota() + "<br>");
-                               out.println("Descrição:"+coment.get(i).getDescricao() + "<br>");
-                               out.println("</div>");
-                        }  
-                    
-      out.write("   \r\n");
+      out.write("            \r\n");
       out.write("                  </fieldset>   \r\n");
       out.write("                 \r\n");
       out.write("             \r\n");

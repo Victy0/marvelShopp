@@ -8,6 +8,8 @@ package br.com.marvelShopp.dao;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.utilitarios.Conexao;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,4 +43,72 @@ public class PersonagemDao {
             Conexao.closeConnection(con, stm);
         }
     }
+     
+    public Personagem getById ( String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm; 
+        ResultSet resultado = null;
+        Personagem personagem = new Personagem();
+        TipoCategoriaDao tcd = new TipoCategoriaDao();
+        TipoOcupacaoDao tod = new TipoOcupacaoDao();
+        TipoSexoDao tsd = new TipoSexoDao();
+        
+        try{
+             stm = con.prepareStatement("select * from personagem where id =?");
+             stm.setString(1, id);
+             resultado = stm.executeQuery();
+             while(resultado.next()){
+                personagem.setId(resultado.getLong("id"));
+                personagem.setNomeReal(resultado.getString("nome_real"));
+                personagem.setIdentidade(resultado.getString("identidade"));
+                personagem.setCategoria(tcd.getById(resultado.getString("id")));
+                personagem.setDescricao(resultado.getString("descricao"));
+                personagem.setPreco(resultado.getDouble("preco"));
+                personagem.setOcupacao(tod.getById(resultado.getString("id")));
+                personagem.setSexo(tsd.getById(resultado.getString("id")));
+                personagem.setLugar(resultado.getString("lugar"));
+                personagem.setImagemRef(resultado.getString("imagem_ref"));
+             }
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return personagem;
+    }
+     
+     public List<Personagem> busca(String termo)
+     {
+         Connection con = Conexao.getConnection();
+         PreparedStatement stm = null;
+         ResultSet resultado = null;
+         List<Personagem> listaPersonagem = new ArrayList();
+         
+         
+         try{
+             stm = con.prepareStatement("select * from personagem\n" +
+                                        "where 	nome_real like '%" + termo + "%'\n" +
+                                        "or	identidade like '%" + termo + "%'\n" +
+                                        "or	categoria like '%" + termo + "%'\n" +
+                                        "or	ocupacao like '%" + termo + "%'\n" +
+                                        "or	sexo like '%" + termo + "%'\n" +
+                                        "or	lugar like '%" + termo + "%'\n" +
+                                        ";");
+             //for (int i = 1; i <= 6; i++)
+             //   stm.setString(i, termo);
+             resultado = stm.executeQuery();
+             while(resultado.next()){
+                Personagem personagem = new Personagem();
+                personagem.setId(resultado.getLong("id"));
+                personagem.setNomeReal(resultado.getString("nome_real"));
+                personagem.setIdentidade(resultado.getString("identidade"));
+                listaPersonagem.add(personagem);
+             }
+        } catch (SQLException ex) {
+            System.out.println("Driver não pôde ser carregado: "+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return listaPersonagem;
+     }
 }

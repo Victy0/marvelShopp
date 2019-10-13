@@ -24,8 +24,8 @@
             </ul>                    
         </nav>    
                 
-        <form action=" " method="post" id= "busca">			
-            <input type="search" id="busca" name="q">
+        <form action="BuscaController" method="get" id= "busca">			
+            <input type="search" id="busca" name="busca">
             <button type="submit">Buscar</button>
         </form>
     </header>     

@@ -25,7 +25,7 @@
      
           <div class=" label">
        
-            <h1 > Eva 1</h1>
+              <h1 > <%out.print(request.getAttribute("identidade")); %></h1>
             <p> R$ 39,00</p>
              <button type="button" value="Comprar">Comprar</button>
           </div>
@@ -88,17 +88,7 @@
          </div>
           
           <h2> Avaliações</h2>
-           <%  
-                        List<Comentarios> coment = (List<Comentarios>) request.getAttribute("comentList");  
-                        for (int i = 0; i < coment.size(); i++) {  
-                           out.println("<div class= 'grid-item ava'>");
-                            out.println("Usuario :"+coment.get(i).getUsuario() + "<br>");
-                             out.println("Personagem :"+coment.get(i).getPersonagem() + "<br>");
-                              out.println("Nota:"+coment.get(i).getNota() + "<br>");
-                               out.println("Descrição:"+coment.get(i).getDescricao() + "<br>");
-                               out.println("</div>");
-                        }  
-                    %>   
+            
                   </fieldset>   
                  
              
