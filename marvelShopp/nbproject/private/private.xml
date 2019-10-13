@@ -3,10 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/chris/OneDrive/Documentos/Conhecimento/UFF/5º%20Semestre/Desenvolvimento%20Web/Trabalho/Projeto%20MarvelShopp/marvelShopp/marvelShopp/web/pagproduto.jsp</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/Conhecimento/UFF/5º%20Semestre/Desenvolvimento%20Web/Trabalho/Projeto%20MarvelShopp/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/ComentariosController.java</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/Conhecimento/UFF/5º%20Semestre/Desenvolvimento%20Web/Trabalho/Projeto%20MarvelShopp/marvelShopp/marvelShopp/web/js/validaEmail.js</file>
             <file>file:/C:/Users/chris/OneDrive/Documentos/Conhecimento/UFF/5º%20Semestre/Desenvolvimento%20Web/Trabalho/Projeto%20MarvelShopp/marvelShopp/marvelShopp/web/js/validaCPF.js</file>
+=======
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/TipoOcupacaoDao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/web/cadastroDeProduto.jsp</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/utilitarios/Conexao.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/PersonagemController.java</file>
+            <file>file:/C:/xampp/htdocs/projeto/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/UsuarioController.java</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>
