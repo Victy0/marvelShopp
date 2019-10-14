@@ -28,8 +28,8 @@ import javax.servlet.http.HttpServletResponse;
 public class PersonagemController extends HttpServlet {
      private TipoSexoDao sexoDao;
      private TipoOcupacaoDao ocupacaoDao;
-     private TipoCategoriaDao  categoriaDao ;
-     private PersonagemDao     personagemDao;
+     private TipoCategoriaDao categoriaDao ;
+     private PersonagemDao personagemDao;
     
   public PersonagemController(){
       super();
@@ -62,12 +62,6 @@ public class PersonagemController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("sexoLista", sexoDao.list());
-        request.setAttribute("ocupacaoLista",ocupacaoDao.list());
-        request.setAttribute("categoriaLista", categoriaDao.list());
-        RequestDispatcher view= request.getRequestDispatcher("/cadastroDeProduto.jsp");
-        view.forward(request, response);
-       
     }
 
     /**
@@ -98,10 +92,8 @@ public class PersonagemController extends HttpServlet {
         persona.setSexo(sexo);
         
         this.personagemDao.create(persona);
-        doGet(request,response);
-        
-        
-        
+        RequestDispatcher view= request.getRequestDispatcher("/cadastroDeProduto.jsp");
+        view.forward(request, response);    
     }
 
     /**
