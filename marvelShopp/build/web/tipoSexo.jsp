@@ -21,7 +21,7 @@
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <form action="TipoSexoController" method="post" id="tipoSexo">            
+                <form action="TipoSexoController" method="get" id="tipoSexo">            
                     <h1>Tipo Sexo</h1>
                     
                     <table id="exibeSexoCad">

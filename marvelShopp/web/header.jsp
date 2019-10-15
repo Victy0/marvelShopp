@@ -23,10 +23,10 @@
                 <input type="image" class="form-check-label" src="imagens/carrinhoDeCompras.png" id="carrinho"/>
             </form> 
         </nav>                    
-        <form action=" " method="post" id= "busca">
+        <form action="BuscaController" method="GET" id= "busca">
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <input class="form-control" type="search" id="busca" name="q">
+                    <input class="form-control" type="search" id="busca" name="busca">
                 </div>
                 <button type="submit" class="btn btn-primary" style="background: #000">Buscar</button>
             </div>

@@ -13,89 +13,88 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/estilo.css" /> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
-    
-         
+
+
         <title>JSP Page</title>
     </head>
     <body>
         <div id="interface">
-             <%@ include file="header.jsp"%>
-             <fieldset class="content">
-          <a href="form .html">  <img src="imagens/<%= request.getAttribute("imagemRef") %>"  width="600px" height="400px" class="grid-item"></a>
-     
-          <div class=" label">
-       
-              <h1> <%= request.getAttribute("identidade") %> </h1>
-              <h2> <%= request.getAttribute("nomeReal") %> </h2>
-            <p> R$ <%= request.getAttribute("preco") %> </p>
-             <button type="button" value="Comprar">Comprar</button>
-          </div>
- 
-          <div class="grid-item descri">
-          <h2 >Descrição</h2><br>
-   
-       <p><%= request.getAttribute("descricao") %></p>
-          </div>
+            <%@ include file="header.jsp"%>
+            <fieldset class="content">
+                <a href="form .html">  <img src="imagens/<%= request.getAttribute("imagemRef") %>"  width="600px" height="400px" class="grid-item"></a>
 
-    <div class ="grid-item ficha">
-        <p>Nome real: mãe do shinji</p>
-         <p>categoria :robo altão</p>
-         <p> sexo: feminino</p>
-         <p>aiai</p>
-         <p>aiaia</p>
-     </div>
-    
-  
-          
- 
-         <div class="comment">
-     
-         <h2> Avalie </h2> 
-         
-          <form method="POST" action='ComentariosController' name="frmAddUser">
-       
-         <textarea  placeholder="digite um comentario" rows="10" cols="50" name="descricao"></textarea>
-         
-     
- 
-             
-         <div class="radio">
-                     <input type="radio"  id="star-5" name="nota" value="5">
+            <div class=" label">
+
+                <h1> <%= request.getAttribute("identidade") %> </h1>
+                <p> <%= request.getAttribute("preco") %> </p>
+                <button type="button" value="Comprar">Comprar</button>
+            </div>
+
+            <div class="grid-item descri">
+                <h2> Descrição </h2><br>
+
+                <!-- <p> Spoiler <br> -->
+                <%= request.getAttribute("descricao") %>
+            </div>
+
+            <div class ="grid-item ficha">
+                <p>Nome real: <%= request.getAttribute("nomeReal") %>       </p>
+                <p>Categoria: <%= request.getAttribute("categoria") %>      </p>
+                <p>Sexo: <%= request.getAttribute("sexo") %>                </p>
+                <p>Ocupação: <%= request.getAttribute("ocupacao") %>        </p>
+                <p>Local de Atuação: <%= request.getAttribute("lugar") %>   </p>
+            </div>
+
+            <div class="comment">
+
+                <h2> Avalie </h2> 
+
+                <form method="POST" action='ComentariosController' name="frmAddUser">
+                    <input type="hidden" id="idPersonagem" name="idPersonagem" value="<%= request.getAttribute("idPersonagem") %>">
+
+                <textarea  placeholder="digite um comentario" rows="10" cols="50" name="descricao"></textarea>
+
+                <div class="radio">
+                    <input type="radio" id="star-5" name="nota" value="5">
                     <label class="labels" for="star-5">5</label>
-                     
-                    
-                     <input type="radio"  id="star-4" name="nota"value="4">
-                      <label  class="labels" for="star-4">4</label>
-                    
-                    
-                     <input type="radio"  id="star-3" name="nota"value="3">
-                     <label  class="labels" >3</label>
-                     
-                     
-                     <input type="radio" class="star star-2" id="star-2" name="nota"value="2">
-                     
-                      <label  class="labels" >2</label>
-                    
-                     <input type="radio" class="star star-1" id="star-1" name="nota"value="1">
-                      <label  class="labels" >1</label>
-                     </div>
-            <input type="submit" value="adicionar" style="width:90px; " ></input>
-          </form>
-         
-         </div>
-          
-          <h2> Avaliações</h2>
-             
-                  </fieldset>   
-                 
-             
-         </div>    
-      
-      </fieldset>
-       
-     
-       
-       <br>
+
+                    <input type="radio" id="star-4" name="nota" value="4">
+                    <label class="labels" for="star-4">4</label>
+
+                    <input type="radio" id="star-3" name="nota" value="3">
+                    <label class="labels" for="star3">3</label>
+
+                    <input type="radio" class="star star-2" id="star-2" name="nota" value="2">
+                    <label class="labels" for="star2">2</label>
+
+                    <input type="radio" class="star star-1" id="star-1" name="nota" value="1">
+                    <label class="labels" for="star1">1</label>
+                </div>
+                
+                    <input type="submit" value="adicionar" style="width:90px; " >
+                </form>
+
+            </div>
+
+            <h2> Avaliações </h2>
+                <%  
+                    List<Comentarios> listaComentarios = (List<Comentarios>) request.getAttribute("comentList");  
+                    for (Comentarios comentario: listaComentarios){
+                %>
+                
+                <div class= 'grid-item ava'>
+                    Usuario : <%= comentario.getUsuario().getNome() %>              <br>
+                    Personagem : <%= comentario.getPersonagem().getIdentidade()%>   <br>
+                    Nota: <%= comentario.getNota()%>                                <br>
+                    Descrição: <%= comentario.getDescricao()%>                      <br>
+                </div>
+                
+                <% } %>   
+            </fieldset>   
+
+        </div>    
+
+        <br>
         <%@ include file="footer.jsp"%>
     </body>
 </html>

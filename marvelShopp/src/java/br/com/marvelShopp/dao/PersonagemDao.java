@@ -44,7 +44,7 @@ public class PersonagemDao {
         }
     }
      
-    public Personagem getById ( String id){
+    public Personagem getById (String id){
         Connection con = Conexao.getConnection();
         PreparedStatement stm; 
         ResultSet resultado = null;
@@ -54,21 +54,21 @@ public class PersonagemDao {
         TipoSexoDao tsd = new TipoSexoDao();
         
         try{
-             stm = con.prepareStatement("select * from personagem where id =?");
-             stm.setString(1, id);
-             resultado = stm.executeQuery();
-             while(resultado.next()){
-                personagem.setId(resultado.getLong("id"));
-                personagem.setNomeReal(resultado.getString("nome_real"));
-                personagem.setIdentidade(resultado.getString("identidade"));
-                personagem.setCategoria(tcd.getById(resultado.getString("id")));
-                personagem.setDescricao(resultado.getString("descricao"));
-                personagem.setPreco(resultado.getDouble("preco"));
-                personagem.setOcupacao(tod.getById(resultado.getString("id")));
-                personagem.setSexo(tsd.getById(resultado.getString("id")));
-                personagem.setLugar(resultado.getString("lugar"));
-                personagem.setImagemRef(resultado.getString("imagem_ref"));
-             }
+            stm = con.prepareStatement("select * from personagem where id = ?");
+            stm.setString(1, id);
+            resultado = stm.executeQuery();
+            while(resultado.next()){
+               personagem.setId(resultado.getLong("id"));
+               personagem.setNomeReal(resultado.getString("nome_real"));
+               personagem.setIdentidade(resultado.getString("identidade"));
+               personagem.setCategoria(tcd.getById(resultado.getString("id")));
+               personagem.setDescricao(resultado.getString("descricao"));
+               personagem.setPreco(resultado.getDouble("preco"));
+               personagem.setOcupacao(tod.getById(resultado.getString("id")));
+               personagem.setSexo(tsd.getById(resultado.getString("id")));
+               personagem.setLugar(resultado.getString("lugar"));
+               personagem.setImagemRef(resultado.getString("imagem_ref"));
+            }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
         } finally{

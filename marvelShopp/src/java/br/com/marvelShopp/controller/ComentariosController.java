@@ -6,6 +6,7 @@
 package br.com.marvelShopp.controller;
 
 import br.com.marvelShopp.dao.ComentariosDao;
+import br.com.marvelShopp.dao.PersonagemDao;
 import br.com.marvelShopp.model.Comentarios;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,10 +57,9 @@ public class ComentariosController extends HttpServlet {
         String forward="";
         String action = "ComentList";
         
-        request.setAttribute("comentList", dao.list());
+        request.setAttribute("comentList", dao.list(request.getParameter("idPersonagem")));
         
-        RequestDispatcher view = request.getRequestDispatcher("/pagproduto.jsp");
-        view.forward(request, response);
+        request.getRequestDispatcher("/pagproduto.jsp").forward(request, response);
     }
         
     
@@ -75,17 +75,18 @@ public class ComentariosController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Comentarios coment=new Comentarios();
+        Comentarios coment = new Comentarios();
+        PersonagemDao personagemDao = new PersonagemDao();
         
          
-         coment.setDescricao(request.getParameter("descricao"));
-        coment.setPersonagem(1);
+        coment.setDescricao(request.getParameter("descricao"));
+        coment.setPersonagem(personagemDao.getById("idPersonagem"));
         coment.setNota(Integer.parseInt(request.getParameter("nota")));
-        coment.setUsuario(2);
+        coment.setUsuario(null);        //Consertar mais tarde <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         
         dao.create(coment);
-         RequestDispatcher view = request.getRequestDispatcher("/pagproduto.jsp");
-        request.setAttribute("comentList", dao.list());
+        RequestDispatcher view = request.getRequestDispatcher("/pagproduto.jsp");
+        request.setAttribute("comentList", dao.list(request.getParameter("id")));
         view.forward(request, response);
     }
 

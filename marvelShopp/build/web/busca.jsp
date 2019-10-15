@@ -27,7 +27,7 @@
                 %>
                     
                     <div id='personagem'>
-                        <a href='/marvelShopp/PagProdutoController?id=<%= personagem.getId() %>'>
+                        <a href='/marvelShopp/PagProdutoController?idPersonagem=<%= personagem.getId() %>'>
                             <img id='imgProduto' src="imagens/<%= personagem.getImagemRef() %>" height="150" width="100"/> <br>
                             <%= personagem.getNomeReal()%> <br>
                             <%= personagem.getIdentidade()%> <br>

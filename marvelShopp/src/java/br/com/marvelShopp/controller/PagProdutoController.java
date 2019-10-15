@@ -26,19 +26,19 @@ public class PagProdutoController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PersonagemDao personaDao = new PersonagemDao();
-        Personagem persona = personaDao.getById(request.getParameter("id"));
+        Personagem persona = personaDao.getById(request.getParameter("idPersonagem"));
         
         request.setAttribute("nomeReal", persona.getNomeReal());
         request.setAttribute("identidade", persona.getIdentidade());
-        request.setAttribute("categoria", persona.getCategoria());
+        request.setAttribute("categoria", persona.getCategoria().getNome());
         request.setAttribute("descricao", persona.getDescricao());
         request.setAttribute("preco", persona.getPreco());
-        request.setAttribute("ocupacao", persona.getOcupacao());
-        request.setAttribute("sexo", persona.getSexo());
+        request.setAttribute("ocupacao", persona.getOcupacao().getNome());
+        request.setAttribute("sexo", persona.getSexo().getNome());
         request.setAttribute("lugar", persona.getLugar());
         request.setAttribute("imagemRef", persona.getImagemRef());
         
-        request.getRequestDispatcher("pagproduto.jsp").forward(request, response);
+        request.getRequestDispatcher("ComentariosController").forward(request, response);
     }
 }
 

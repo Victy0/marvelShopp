@@ -18,51 +18,49 @@ import java.util.logging.Logger;
  *
  * @author victo
  */
-public class ComentariosDao {
-     public void create (Comentarios com){
-         Connection con = Conexao.getConnection();
-         PreparedStatement stm= null;
-          try {
-              stm=con.prepareStatement("INSERT INTO comentario(descricao,nota,usuario,personagem) VALUES (?,?,?,?) ");
-              
-              stm.setString(1,com.getDescricao());
-              stm.setInt(2, com.getNota());
-              stm.setLong(3, com.getUsuario());
-              stm.setLong(4, com.getPersonagem());
+public class ComentariosDao{
+    public void create (Comentarios com){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm= null;
+        try{
+            stm = con.prepareStatement("INSERT INTO comentario(descricao,nota,usuario,personagem) VALUES (?,?,?,?) ");
+
+            stm.setString(1, com.getDescricao());
+            stm.setInt(2, com.getNota());
+            stm.setLong(3, 1/*com.getUsuario().getId()*/); // <<<<<<<<<<<<<<  Alterar Aqui <<<<<<<<<<<<<<
+            stm.setLong(4, com.getPersonagem().getId());
             stm.executeUpdate();
-          }catch (SQLException ex) {
+        }catch (SQLException ex) {
             Logger.getLogger(Comentarios.class.getName()).log(Level.SEVERE, null, ex);
-        } finally{
+        }finally{
             Conexao.closeConnection(con, stm);
         }
-         
-         
     }
      
-     public List<Comentarios> list(){
+    public List<Comentarios> list(String id){
         Connection con = Conexao.getConnection();
         Statement stm;
         ResultSet resultado = null;
         List<Comentarios> listaComent = new ArrayList();
         try{
-             stm = con.createStatement();
-             //executa consulta e armazena dados
-             resultado = stm.executeQuery("select * from comentario");
+            stm = con.createStatement();
+            //executa consulta e armazena dados
+            resultado = stm.executeQuery("select * from comentario where personagem = " + id);
         
             while(resultado.next()) {
+                Comentarios coment = new Comentarios();
+                UsuarioDao usuarioDao = new UsuarioDao();
+                PersonagemDao personagemDao = new PersonagemDao();
 
-                //Instanciando a classe Telefone
-                Comentarios coment= new Comentarios();
-
-                coment.setID (resultado.getInt("id"));
+                coment.setId (resultado.getInt("id"));
                 coment.setDescricao(resultado.getString("descricao"));
-                coment.setUsuario(resultado.getLong("usuario"));
-                coment.setNota (resultado.getInt("nota"));
-                coment.setPersonagem(resultado.getLong("personagem"));
+                coment.setUsuario(usuarioDao.getById("usuario"));
+                coment.setNota(resultado.getInt("nota"));
+                coment.setPersonagem(personagemDao.getById("personagem"));
 
                 listaComent.add(coment);
-           }
-        } catch (SQLException ex) {
+            }
+        } catch (SQLException ex){
             System.out.println("Driver nao pode ser carregado!");
         } finally{
             Conexao.closeConnection(con, null, resultado);

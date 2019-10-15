@@ -15,47 +15,51 @@ package br.com.marvelShopp.model;
 
 
 public class Comentarios {
-     long id;
-    long usuario;
-    long personagem;
+    long id;
+    Usuario usuario;
+    Personagem personagem;
     String descricao;
     int nota;
 
- public long getId(){
-     return this.id;
- } 
- public void setID(int id){
-     this.id=id;
- }
-public String getDescricao(){
-  return this.descricao;
-}
-
-public int getNota(){
-    return this.nota;
+    public long getId() {
+        return id;
     }
 
-public void setDescricao(String descricao){
-     this.descricao=descricao;
-}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-public void setNota (int nota){
-   this.nota=nota;
-}
-public long getUsuario(){
-   return this.usuario;
-}
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
-public long getPersonagem(){
-   return this.personagem;
-}
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
-public void  setPersonagem(long perso){
-    this.personagem=perso;
-}
-public void setUsuario(long usu){
-    this.usuario=usu;
-}
+    public Personagem getPersonagem() {
+        return personagem;
+    }
+
+    public void setPersonagem(Personagem personagem) {
+        this.personagem = personagem;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public int getNota() {
+        return nota;
+    }
+
+    public void setNota(int nota) {
+        this.nota = nota;
+    }
 }
 
 

@@ -18,7 +18,7 @@ body{/*formata todo conteudo do body*/
 div#interface{
     width: 85%;/*largura da interface*/
     background-color: #ffffff;/*cor do fundo da iterface*/
-    margin: 50px auto 0px auto;/*margem top direita baixo esquerda*/
+    margin: 50px auto 50px auto;/*margem top direita baixo esquerda*/
     padding: 10px 10px 10px 10px;/*espaço interno dentro do objeto*/
     
 }
@@ -60,7 +60,7 @@ nav#menu ul{
 nav#menu li{
     display: inline-block; /*colocar o menu em linha*/
     margin:25px;
-    margin-right: 55px;/*margem em relação a esquerda*/
+    margin-right: 75px;/*margem em relação a esquerda*/
     font-weight: bold;/*colocar em negrito*/
     transition: color 0.3s;
     font-size: 15pt;
@@ -79,8 +79,8 @@ nav#carrinho ul{
 }
 form#carrinho input#carrinho{
     position: absolute;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
-    left: 87%;
-    top: 70px;
+    left: 90%;
+    top: 30px;
     width: 8%; /* alterar largura*/
     height: 60%; /* alterar altura*/
 }
