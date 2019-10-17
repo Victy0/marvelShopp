@@ -171,10 +171,10 @@ footer#rodape img#youtube{
    
     padding: 10px;
   }
-.label {
+.label.name {
     margin-left: 800px;
     margin-top: -300px; 
-    
+    color: #000;
   }
 
   .grid-item.descri{

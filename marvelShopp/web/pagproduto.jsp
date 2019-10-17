@@ -23,10 +23,10 @@
             <fieldset class="content">
                 <a href="form .html">  <img src="imagens/<%= request.getAttribute("imagemRef") %>"  width="600px" height="400px" class="grid-item"></a>
 
-            <div class=" label">
+            <div class=" label name">
 
                 <h1> <%= request.getAttribute("identidade") %> </h1>
-                <p> <%= request.getAttribute("preco") %> </p>
+                <p> R$<%= request.getAttribute("preco") %> </p>
                 <button type="button" value="Comprar">Comprar</button>
             </div>
 
@@ -49,7 +49,7 @@
 
                 <h2> Avalie </h2> 
 
-                <form method="POST" action='ComentariosController' name="frmAddUser">
+                <form method="POST" action='PagProdutoController' name="frmAddUser">
                     <input type="hidden" id="idPersonagem" name="idPersonagem" value="<%= request.getAttribute("idPersonagem") %>">
 
                 <textarea  placeholder="digite um comentario" rows="10" cols="50" name="descricao"></textarea>
@@ -83,8 +83,7 @@
                 %>
                 
                 <div class= 'grid-item ava'>
-                    Usuario : <%= comentario.getUsuario().getNome() %>              <br>
-                    Personagem : <%= comentario.getPersonagem().getIdentidade()%>   <br>
+                    Usuario:<%= comentario.getUsuario().getNome()  %>
                     Nota: <%= comentario.getNota()%>                                <br>
                     Descrição: <%= comentario.getDescricao()%>                      <br>
                 </div>
@@ -94,7 +93,7 @@
 
         </div>    
 
-        <br>
+        
         <%@ include file="footer.jsp"%>
     </body>
 </html>

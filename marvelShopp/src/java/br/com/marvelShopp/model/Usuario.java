@@ -13,11 +13,11 @@ package br.com.marvelShopp.model;
 public class Usuario {
     private Long id;
     private String nome;
-    private String email;
-    private String senha;
-    private String sexo;
-    private String dt_nascimento;
-    private String cpf;
+     private String email;
+     private String senha;
+     private String sexo;
+     private String  dt_nascimento;
+     private String cpf;
 
     public String getCpf() {
         return cpf;
