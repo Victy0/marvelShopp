@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  *
  * @author victo
  */
-public class ComentariosDao{
-    public void create (Comentarios com){
+public class ComentariosDao {
+     public void create (Comentarios com){
         Connection con = Conexao.getConnection();
         PreparedStatement stm= null;
         try{
@@ -37,7 +37,7 @@ public class ComentariosDao{
         }
     }
      
-    public List<Comentarios> list(String id){
+     public List<Comentarios> list(String id){
         Connection con = Conexao.getConnection();
         Statement stm;
         ResultSet resultado = null;
@@ -56,7 +56,6 @@ public class ComentariosDao{
                 coment.setDescricao(resultado.getString("descricao"));
                 coment.setUsuario(usuarioDao.getById("usuario"));
                 coment.setNota(resultado.getInt("nota"));
-                coment.setPersonagem(personagemDao.getById("personagem"));
 
                 listaComent.add(coment);
             }
