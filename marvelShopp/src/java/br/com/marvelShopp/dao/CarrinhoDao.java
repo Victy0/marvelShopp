@@ -5,6 +5,7 @@
  */
 package br.com.marvelShopp.dao;
 
+import br.com.marvelShopp.model.Carrinho;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import br.com.marvelShopp.utilitarios.Conexao;
@@ -25,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class CarrinhoDao {
     
-    public void create (Personagem item, Usuario cliente, String qtd, String status){
+    public void create (Carrinho item, Usuario cliente, String qtd, String status){
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmItem= null; //cria uma variavel para execução de SQL. Evitar ataques de Injeção de SQL. Mais eficiente
         PreparedStatement stmPedido= null;
@@ -36,7 +37,7 @@ public class CarrinhoDao {
             stmItemPedido = con.prepareStatement("INSERT INTO item(item,pedido) VALUES (?,?)");
             
             stmItem.setLong(1, item.getId());
-            stmItem.setString(2, qtd);
+            stmItem.setInt(2, item.getQtd());
             stmPedido.setLong(1, cliente.getId());
             stmPedido.setString(2, "20191012");
             stmPedido.setString(3, status);
@@ -59,14 +60,14 @@ public class CarrinhoDao {
         }
     }
     
-    public List<Personagem> list(){
+    public List<Carrinho> list(){
         Connection con = Conexao.getConnection(); //cria uma conexao
         Statement stm; //cria uma variavel para execução de SQL
         ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
-        List<Personagem> listaItensPedidos = new ArrayList();
+        List<Carrinho> listaItensPedidos = new ArrayList();
         try{
             stm = con.createStatement();//cria uma instância de Statement para execução de SQL
-            resultado = stm.executeQuery("select p.identidade, p.nome_real, p.preco\n" +
+            resultado = stm.executeQuery("select p.identidade, p.nome_real, p.preco, p.imagem_ref\n" +
                                          "from personagem p, item i, item_pedido ip, pedido ped, usuario u\n" +
                                          "where p.id = i.personagem\n" +
                                          "  and i.id = ip.item\n" +
@@ -75,11 +76,11 @@ public class CarrinhoDao {
                                          "  and u.id = 1;");//executa consulta e armazena dados      
             
             while(resultado.next()) {                
-                Personagem item= new Personagem();//cria um item
+                Carrinho item= new Carrinho();//cria um item
                 item.setIdentidade(resultado.getString("identidade"));
                 item.setNomeReal(resultado.getString("nome_real"));
-                item.setPreco(10.00);
-                //item.setImagemRef(resultado.getString("imagem_ref"));               
+                item.setPreco(resultado.getDouble("preco"));
+                item.setImagemRef(resultado.getString("imagem_ref"));               
 
                 listaItensPedidos.add(item);//salva o item na lista criada
            }

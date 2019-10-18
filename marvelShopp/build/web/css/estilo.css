@@ -255,10 +255,15 @@ div#item p {
     margin-top: -10px;
 }
 
-div#item input#percentual{
-    width: 10px;
+div#item input#percentage{
+    width: 40px;
 }
 
 div#item form#qtd{
     margin-left: 200px;
+}
+
+div#item img{
+    width: 40%;
+    height: 40%;
 }

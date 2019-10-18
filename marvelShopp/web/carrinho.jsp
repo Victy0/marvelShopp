@@ -4,6 +4,7 @@
     Author     : Gleison
 --%>
 
+<%@page import="br.com.marvelShopp.model.Carrinho"%>
 <%@page import="br.com.marvelShopp.model.Personagem"%>
 <%@page import="java.util.List"%>
 <%@page import="br.com.marvelShopp.dao.CarrinhoDao"%>
@@ -15,7 +16,7 @@
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
        <!-- <link rel = "shortcut icon" type = "imagem/x-icon" href = "imagens/favicon.ico"/> -->
         <link rel="stylesheet" href="css/estilo.css" /> 
-        <script language="javascript" src="js/funcoes.js"></script>
+        <script language="javascript" src="js/funcoes_1.js"></script>
     </head>
     
     <body>
@@ -25,21 +26,21 @@
                 <h1 id="titulo">Meu Carrinho</h1>
                 </br>
                 <%
-                    CarrinhoDao carrinho = new CarrinhoDao();
-                    List<Personagem> personagem = carrinho.list();
-                    for(Personagem pers : personagem){ 
+                    CarrinhoDao carrinhoDao = new CarrinhoDao();
+                    List<Carrinho> personagem = carrinhoDao.list();
+                    for(Carrinho car : personagem){ 
                 %>      
                         <div id="item">
-                            <img src="<%= pers.getImagemRef()%>" id="imgItem">
-                            <h1><%= pers.getIdentidade()%></h2>
-                            <h3>(<%= pers.getNomeReal()%>)</h3>
-                            <form id="qtd">
+                            <img src="imagens/<%= car.getImagemRef() %>" id="imgItem">
+                            <h1><%= car.getIdentidade()%></h2>
+                            <h3>(<%= car.getNomeReal()%>)</h3>
+                            <div id="qtd">
                                 <button  onClick="AumentaPerc()">+</button>
-                                <input type='text' id="percentual" name="percentual" value="1" readonly="readonly"/>
+                                <input type='text' id="percentage" name="percentage" value="1" readonly="readonly"/>
                                 <button onClick="DiminuiPerc()">-</button>
-                            </form>
+                            </div>
                             <br/>
-                            <p>R$ <%= pers.getPreco()%></p>
+                            <p>R$ <%= car.getPreco()%></p>
                         </div>
                 <%        
                     }            

@@ -1,6 +1,7 @@
 package br.com.marvelShopp.controller;
 
 import br.com.marvelShopp.dao.CarrinhoDao;
+import br.com.marvelShopp.model.Carrinho;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
@@ -74,7 +75,7 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Personagem item = new Personagem();
+        Carrinho item = new Carrinho();
         Usuario cliente = new Usuario();
         String qtd = request.getParameter("");
         String status = request.getParameter("");
