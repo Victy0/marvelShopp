@@ -9,6 +9,8 @@ import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.utilitarios.Conexao;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -86,14 +88,14 @@ public class PersonagemDao {
          
          
          try{
-             stm = con.prepareStatement("select * from personagem\n" +
-                                        "where 	nome_real like '%" + termo + "%'\n" +
+             stm = con.prepareStatement("select * from personagem p, tipo_categoria c, tipo_sexo s, tipo_ocupacao o \n" +
+                                        "where 	(nome_real like '%" + termo + "%'\n" +
                                         "or	identidade like '%" + termo + "%'\n" +
-                                        "or	categoria like '%" + termo + "%'\n" +
-                                        "or	ocupacao like '%" + termo + "%'\n" +
-                                        "or	sexo like '%" + termo + "%'\n" +
-                                        "or	lugar like '%" + termo + "%'\n" +
-                                        ";");
+                                        "or	c.nome like '%" + termo + "%'\n" +
+                                        "or	o.nome like '%" + termo + "%'\n" +
+                                        "or	s.nome like '%" + termo + "%'\n" +
+                                        "or	lugar like '%" + termo + "%')\n" +
+                                        "and p.ocupacao=o.id and p.sexo=s.id and p.categoria=c.id;");
              //for (int i = 1; i <= 6; i++)
              //   stm.setString(i, termo);
              resultado = stm.executeQuery();
@@ -106,6 +108,7 @@ public class PersonagemDao {
         } finally{
             Conexao.closeConnection(con, null, resultado);
         }
+        Collections.sort(listaPersonagem, java.util.Comparator.comparing(Personagem::getIdentidade));
         return listaPersonagem;
      }
 }
