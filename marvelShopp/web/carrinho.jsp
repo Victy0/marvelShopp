@@ -15,7 +15,7 @@
         <title>Marvel Shopp - Carrinho</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
        <!-- <link rel = "shortcut icon" type = "imagem/x-icon" href = "imagens/favicon.ico"/> -->
-        <link rel="stylesheet" href="css/estilo.css" /> 
+        <link rel="stylesheet" href="css/style.css" /> 
         <script language="javascript" src="js/funcoes_1.js"></script>
     </head>
     
