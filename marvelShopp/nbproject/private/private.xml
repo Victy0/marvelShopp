@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/Gleison/Desktop/Nova%20pasta/marvelShopp/marvelShopp/web/carrinho.jsp</file>
             <file>file:/C:/Users/Gleison/Desktop/Nova%20pasta/marvelShopp/marvelShopp/web/css/estilo.css</file>
+=======
+            <file>file:/C:/Users/victo/Documents/trabalho%20devweb/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/model/Comentarios.java</file>
+            <file>file:/C:/Users/victo/Documents/trabalho%20devweb/marvelShopp/marvelShopp/web/css/estilo.css</file>
+            <file>file:/C:/Users/victo/Documents/trabalho%20devweb/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/controller/PagProdutoController.java</file>
+            <file>file:/C:/Users/victo/Documents/trabalho%20devweb/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/UsuarioDao.java</file>
+            <file>file:/C:/Users/victo/Documents/trabalho%20devweb/marvelShopp/marvelShopp/web/listaprodutos.jsp</file>
+            <file>file:/C:/Users/victo/Documents/trabalho%20devweb/marvelShopp/marvelShopp/web/header.jsp</file>
+            <file>file:/C:/Users/victo/Documents/trabalho%20devweb/marvelShopp/marvelShopp/src/java/br/com/marvelShopp/dao/ComentariosDao.java</file>
+            <file>file:/C:/Users/victo/Documents/trabalho%20devweb/marvelShopp/marvelShopp/web/pagproduto.jsp</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

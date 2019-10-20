@@ -171,10 +171,10 @@ footer#rodape img#youtube{
    
     padding: 10px;
   }
-.label {
+.label.name {
     margin-left: 800px;
     margin-top: -300px; 
-    
+    color: #000;
   }
 
   .grid-item.descri{
@@ -266,4 +266,7 @@ div#item form#qtd{
 div#item img{
     width: 40%;
     height: 40%;
+}
+.space{
+    margin-bottom: 50px;
 }
