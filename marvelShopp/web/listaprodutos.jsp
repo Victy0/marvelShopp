@@ -23,7 +23,7 @@
             <h1>Lista de produtos</h1>
             
             <%
-                int limite=3;
+                int limite=6;
                 String numpagina=request.getParameter("numpagina");
                 if(numpagina==null){
                 numpagina="1";
@@ -32,7 +32,7 @@
                 
                 List<Personagem> lista = (List<Personagem>)request.getAttribute("lista");
                  int limitf= offset+limite; 
-                if(limitf>lista.size()){
+                if(limitf > lista.size()){
                   limitf= lista.size();
                 }
                out.print("<div class='container'>");
@@ -63,16 +63,16 @@
                  }
                out.println( "<nav aria-label='Page navigation example'><nav aria-label='Page navigation example'>");
                out.println("<ul class='pagination list'>");
-             for(int i=1;i<=totalpaginas;i++){
-                 out.println("<li class='page-item'><a  class='/marvelShopp/BuscaController?numpagina="+i+">"+i+"</a></li>");
+             for(int j=1;j<=totalpaginas;j++){
+                 out.println("<li class='page-item'><a  class='page-link'href='listaprodutos.jsp?numpagina="+j+"'?lista"+lista+"'>"+j+"</a></li>");
              }
              out.println("<ul><nav>");
                 
                 %>
-                <div class="space"></div>
-                    
                
-             <%@ include file="footer.jsp"%>
+                <div class="space"></div>     
+               
+            <%@ include  file="footer.jsp"%>
         </div>
     </body>
 </html>
