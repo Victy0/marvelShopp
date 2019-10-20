@@ -13,7 +13,7 @@
         <title>Marvel Shopp</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
        <!-- <link rel = "shortcut icon" type = "imagem/x-icon" href = "imagens/favicon.ico"/> -->
-        <link rel="stylesheet" href="css/estilo.css" /> 
+        <link rel="stylesheet" href="css/style.css" /> 
     </head>
     <body>
         <div id="interface">

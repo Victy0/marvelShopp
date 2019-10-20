@@ -39,10 +39,10 @@ header#cabecalho{/*cor e posição do cabeçalho*/
 /*formatação logo*/
 header#cabecalho img#logo{
     position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
-    left: 3%;
-    top: 0px;
-    width: 22%; /* alterar largura*/
-    height: 40%; /* alterar altura*/
+    left: 0%;
+    top: 10px;
+    width: 30%;
+    vertical-align: middle;
 }
 
 /*Formatação do menu*/
@@ -53,8 +53,8 @@ nav#menu ul{
     list-style: none;/*tirar os marcadores*/
     text-transform: uppercase;/*todo o texto em caixa alta*/
     position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
-    top:-150px;/*posição em relação ao topo*/
-    left: 20%;/*posção em relação a margem esquerda*/
+    top:-190px;/*posição em relação ao topo*/
+    left: 25%;/*posção em relação a margem esquerda*/
     
 }
 nav#menu li{
@@ -74,29 +74,24 @@ nav#menu a:hover{
 }
 
 /*formatação img carrinho de compras*/
-nav#carrinho ul{
-    list-style: none;/*tirar os marcadores*/
-}
-form#carrinho input#carrinho{
+.carrinho-img{
     position: absolute;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
     left: 90%;
-    top: 30px;
-    width: 8%; /* alterar largura*/
-    height: 60%; /* alterar altura*/
+    top: 50px;
 }
 
 /*Formatação do menu busca*/
 form#busca{/*formata a posição do campo de busca*/
     position: relative;
-    margin-top: -150px;
-    margin-left: 30%;
+    margin-top: -190px;
+    margin-left: 29%;
     padding-bottom: 15px;
 }
 label {
     display:block;
 }
 input {
-    width: 550px;/* define a largura do campo igual a largura do container */
+    width: 50px;/* define a largura do campo igual a largura do container */
 } 
 input,  button {/*define a largura do campo de busca*/
 	padding: 9px;
@@ -172,7 +167,7 @@ footer#rodape img#youtube{
     padding: 10px;
   }
 .label.name {
-    margin-left: 800px;
+    margin-left: 10px;
     margin-top: -300px; 
     color: #000;
   }
@@ -203,7 +198,6 @@ footer#rodape img#youtube{
 }
 .labels{
     position:relative;
-    right:-22%;
 }
 .grid-item.ava{
     

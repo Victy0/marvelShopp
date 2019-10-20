@@ -16,7 +16,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/estilo.css" />
+        <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css" />
         <link rel="stylesheet" href="css/form.css" />
         <script src="js/js_bootstrap/bootstrap.min.js"></script>
@@ -31,7 +31,7 @@
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
                 <form method="POST" id="cadastroProduto" action="PersonagemController">
-                    <fieldset id="cadastroProduto"> <legend>Cadastro de Personagem</legend> <!-- <fieldset> que dizer conjunto de campos -->
+                    <fieldset id="cadastroProduto"> <legend>Cadastro de Personagem</legend>
                         <div class="form-group">
                             <label for="nomeReal">Nome Real</label>
                             <input type="text" class="form-control" name="nomeReal" id="nomeReal" maxlength="50" placeholder="Ex.: Antony Edward Stark">

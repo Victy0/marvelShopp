@@ -13,14 +13,32 @@ package br.com.marvelShopp.model;
 public class Usuario {
     private Long id;
     private String nome;
-     private String email;
-     private String senha;
-     private String sexo;
-     private String  dt_nascimento;
-     private String cpf;
-
+    private String email;
+    private String senha;
+    private String sexo;
+    private String dt_nascimento;
+    private String cpf;
+    private boolean recebeEmail;
+    private boolean hasAdm;
+    
+    public boolean getRecebeEmail(){
+        return this.recebeEmail;
+    }
+    
+    public void setRecebeEmail(boolean recebeEmail){
+        this.recebeEmail= recebeEmail;
+    }
+    
+    public boolean getHasAdm(){
+        return this.hasAdm;
+    }
+    
+    public void setHasAdm(boolean hasAdm){
+        this.hasAdm= hasAdm;
+    }
+    
     public String getCpf() {
-        return cpf;
+        return this.cpf;
     }
 
     public void setCpf(String cpf) {
@@ -28,7 +46,7 @@ public class Usuario {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -36,7 +54,7 @@ public class Usuario {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -44,7 +62,7 @@ public class Usuario {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -52,7 +70,7 @@ public class Usuario {
     }
 
     public String getSenha() {
-        return senha;
+        return this.senha;
     }
 
     public void setSenha(String senha) {
@@ -60,7 +78,7 @@ public class Usuario {
     }
 
     public String getSexo() {
-        return sexo;
+        return this.sexo;
     }
 
     public void setSexo(String sexo) {
@@ -68,7 +86,7 @@ public class Usuario {
     }
 
     public String getDt_nascimento() {
-        return dt_nascimento;
+        return this.dt_nascimento;
     }
 
     public void setDt_nascimento(String dt_nascimento) {

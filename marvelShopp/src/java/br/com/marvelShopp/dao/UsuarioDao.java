@@ -27,14 +27,18 @@ import java.util.logging.Logger;
          Connection con = Conexao.getConnection();
          PreparedStatement stm= null;
           try {
-              stm=con.prepareStatement("INSERT INTO usuario(nome,email,senha,cpf,sexo,dt_nascimento) VALUES (?,?,?,?,?,?) ");
-              
+              stm=con.prepareStatement("INSERT INTO usuario(nome,email,senha,cpf,sexo,dt_nascimento,recebe_email) VALUES (?,?,?,?,?,?,?) ");
+              String recEmail = "0";
+              if(usu.getRecebeEmail()){
+                  recEmail = "1";
+              }
               stm.setString(1,usu.getNome());
               stm.setString(2, usu.getEmail());
               stm.setString(3, usu.getSenha());
               stm.setString(4, usu.getCpf());
               stm.setString(5, usu.getSexo());
               stm.setString(6,usu.getDt_nascimento());
+              stm.setString(7, recEmail);
             stm.executeUpdate();
           }catch (SQLException ex) {
             Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);

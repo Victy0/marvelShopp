@@ -58,8 +58,6 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher view= request.getRequestDispatcher("/cadastroUsuario.jsp");
-        view.forward(request, response);
     }
 
     /**
@@ -73,23 +71,22 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          Usuario usu= new Usuario();
-         
-          String dat=request.getParameter("tNasc");
-          usu.setDt_nascimento(dat);
-          
-
-          usu.setNome(request.getParameter("tNome"));
-           usu.setSenha(request.getParameter("tSenha"));
-            usu.setEmail(request.getParameter("tMail"));
-             usu.setNome(request.getParameter("tNome"));
-             usu.setSexo(request.getParameter("tSexo"));
-             usu.setCpf(request.getParameter("tCpf"));
-             
-             
+        Usuario usu= new Usuario();
         
-              this.usudao.create(usu);
-               RequestDispatcher view= request.getRequestDispatcher("/cadastroUsuario.jsp");
+        usu.setDt_nascimento(request.getParameter("dataNasc"));
+        usu.setNome(request.getParameter("nome"));
+        usu.setSenha(request.getParameter("senha1"));
+        usu.setEmail(request.getParameter("mail"));
+        usu.setSexo(request.getParameter("sexo"));
+        usu.setCpf(request.getParameter("cpf"));
+        boolean recebeEmail = false;
+        if(request.getParameter("recebeEmail")!= null){
+            recebeEmail = true;
+        }
+        usu.setRecebeEmail(recebeEmail);
+  
+        this.usudao.create(usu);
+        RequestDispatcher view= request.getRequestDispatcher("/login.jsp");
         view.forward(request, response);
     }
 

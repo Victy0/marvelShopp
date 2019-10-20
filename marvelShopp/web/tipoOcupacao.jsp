@@ -14,7 +14,7 @@
         <title>Marvel Shopp - Top 10</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
        <!-- <link rel = "shortcut icon" type = "imagem/x-icon" href = "imagens/favicon.ico"/> -->
-        <link rel="stylesheet" href="css/estilo.css" /> 
+        <link rel="stylesheet" href="css/style.css" /> 
         <link rel="stylesheet" href="css/form.css" /> 
     </head>
     <body>
