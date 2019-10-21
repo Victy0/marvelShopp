@@ -73,6 +73,34 @@ import java.util.logging.Logger;
         }
         return usuario;
     }
-    }
+     
+     public Usuario validateUser (String email, String senha){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm; 
+        ResultSet resultado = null;
+        Usuario usuario = new Usuario();
+        
+        try{
+            stm = con.prepareStatement("select * from usuario where email = ? and senha = ?");
+            stm.setString(1, email);
+            stm.setString(2,senha);
+            resultado = stm.executeQuery();
+            while(resultado.next()){
+               usuario.setId(resultado.getLong("id"));
+               usuario.setNome(resultado.getString("nome"));
+               usuario.setEmail(resultado.getString("email"));
+               usuario.setSenha(resultado.getString("senha"));
+               usuario.setCpf(resultado.getString("cpf"));
+               usuario.setSexo(resultado.getString("sexo"));
+               usuario.setDt_nascimento(resultado.getString("dt_nascimento"));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return usuario;
+    } 
+}
     
 

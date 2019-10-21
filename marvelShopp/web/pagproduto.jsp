@@ -18,6 +18,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
             <fieldset class="content">

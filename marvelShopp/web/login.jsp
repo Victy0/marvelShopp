@@ -19,15 +19,16 @@
             <%@ include file="header.jsp"%>
             
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <form method="POST" id="login" action="">
+                <form method="POST" id="login" action="LoginController">
                     <fieldset id="login"> <legend>Login</legend>
+                        <input type="hidden" value="<%=request.getAttribute("errorValidate")%>">
                         <div class="form-group">
-                            <label for="cpf">CPF</label>
-                            <input type="text" name="cpf" id="cpf" class="form-control" placeholder="Somente números" pattern="[0-9]{11}">
+                            <label for="cpf">E-mail</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email cadastrado">
                         </div>
                         <div class="form-group">
                             <label for="senha">Senha</label>
-                            <input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha">
+                            <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha cadastrada">
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar" id="Enviar">

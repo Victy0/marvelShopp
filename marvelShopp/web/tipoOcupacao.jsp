@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="css/form.css" /> 
     </head>
     <body>
+        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->

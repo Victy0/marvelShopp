@@ -15,6 +15,7 @@
         <script src="js/js_bootstrap/bootstrap.min.js"></script>
     </head>
     <body>
+        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
             

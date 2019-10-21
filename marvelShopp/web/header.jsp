@@ -4,11 +4,13 @@
     Author     : Victor
 --%>
 
+<%@page import="br.com.marvelShopp.model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/css_bootstrap/bootstrap.min.css" />
+    <% Usuario login = (Usuario)request.getSession().getAttribute("user");%>
     <header id="cabecalho">                
         <a href="index.jsp"><img id="logo" src="imagens/logo.PNG"/></a> 
         <nav id="menu">
@@ -16,7 +18,11 @@
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="top10.jsp">Top 10</a></li>
                 <li><a href="promocao.jsp">Promoção</a></li>
-                <li><a href="login.jsp">Login</a></li>
+                <% if(login != null){%>
+                    <li><a method="GET" href="LoginController">Logout</a></li>
+                <%}else{%>
+                    <li><a href="login.jsp">Login</a></li>
+                <%} %>
             </ul>
             <form  action="BuscaController" method="GET" id= "busca">
                 <div class="form-group row">

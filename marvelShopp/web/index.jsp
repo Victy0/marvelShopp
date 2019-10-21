@@ -4,6 +4,7 @@
     Author     : Victor
 --%>
 
+<%@page import="br.com.marvelShopp.model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
@@ -16,9 +17,9 @@
         <link rel="stylesheet" href="css/style.css" /> 
     </head>
     <body>
+        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
-            
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
                 <hr></hr>
                 <div class="container" style="width: 100%;">

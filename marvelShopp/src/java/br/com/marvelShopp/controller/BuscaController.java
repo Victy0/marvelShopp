@@ -30,7 +30,7 @@ public class BuscaController extends HttpServlet {
         List<Personagem> lista = personaDao.busca(request.getParameter("busca"));
         request.setAttribute("lista", lista);
         //response.sendRedirect("busca.jsp");
-        request.getRequestDispatcher("busca.jsp").forward(request, response);
+        request.getRequestDispatcher("listaprodutos.jsp").forward(request, response);
     }
     
     

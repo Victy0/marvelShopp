@@ -13,11 +13,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Marvel Shopp</title>
+        <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="stylesheet" href="css/style.css" /> 
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="css/style.css" /> 
     </head>
     <body>
+        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
             <h1>Lista de produtos</h1>
