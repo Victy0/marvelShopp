@@ -8,6 +8,7 @@ import br.com.marvelShopp.dao.ComentariosDao;
 import br.com.marvelShopp.model.Comentarios;
 import br.com.marvelShopp.dao.PersonagemDao;
 import br.com.marvelShopp.model.Personagem;
+import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -74,12 +75,12 @@ ComentariosDao dao;
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Comentarios coment=new Comentarios();
-          PersonagemDao personaDao = new PersonagemDao();
-         Personagem persona = personaDao.getById(request.getParameter("idPersonagem"));
+        PersonagemDao personaDao = new PersonagemDao();
+        Personagem persona = personaDao.getById(request.getParameter("idPersonagem"));
         coment.setDescricao(request.getParameter("descricao"));
         coment.setPersonagem(persona);
         coment.setNota(Integer.parseInt(request.getParameter("nota")));
-        coment.setUsuario(null);
+        coment.setUsuario((Usuario)request.getSession().getAttribute("user"));
         
         dao.create(coment);
         RequestDispatcher view = request.getRequestDispatcher("/pagproduto.jsp");

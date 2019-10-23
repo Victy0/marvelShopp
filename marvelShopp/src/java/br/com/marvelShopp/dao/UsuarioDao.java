@@ -54,7 +54,7 @@ import java.util.logging.Logger;
         Usuario usuario = new Usuario();
         
         try{
-            stm = con.prepareStatement("select * from suario where id = ?");
+            stm = con.prepareStatement("select * from usuario where id = ?");
             stm.setString(1, id);
             resultado = stm.executeQuery();
             while(resultado.next()){

@@ -84,9 +84,9 @@
                 %>
                 
                 <div class= 'grid-item ava'>
-                    Usuario:<%= comentario.getUsuario().getNome()  %>
-                    Nota: <%= comentario.getNota()%>                                <br>
-                    Descrição: <%= comentario.getDescricao()%>                      <br>
+                    <div> Usuário: <%= comentario.getUsuario().getNome() %>     </div> 
+                    <div> Nota: <%= comentario.getNota()%>                      </div>
+                    <div> Descrição: <%= comentario.getDescricao()%>            </div>
                 </div>
                 
                 <% } %>   
