@@ -93,6 +93,7 @@ import java.util.logging.Logger;
                usuario.setCpf(resultado.getString("cpf"));
                usuario.setSexo(resultado.getString("sexo"));
                usuario.setDt_nascimento(resultado.getString("dt_nascimento"));
+               usuario.setHasAdm(resultado.getBoolean("has_adm"));
             }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
