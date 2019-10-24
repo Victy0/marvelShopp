@@ -36,7 +36,7 @@ public class CarrinhoDao {
             stmPedido = con.prepareStatement("INSERT INTO pedido(usuario,dt_inicio,status) VALUES (?,?,?)");
             stmItemPedido = con.prepareStatement("INSERT INTO item(item,pedido) VALUES (?,?)");
             
-            stmItem.setLong(1, item.getId());
+            stmItem.setLong(1, item.personagem.getId());
             stmItem.setInt(2, item.getQtd());
             stmPedido.setLong(1, cliente.getId());
             stmPedido.setString(2, item.getDtInicio());
@@ -77,10 +77,10 @@ public class CarrinhoDao {
             resultado = stm.executeQuery();
             while(resultado.next()) {                
                 Carrinho item= new Carrinho();//cria um item
-                item.setIdentidade(resultado.getString("identidade"));
-                item.setNomeReal(resultado.getString("nome_real"));
-                item.setPreco(resultado.getDouble("preco"));
-                item.setImagemRef(resultado.getString("imagem_ref"));               
+                item.personagem.setIdentidade(resultado.getString("identidade"));
+                item.personagem.setNomeReal(resultado.getString("nome_real"));
+                item.personagem.setPreco(resultado.getDouble("preco"));
+                item.personagem.setImagemRef(resultado.getString("imagem_ref"));               
 
                 listaItensPedidos.add(item);//salva o item na lista criada
            }
