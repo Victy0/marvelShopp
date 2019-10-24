@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Marvel Shopp - Login</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
-        <link rel="stylesheet" href="css/estilo.css" />
+        <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/form.css" />
     </head>
     <body>
@@ -19,22 +19,23 @@
             <%@ include file="header.jsp"%>
             
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <form method="POST" id="login" action="">
+                <form method="POST" id="login" action="LoginController">
                     <fieldset id="login"> <legend>Login</legend>
-                        <p>
-                            <label for="iCpf">CPF</label>
-                            <input type="text" name="nCpf" id="iCpf" size="15" maxlength="11" placeholder="Somente números" pattern="[0-9]{11}">
-                        </p>
-                        <p>
-                            <label for="iSenha">Senha</label>
-                            <input type="password" name="nSenha" id="iSenha" size="15" maxlength="20" placeholder="Digite sua senha">
-                        </p>
-                        <p>
-                            <input type="submit" value="Entrar" id="bEntrar">
-                        </p>
-                        <p>
+                        <input type="hidden" value="<%=request.getAttribute("errorValidate")%>">
+                        <div class="form-group">
+                            <label for="cpf">E-mail</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email cadastrado">
+                        </div>
+                        <div class="form-group">
+                            <label for="senha">Senha</label>
+                            <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha cadastrada">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar" id="Enviar">
+                        </div>
+                        <h5>
                             Não é cliente? <a href="cadastroUsuario.jsp">Cadastre-se</a>
-                        </p>
+                        </h5>
                     </fieldset>
 
                 </form>

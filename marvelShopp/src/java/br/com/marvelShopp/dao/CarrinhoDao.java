@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class CarrinhoDao {
     
-    public void create (Carrinho item, Usuario cliente, String qtd, String status){
+    public void create (Carrinho item, Usuario cliente){
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmItem= null; //cria uma variavel para execução de SQL. Evitar ataques de Injeção de SQL. Mais eficiente
         PreparedStatement stmPedido= null;
@@ -39,8 +39,8 @@ public class CarrinhoDao {
             stmItem.setLong(1, item.getId());
             stmItem.setInt(2, item.getQtd());
             stmPedido.setLong(1, cliente.getId());
-            stmPedido.setString(2, "20191012");
-            stmPedido.setString(3, status);
+            stmPedido.setString(2, item.getDtInicio());
+            stmPedido.setString(3, item.getStatus());
             
             stmItem.executeUpdate();//executa o comando SQL
             stmPedido.executeUpdate();//executa o comando SQL
@@ -60,21 +60,21 @@ public class CarrinhoDao {
         }
     }
     
-    public List<Carrinho> list(){
+    public List<Carrinho> list(Usuario user){
         Connection con = Conexao.getConnection(); //cria uma conexao
-        Statement stm; //cria uma variavel para execução de SQL
+        PreparedStatement stm; //cria uma variavel para execução de SQL
         ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
         List<Carrinho> listaItensPedidos = new ArrayList();
         try{
-            stm = con.createStatement();//cria uma instância de Statement para execução de SQL
-            resultado = stm.executeQuery("select p.identidade, p.nome_real, p.preco, p.imagem_ref\n" +
+            stm = con.prepareStatement("select p.identidade, p.nome_real, p.preco, p.imagem_ref\n" +
                                          "from personagem p, item i, item_pedido ip, pedido ped, usuario u\n" +
                                          "where p.id = i.personagem\n" +
                                          "  and i.id = ip.item\n" +
                                          "  and ip.pedido = ped.id\n" +
                                          "  and ped.usuario = u.id\n" +
-                                         "  and u.id = 1;");//executa consulta e armazena dados      
-            
+                                         "  and u.id =?;");//cria uma instância de Statement para execução de SQL
+            stm.setLong(1,user.getId());
+            resultado = stm.executeQuery();
             while(resultado.next()) {                
                 Carrinho item= new Carrinho();//cria um item
                 item.setIdentidade(resultado.getString("identidade"));

@@ -20,6 +20,7 @@
     </head>
     
     <body>
+        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="carrinho"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
@@ -27,7 +28,7 @@
                 </br>
                 <%
                     CarrinhoDao carrinhoDao = new CarrinhoDao();
-                    List<Carrinho> personagem = carrinhoDao.list();
+                    List<Carrinho> personagem = carrinhoDao.list(loginUser);
                     for(Carrinho car : personagem){ 
                 %>      
                         <div id="item">

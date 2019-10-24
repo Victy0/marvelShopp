@@ -16,6 +16,24 @@ public class Carrinho {
     private int qtd;
     private Double preco;
     private String imagemRef;
+    private String status;
+    private String dtInicio;
+
+    public String getDtInicio() {
+        return dtInicio;
+    }
+
+    public void setDtInicio(String dtInicio) {
+        this.dtInicio = dtInicio;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public long getId() {
         return id;

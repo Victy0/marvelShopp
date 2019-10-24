@@ -11,13 +11,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/estilo.css" /> 
+        <link rel="stylesheet" href="css/style.css" /> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
 
 
         <title>JSP Page</title>
     </head>
     <body>
+        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
             <fieldset class="content">
@@ -27,7 +28,11 @@
 
                 <h1> <%= request.getAttribute("identidade") %> </h1>
                 <p> R$<%= request.getAttribute("preco") %> </p>
-                <button type="button" value="Comprar">Comprar</button>
+                
+                <form action="/marvelShopp/CarrinhoController" method="GET">
+                    <input type="submit" value="Comprar" style="width:90px; ">
+                </form>
+                
             </div>
 
             <div class="grid-item descri">
@@ -83,9 +88,9 @@
                 %>
                 
                 <div class= 'grid-item ava'>
-                    Usuario:<%= comentario.getUsuario().getNome()  %>
-                    Nota: <%= comentario.getNota()%>                                <br>
-                    Descrição: <%= comentario.getDescricao()%>                      <br>
+                    <div> Usuário: <%= comentario.getUsuario().getNome() %>     </div> 
+                    <div> Nota: <%= comentario.getNota()%>                      </div>
+                    <div> Descrição: <%= comentario.getDescricao()%>            </div>
                 </div>
                 
                 <% } %>   

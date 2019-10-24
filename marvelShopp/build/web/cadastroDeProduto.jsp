@@ -24,6 +24,7 @@
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
     </head>
     <body>
+        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <%  TipoSexoDao sexoDao=new TipoSexoDao();
             TipoOcupacaoDao ocupacaoDao=new TipoOcupacaoDao();
             TipoCategoriaDao categoriaDao=new TipoCategoriaDao(); %>

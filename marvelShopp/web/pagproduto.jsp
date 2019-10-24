@@ -28,7 +28,11 @@
 
                 <h1> <%= request.getAttribute("identidade") %> </h1>
                 <p> R$<%= request.getAttribute("preco") %> </p>
-                <button type="button" value="Comprar">Comprar</button>
+                
+                <form action="/marvelShopp/CarrinhoController" method="GET">
+                    <input type="submit" value="Comprar" style="width:90px; ">
+                </form>
+                
             </div>
 
             <div class="grid-item descri">

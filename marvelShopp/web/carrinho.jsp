@@ -28,7 +28,7 @@
                 </br>
                 <%
                     CarrinhoDao carrinhoDao = new CarrinhoDao();
-                    List<Carrinho> personagem = carrinhoDao.list();
+                    List<Carrinho> personagem = carrinhoDao.list(loginUser);
                     for(Carrinho car : personagem){ 
                 %>      
                         <div id="item">
