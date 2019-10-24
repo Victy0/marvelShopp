@@ -42,7 +42,7 @@
                 for(int i=offset+1;i<=limitf;i++){
                     Personagem perso=lista.get(i);
                    
-                   out.print("<div class='col-sm-4'>"+"<div class='card' style='width: 18rem;'>"+
+                   out.print("<div class='col-sm-4 listspace'>"+"<div class='card' style='width: 18rem;'>"+
   "<img class='card-img-top' src='"+"imagens/"+perso.getImagemRef()+"' width=200px height=200px alt='Card image cap'>"+
  " <div class='card-body'>"+
     "<h5 class='card-title'>"+perso.getIdentidade()+"</h5>"+
