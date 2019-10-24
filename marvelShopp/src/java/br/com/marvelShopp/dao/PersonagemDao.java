@@ -79,16 +79,59 @@ public class PersonagemDao {
         return personagem;
     }
      
-     public List<Personagem> busca(String termo)
+     public List<Personagem> busca(String termo, String limit, String offset)
      {
-         Connection con = Conexao.getConnection();
-         PreparedStatement stm = null;
-         ResultSet resultado = null;
-         List<Personagem> listaPersonagem = new ArrayList();
-         
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm = null;
+        ResultSet resultado = null;
+        List<Personagem> listaPersonagem = new ArrayList();
+        TipoCategoriaDao tcd = new TipoCategoriaDao();
+        TipoOcupacaoDao tod = new TipoOcupacaoDao();
+        TipoSexoDao tsd = new TipoSexoDao();
          
          try{
              stm = con.prepareStatement("select * from personagem p, tipo_categoria c, tipo_sexo s, tipo_ocupacao o \n" +
+                                        "where 	(nome_real like '%" + termo + "%'\n" +
+                                        "or	identidade like '%" + termo + "%'\n" +
+                                        "or	c.nome like '%" + termo + "%'\n" +
+                                        "or	o.nome like '%" + termo + "%'\n" +
+                                        "or	s.nome like '%" + termo + "%'\n" +
+                                        "or	lugar like '%" + termo + "%')\n" +
+                                        "and p.ocupacao=o.id and p.sexo=s.id and p.categoria=c.id"
+                                        + " Limit "+limit+" Offset "+offset+";");
+             //for (int i = 1; i <= 6; i++)
+             //   stm.setString(i, termo);
+             resultado = stm.executeQuery();
+             while(resultado.next()){
+                Personagem personagem = new Personagem();
+                personagem.setId(resultado.getLong("id"));
+                personagem.setNomeReal(resultado.getString("nome_real"));
+                personagem.setIdentidade(resultado.getString("identidade"));
+                personagem.setCategoria(tcd.getById(resultado.getString("id")));
+                personagem.setDescricao(resultado.getString("descricao"));
+                personagem.setPreco(resultado.getDouble("preco"));
+                personagem.setOcupacao(tod.getById(resultado.getString("id")));
+                personagem.setSexo(tsd.getById(resultado.getString("id")));
+                personagem.setLugar(resultado.getString("lugar"));
+                personagem.setImagemRef(resultado.getString("imagem_ref"));
+                listaPersonagem.add(personagem);
+             }
+        } catch (SQLException ex) {
+            System.out.println("Driver não pôde ser carregado: "+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        Collections.sort(listaPersonagem, java.util.Comparator.comparing(Personagem::getIdentidade));
+        return listaPersonagem;
+     }
+     
+     public int quantidadePersonagem(String termo){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm = null;
+        ResultSet resultado = null;
+        int qtd = 0;
+        try{
+            stm = con.prepareStatement("select count(*) as registros from personagem p, tipo_categoria c, tipo_sexo s, tipo_ocupacao o \n" +
                                         "where 	(nome_real like '%" + termo + "%'\n" +
                                         "or	identidade like '%" + termo + "%'\n" +
                                         "or	c.nome like '%" + termo + "%'\n" +
@@ -100,15 +143,13 @@ public class PersonagemDao {
              //   stm.setString(i, termo);
              resultado = stm.executeQuery();
              while(resultado.next()){
-                Personagem personagem = this.getById(resultado.getString("id"));
-                listaPersonagem.add(personagem);
+                qtd = resultado.getInt("registros");
              }
         } catch (SQLException ex) {
             System.out.println("Driver não pôde ser carregado: "+ex);
         } finally{
             Conexao.closeConnection(con, null, resultado);
         }
-        Collections.sort(listaPersonagem, java.util.Comparator.comparing(Personagem::getIdentidade));
-        return listaPersonagem;
+        return qtd;
      }
 }

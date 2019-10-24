@@ -10,35 +10,25 @@ package br.com.marvelShopp.model;
  * @author Gleison
  */
 public class Carrinho {
-    private long id;
-    private String identidade;
-    private String nomeReal;
+    public Personagem personagem;
     private int qtd;
-    private Double preco;
-    private String imagemRef;
+    private String status;
+    private String dtInicio;
 
-    public long getId() {
-        return id;
+    public String getDtInicio() {
+        return dtInicio;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setDtInicio(String dtInicio) {
+        this.dtInicio = dtInicio;
     }
 
-    public String getIdentidade() {
-        return identidade;
+    public String getStatus() {
+        return status;
     }
 
-    public void setIdentidade(String identidade) {
-        this.identidade = identidade;
-    }
-
-    public String getNomeReal() {
-        return nomeReal;
-    }
-
-    public void setNomeReal(String nomeReal) {
-        this.nomeReal = nomeReal;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getQtd() {
@@ -47,21 +37,5 @@ public class Carrinho {
 
     public void setQtd(int qtd) {
         this.qtd = qtd;
-    }
-
-    public Double getPreco() {
-        return preco;
-    }
-
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public String getImagemRef() {
-        return imagemRef;
-    }
-
-    public void setImagemRef(String imagemRef) {
-        this.imagemRef = imagemRef;
     }
 }

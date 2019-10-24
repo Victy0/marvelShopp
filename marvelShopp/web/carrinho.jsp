@@ -28,20 +28,20 @@
                 </br>
                 <%
                     CarrinhoDao carrinhoDao = new CarrinhoDao();
-                    List<Carrinho> personagem = carrinhoDao.list();
+                    List<Carrinho> personagem = carrinhoDao.list(loginUser);
                     for(Carrinho car : personagem){ 
                 %>      
                         <div id="item">
-                            <img src="imagens/<%= car.getImagemRef() %>" id="imgItem">
-                            <h1><%= car.getIdentidade()%></h2>
-                            <h3>(<%= car.getNomeReal()%>)</h3>
+                            <img src="imagens/<%= car.personagem.getImagemRef() %>" id="imgItem">
+                            <h1><%= car.personagem.getIdentidade()%></h2>
+                            <h3>(<%= car.personagem.getNomeReal()%>)</h3>
                             <div id="qtd">
                                 <button  onClick="AumentaPerc()">+</button>
                                 <input type='text' id="percentage" name="percentage" value="1" readonly="readonly"/>
                                 <button onClick="DiminuiPerc()">-</button>
                             </div>
                             <br/>
-                            <p>R$ <%= car.getPreco()%></p>
+                            <p>R$ <%= car.personagem.getPreco()%></p>
                         </div>
                 <%        
                     }            

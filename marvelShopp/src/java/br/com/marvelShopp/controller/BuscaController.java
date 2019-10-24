@@ -26,9 +26,20 @@ public class BuscaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Integer limit = 6;
+        String numpagina=request.getParameter("numpagina");
+            if(numpagina==null){
+                numpagina="1";
+            }
+        Integer offset=(Integer.parseInt(numpagina)*limit)-limit;
         PersonagemDao personaDao = new PersonagemDao();
-        List<Personagem> lista = personaDao.busca(request.getParameter("busca"));
+        String busca = request.getParameter("busca");
+        List<Personagem> lista = personaDao.busca(busca, limit.toString(), offset.toString());
         request.setAttribute("lista", lista);
+        request.setAttribute("limit", limit);
+        Integer qtdBusca = personaDao.quantidadePersonagem(request.getParameter("busca"));
+        request.setAttribute("qtdBusca", qtdBusca);
+        request.setAttribute("busca", busca);
         //response.sendRedirect("busca.jsp");
         request.getRequestDispatcher("listaprodutos.jsp").forward(request, response);
     }

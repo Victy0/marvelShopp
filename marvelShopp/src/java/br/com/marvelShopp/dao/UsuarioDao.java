@@ -54,7 +54,7 @@ import java.util.logging.Logger;
         Usuario usuario = new Usuario();
         
         try{
-            stm = con.prepareStatement("select * from suario where id = ?");
+            stm = con.prepareStatement("select * from usuario where id = ?");
             stm.setString(1, id);
             resultado = stm.executeQuery();
             while(resultado.next()){
@@ -93,6 +93,7 @@ import java.util.logging.Logger;
                usuario.setCpf(resultado.getString("cpf"));
                usuario.setSexo(resultado.getString("sexo"));
                usuario.setDt_nascimento(resultado.getString("dt_nascimento"));
+               usuario.setHasAdm(resultado.getBoolean("has_adm"));
             }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);

@@ -27,24 +27,6 @@ public class CarrinhoController extends HttpServlet {
         dao = new CarrinhoDao();//cria um carrinho
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            
-            out.println("teste");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-    
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -57,11 +39,11 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("comentList", dao.list());
+        Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
+        request.setAttribute("comentList", dao.list(loginUser));
         //processRequest(request, response);
         RequestDispatcher view = request.getRequestDispatcher("/carrinho.jsp");
         view.forward(request, response);
-        
     }
 
     /**
@@ -75,18 +57,15 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Personagem persona = new Personagem();
         Carrinho item = new Carrinho();
-        Usuario cliente = new Usuario();
-        String qtd = request.getParameter("");
-        String status = request.getParameter("");
-        
-        item.setId(Long.valueOf (1));
-        cliente.setId(Long.valueOf (1));
-        
-        dao.create(item, cliente,qtd,status);
+        item.personagem = persona;
+        Usuario cliente = (Usuario)request.getSession().getAttribute("user");
+                
+        dao.create(item, cliente);
         
         RequestDispatcher view = request.getRequestDispatcher("carrinhoDeCompras.jsp");
-        request.setAttribute("comentList", dao.list());
+        request.setAttribute("comentList", dao.list(cliente));
         view.forward(request, response);
     }
 

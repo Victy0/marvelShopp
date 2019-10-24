@@ -27,7 +27,7 @@ public class ComentariosDao {
 
             stm.setString(1, com.getDescricao());
             stm.setInt(2, com.getNota());
-            stm.setLong(3, 1/*com.getUsuario().getId()*/); // <<<<<<<<<<<<<<  Alterar Aqui <<<<<<<<<<<<<<
+            stm.setLong(3, com.getUsuario().getId());
             stm.setLong(4, com.getPersonagem().getId());
             stm.executeUpdate();
         }catch (SQLException ex) {
@@ -50,11 +50,10 @@ public class ComentariosDao {
             while(resultado.next()) {
                 Comentarios coment = new Comentarios();
                 UsuarioDao usuarioDao = new UsuarioDao();
-                PersonagemDao personagemDao = new PersonagemDao();
 
                 coment.setId (resultado.getInt("id"));
                 coment.setDescricao(resultado.getString("descricao"));
-                coment.setUsuario(usuarioDao.getById("usuario"));
+                coment.setUsuario(usuarioDao.getById(resultado.getString("usuario")));
                 coment.setNota(resultado.getInt("nota"));
 
                 listaComent.add(coment);
