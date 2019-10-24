@@ -20,11 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CarrinhoController", urlPatterns = {"/CarrinhoController"})
 public class CarrinhoController extends HttpServlet {
-    CarrinhoDao dao;//instancia um carrinho
+    CarrinhoDao carrinhoDao;//instancia um carrinho
     
     public CarrinhoController() {
         super();
-        dao = new CarrinhoDao();//cria um carrinho
+        carrinhoDao = new CarrinhoDao();//cria um carrinho
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -40,7 +40,7 @@ public class CarrinhoController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
-        request.setAttribute("comentList", dao.list(loginUser));
+        request.setAttribute("comentList", carrinhoDao.list(loginUser));
         //processRequest(request, response);
         RequestDispatcher view = request.getRequestDispatcher("/carrinho.jsp");
         view.forward(request, response);
@@ -57,13 +57,13 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Carrinho item = (Carrinho) request.getAttribute("item");
         Usuario cliente = (Usuario)request.getSession().getAttribute("user");
+        int idItem = Integer.parseInt(request.getParameter("idItem"));
+        int idUser = Integer.parseInt(request.getParameter("idUser"));
                 
-        dao.create(item, cliente);
+        carrinhoDao.create(idItem, idUser);
         
-        RequestDispatcher view = request.getRequestDispatcher("carrinhoDeCompras.jsp");
-        request.setAttribute("comentList", dao.list(cliente));
+        RequestDispatcher view = request.getRequestDispatcher("carrinho.jsp");
         view.forward(request, response);
     }
 

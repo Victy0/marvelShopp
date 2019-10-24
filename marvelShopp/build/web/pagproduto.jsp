@@ -3,6 +3,8 @@
     Created on : 15/09/2019, 22:24:13
     Author     : victo
 --%>
+<%@page import="br.com.marvelShopp.model.Personagem"%>
+<%@page import="br.com.marvelShopp.model.Carrinho"%>
 <%@page import="br.com.marvelShopp.model.Usuario"%>
 <%@page import="br.com.marvelShopp.model.Comentarios"%>
 <%@page import="java.util.List"%>
@@ -19,31 +21,8 @@
     </head>
     <body>
         <% 
-            Carrinho carrinho = new Carrinho();
-            Personagem personagem = new Personagem();
             Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
-            
-            long id = Long.parseLong(request.getParameter("id"));
-            String nomeReal = request.getParameter("nome_real");
-            String identidade = request.getParameter("identidade");
-            String imagemRef = request.getParameter("imagem_ref");
-            String preco = request.getParameter("preco");
-            String qtd = request.getParameter("qtd_estoque");
-            personagem.setId(id);
-            personagem.setNomeReal(nomeReal);
-            personagem.setIdentidade(identidade);
-            personagem.setImagemRef(imagemRef);
-            
-            personagem.setPreco(10.00);
-            personagem.setQtdEstoque(20);
-            
-            
-            carrinho.personagem = personagem;
-            carrinho.setStatus("Aguardando pagamento");
-            carrinho.setQtd(1);
-            carrinho.setDtInicio("20191010");
-            
-            
+            long idUser = loginUser.getId();
         %>
         <div id="interface">
             <%@ include file="header.jsp"%>
@@ -61,7 +40,8 @@
                 <p> R$<%= request.getAttribute("preco") %> </p>
                 
                 <form action="/marvelShopp/CarrinhoController" method="POST">
-                    <input type="hidden" value="<%= carrinho%>" name="item"/>
+                    <input type="hidden" value="<%= Integer.parseInt(request.getParameter("id"))%>" name="idItem"/>
+                    <input type="hidden" value="<%=idUser %>" name="idUser"/>
                     <input type="submit" value="Comprar" style="width:90px; ">
                 </form>
                 
