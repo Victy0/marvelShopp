@@ -57,9 +57,7 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Personagem persona = new Personagem();
-        Carrinho item = new Carrinho();
-        item.personagem = persona;
+        Carrinho item = (Carrinho) request.getAttribute("item");
         Usuario cliente = (Usuario)request.getSession().getAttribute("user");
                 
         dao.create(item, cliente);

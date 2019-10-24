@@ -172,22 +172,22 @@ footer#rodape img#youtube{
     color: #000;
   }
 
-  .grid-item.descri{
+  .descri{
       font-size:15px;
        width: 49%;
        border:1px black solid;
        margin-right: 20px;
       margin-left: 10px;
-       margin-top: 200px;
+       margin-top: 60px;
        float: left;
   }
- .grid-item.ficha{
+ .ficha{
       font-size:15px;
        width: 49%;
        border:1px black solid;
        margin-right: 20px;
       margin-left: 10px;
-       margin-top: 50px;
+       margin-top: -180px;
        float: left;
   }
  .comment {
@@ -199,7 +199,7 @@ footer#rodape img#youtube{
 .labels{
     position:relative;
 }
-.grid-item.ava{
+.ava{
     
       font-size:15px;
        width: 45%;
@@ -262,5 +262,14 @@ div#item img{
     height: 40%;
 }
 .space{
-    margin-bottom: 50px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.mrgl{
+    
+    margin-left:130px;
+}
+.space1{
+  
+    margin-bottom: 100px;
 }

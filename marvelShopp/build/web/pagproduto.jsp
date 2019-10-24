@@ -3,7 +3,7 @@
     Created on : 15/09/2019, 22:24:13
     Author     : victo
 --%>
-
+<%@page import="br.com.marvelShopp.model.Usuario"%>
 <%@page import="br.com.marvelShopp.model.Comentarios"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,69 +18,103 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
+        <% 
+            Carrinho carrinho = new Carrinho();
+            Personagem personagem = new Personagem();
+            Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
+            
+            long id = Long.parseLong(request.getParameter("id"));
+            String nomeReal = request.getParameter("nome_real");
+            String identidade = request.getParameter("identidade");
+            String imagemRef = request.getParameter("imagem_ref");
+            String preco = request.getParameter("preco");
+            String qtd = request.getParameter("qtd_estoque");
+            personagem.setId(id);
+            personagem.setNomeReal(nomeReal);
+            personagem.setIdentidade(identidade);
+            personagem.setImagemRef(imagemRef);
+            
+            personagem.setPreco(10.00);
+            personagem.setQtdEstoque(20);
+            
+            
+            carrinho.personagem = personagem;
+            carrinho.setStatus("Aguardando pagamento");
+            carrinho.setQtd(1);
+            carrinho.setDtInicio("20191010");
+            
+            
+        %>
         <div id="interface">
             <%@ include file="header.jsp"%>
-            <fieldset class="content">
-                <a href="form .html">  <img src="imagens/<%= request.getAttribute("imagemRef") %>"  width="600px" height="400px" class="grid-item"></a>
-
-            <div class=" label name">
+            <div class="container space">
+                <div class="row">
+                    
+                    <div class="col-xs-5 col-md-5 col-lg-5">
+                <a href="form .html">  <img src="imagens/<%= request.getAttribute("imagemRef") %>" class="img-fluid" width="100%" height="400px" class="grid-item"></a>
+                        </div>
+                       
+                        
+            <div class="col-xs-8 col-md-3 col-lg-5 mrgl ">
 
                 <h1> <%= request.getAttribute("identidade") %> </h1>
                 <p> R$<%= request.getAttribute("preco") %> </p>
                 
                 <form action="/marvelShopp/CarrinhoController" method="POST">
+                    <input type="hidden" value="<%= carrinho%>" name="item"/>
                     <input type="submit" value="Comprar" style="width:90px; ">
                 </form>
                 
             </div>
-
-            <div class="grid-item descri">
+                </div>
+                <div class="row">
+            <div class="col-xs-5 col-md-11 col-lg-5 descri">
                 <h2> Descrição </h2><br>
 
                 <!-- <p> Spoiler <br> -->
                 <%= request.getAttribute("descricao") %>
             </div>
 
-            <div class ="grid-item ficha">
+            <div class ="col-xs-5 col-md-5 col-lg-5 ficha">
+                <h2> Ficha</h2>
                 <p>Nome real: <%= request.getAttribute("nomeReal") %>       </p>
                 <p>Categoria: <%= request.getAttribute("categoria") %>      </p>
                 <p>Sexo: <%= request.getAttribute("sexo") %>                </p>
                 <p>Ocupação: <%= request.getAttribute("ocupacao") %>        </p>
                 <p>Local de Atuação: <%= request.getAttribute("lugar") %>   </p>
             </div>
-
-            <div class="comment">
-
+                 </div>
+            <div class="row">
+                <div class="col-xs-5 col-md-5 col-lg-5">
                 <h2> Avalie </h2> 
 
                 <form method="POST" action='PagProdutoController' name="frmAddUser">
-                    <input type="hidden" id="idPersonagem" name="idPersonagem" value="<%= request.getAttribute("idPersonagem") %>">
+                    <input type="hidden" id="idPersonagem"  name="idPersonagem" value="<%= request.getAttribute("idPersonagem") %>">
 
-                <textarea  placeholder="digite um comentario" rows="10" cols="50" name="descricao"></textarea>
+                <textarea  placeholder="digite um comentario" rows="3" cols="20" name="descricao"></textarea>
 
-                <div class="radio">
-                    <input type="radio" id="star-5" name="nota" value="5">
-                    <label class="labels" for="star-5">5</label>
+                <div class="form-check form-check-inline">
+                    <input class="for-check-input" type="radio" id="star-5" name="nota" value="5">
+                    <label class="form-check-label" for="star-5">5</label>
 
-                    <input type="radio" id="star-4" name="nota" value="4">
-                    <label class="labels" for="star-4">4</label>
+                    <input class="form-check-input" type="radio" id="star-4" name="nota" value="4">
+                    <label class="form-check-label" for="star-4">4</label>
 
-                    <input type="radio" id="star-3" name="nota" value="3">
-                    <label class="labels" for="star3">3</label>
+                    <input class="form-check-input" type="radio" id="star-3" name="nota" value="3">
+                    <label class="form-check-label" for="star3">3</label>
 
-                    <input type="radio" class="star star-2" id="star-2" name="nota" value="2">
-                    <label class="labels" for="star2">2</label>
+                    <input type="radio" class="form-check-input" id="star-2" name="nota" value="2">
+                    <label class="form-check-label" for="star2">2</label>
 
-                    <input type="radio" class="star star-1" id="star-1" name="nota" value="1">
-                    <label class="labels" for="star1">1</label>
+                    <input type="radio" class="form-check-input" id="star-1" name="nota" value="1">
+                    <label class="form-check-label" for="star1">1</label>
                 </div>
                 
                     <input type="submit" value="adicionar" style="width:90px; " >
                 </form>
-
-            </div>
-
+                 </div>
+           
+                    <div class=" col-xs-5 col-md-5 col-lg-5 space1 ">
             <h2> Avaliações </h2>
                 <%  
                     List<Comentarios> listaComentarios = (List<Comentarios>) request.getAttribute("comentList");  
@@ -88,14 +122,15 @@
                 %>
                 
                 <div class= 'grid-item ava'>
-                    <div> Usuário: <%= comentario.getUsuario().getNome() %>     </div> 
-                    <div> Nota: <%= comentario.getNota()%>                      </div>
-                    <div> Descrição: <%= comentario.getDescricao()%>            </div>
+                    Usuario:<%= comentario.getUsuario().getNome()  %>               <br>
+                    Nota: <%= comentario.getNota()%>                                <br>
+                    Descrição: <%= comentario.getDescricao()%>                      <br>
                 </div>
                 
-                <% } %>   
-            </fieldset>   
-
+                <% } %> 
+                </div>
+               
+             </div>
         </div>    
 
         

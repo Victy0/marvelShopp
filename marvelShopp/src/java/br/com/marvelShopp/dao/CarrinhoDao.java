@@ -75,8 +75,10 @@ public class CarrinhoDao {
                                          "  and u.id =?;");//cria uma instância de Statement para execução de SQL
             stm.setLong(1,user.getId());
             resultado = stm.executeQuery();
-            while(resultado.next()) {                
+            while(resultado.next()) {       
+                Personagem personagem = new Personagem();
                 Carrinho item= new Carrinho();//cria um item
+                item.personagem = personagem;
                 item.personagem.setIdentidade(resultado.getString("identidade"));
                 item.personagem.setNomeReal(resultado.getString("nome_real"));
                 item.personagem.setPreco(resultado.getDouble("preco"));
