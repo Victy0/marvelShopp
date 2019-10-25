@@ -15,14 +15,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/style.css" /> 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
-
-
-        <title>JSP Page</title>
+        <title>Marvel Shopp</title>
+        <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
     </head>
     <body>
         <% 
             Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
-            long idUser = loginUser.getId();
         %>
         <div id="interface">
             <%@ include file="header.jsp"%>
@@ -40,8 +38,7 @@
                 <p> R$<%= request.getAttribute("preco") %> </p>
                 
                 <form action="/marvelShopp/CarrinhoController" method="POST">
-                    <input type="hidden" value="<%= Integer.parseInt(request.getParameter("id"))%>" name="idItem"/>
-                    <input type="hidden" value="<%=idUser %>" name="idUser"/>
+                    <input type="hidden" value="<%= request.getAttribute("idPersonagem")%>" name="idItem"/>
                     <input type="submit" value="Comprar" style="width:90px; ">
                 </form>
                 

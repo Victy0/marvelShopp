@@ -26,31 +26,39 @@ import java.util.logging.Logger;
  */
 public class CarrinhoDao {
     
-    public void create (int idItem, int idUser){
+    public String create (String idItem, String idPedido){
+        String pedidoId = idPedido;
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmItem= null; //cria uma variavel para execução de SQL. Evitar ataques de Injeção de SQL. Mais eficiente
         PreparedStatement stmPedido= null;
         PreparedStatement stmItemPedido= null;
         try {
-            stmItem = con.prepareStatement("INSERT INTO item(personagem,quantidade) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
-            stmPedido = con.prepareStatement("INSERT INTO pedido(usuario,dt_inicio,status) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            stmItemPedido = con.prepareStatement("INSERT INTO item(item,pedido) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
+            stmItem = con.prepareStatement("INSERT INTO item(personagem,qtd) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
+            stmPedido = con.prepareStatement("INSERT INTO pedido(dt_inicio) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+            stmItemPedido = con.prepareStatement("INSERT INTO item_pedido(item, pedido) VALUES (?,?)");
             
-            stmItem.setLong(1, idItem);
+            stmItem.setString(1, idItem);
             stmItem.setInt(2, 1);
             stmItem.executeUpdate();//executa o comando SQL
-            
-            stmPedido.setLong(1, idUser);
-            stmPedido.setString(2, "20191024");
-            stmPedido.setString(3, "testes");
-            stmPedido.executeUpdate();//executa o comando SQL
-            
             final ResultSet rsItem = stmItem.getGeneratedKeys();
-            final ResultSet rsPedido = stmPedido.getGeneratedKeys();
+            String itemId = "";
+            if (rsItem.next()) { // Como pegar o id que acabou de ser criado na tabela item?
+               itemId = rsItem.getString(1);
+            } 
             
-            stmItemPedido.setLong(1, rsItem.getInt("id"));// Como pegar o id que acabou de ser criado na tabela item?
-            stmItemPedido.setLong(2, rsPedido.getInt("id"));// Como pegar o id que acabou de ser criado na tabela pedido?
+            stmPedido.setString(1, "20191024");
+            stmPedido.executeUpdate();//executa o comando SQL
+            final ResultSet rsPedido = stmPedido.getGeneratedKeys();
+            if(pedidoId == null){
+                if (rsPedido.next()) { // Como pegar o id que acabou de ser criado na tabela item?
+                   pedidoId = rsPedido.getString(1);
+                } 
+            }
+            
+            stmItemPedido.setString(1,itemId);
+            stmItemPedido.setString(2,pedidoId);
             stmItemPedido.executeUpdate();//executa o comando SQL
+            
         }
         catch (SQLException ex) {
             Logger.getLogger(Personagem.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +68,9 @@ public class CarrinhoDao {
             Conexao.closeConnection(con, stmPedido);
             Conexao.closeConnection(con, stmItemPedido);
         }
+        return pedidoId; //retorna o id de pedido para salvar na sessão
     }
+
     
     public List<Carrinho> list(Usuario user){
         Connection con = Conexao.getConnection(); //cria uma conexao

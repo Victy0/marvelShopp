@@ -57,11 +57,14 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario cliente = (Usuario)request.getSession().getAttribute("user");
-        int idItem = Integer.parseInt(request.getParameter("idItem"));
-        int idUser = Integer.parseInt(request.getParameter("idUser"));
+        String idItem = request.getParameter("idItem");
+        
+        String idPedido = (String)request.getSession().getAttribute("pedidoId");
                 
-        carrinhoDao.create(idItem, idUser);
+        String pedidoId = carrinhoDao.create(idItem, idPedido);
+        if(idItem == null){
+            request.getSession().setAttribute("pedidoId", pedidoId);
+        }
         
         RequestDispatcher view = request.getRequestDispatcher("carrinho.jsp");
         view.forward(request, response);
