@@ -219,12 +219,10 @@ footer#rodape img#youtube{
 
   .descri{
       font-size:15px;
-       width: 49%;
+       width: 80%;
        border:1px black solid;
        margin-right: 20px;
       margin-left: 10px;
-       margin-top: -60px;
-       float: left;
   }
  .ficha{
       font-size:15px;
