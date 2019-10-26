@@ -4,6 +4,7 @@
     Author     : chris
 --%>
 
+<%@page import="javax.servlet.http.Cookie"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,18 @@
         <link rel="stylesheet" href="css/form.css" />
     </head>
     <body>
+        <%
+          String email="";
+          String senha="";
+            Cookie [] cookies= request.getCookies();
+          for(Cookie cookie:cookies){
+              if(cookie.getName().equals("email")){
+                  email= cookie.getValue();
+          }
+             if(cookie.getName().equals("senha")){
+                  senha= cookie.getValue();
+          }  
+          }%>
         <div id="interface">
             <%@ include file="header.jsp"%>
             
@@ -24,11 +37,11 @@
                         <input type="hidden" value="<%=request.getAttribute("errorValidate")%>">
                         <div class="form-group">
                             <label for="cpf">E-mail</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email cadastrado">
+                            <input type="email" name="email" id="email" class="form-control" value="<%=email%>"  placeholder="Email cadastrado">
                         </div>
                         <div class="form-group">
                             <label for="senha">Senha</label>
-                            <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha cadastrada">
+                            <input type="password" name="senha" id="senha" class="form-control" value="<%=senha%>" placeholder="Senha cadastrada">
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar" id="Enviar">
