@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.dao;
 
 import br.com.marvelShopp.model.TipoCategoria;
@@ -14,20 +9,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author Victor
  */
+//Classe referente a manipulação banco de dados e TipoCategoria
 public class TipoCategoriaDao {
     
+    //insere um novo tipo de categoria na tabela 'tipo_categoria'
     public void create(TipoCategoria tc){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
-        
         try {
             stm = con.prepareStatement("INSERT INTO tipo_categoria(nome) VALUES(?)");
             stm.setString(1,tc.getNome());
-            stm.executeUpdate();
-            
+            stm.executeUpdate();    
         } catch (SQLException ex) {
             Logger.getLogger(TipoSexoDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally{
@@ -35,6 +29,7 @@ public class TipoCategoriaDao {
         }
     }
     
+    //recuperar TipoCategoria informando o 'id' do mesmo da tabela 'tipo_categoria'
     public TipoCategoria delete (String id){
         Connection con = Conexao.getConnection();
         PreparedStatement stm; 
@@ -53,8 +48,8 @@ public class TipoCategoriaDao {
         return categoria;
     }
     
+    //deleta tipo de categoria da tabela 'tipo_categoria' pelo 'id' informado
     public TipoCategoria getById ( String id){
-//        Long id = Long.parseLong(idSTR);
         Connection con = Conexao.getConnection();
         PreparedStatement stm; 
         ResultSet resultado = null;
@@ -75,6 +70,7 @@ public class TipoCategoriaDao {
         return categoria;
     }
     
+    //recuperar todos os TipoCategoria cadastrados na tabela 'tipo_categoria'
     public List<TipoCategoria> list(){
         Connection con = Conexao.getConnection();
         PreparedStatement ltc = null;

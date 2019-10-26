@@ -1,21 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.model;
 
 /**
- *
  * @author Victor
  */
+//Classe referente a entidade "tipo_categoria"
 public class TipoCategoria {
 
-    /**
-     * @return the id
-     */
+    //@return recebeEmail
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     /**
@@ -29,7 +22,7 @@ public class TipoCategoria {
      * @return the nome
      */
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     /**
@@ -40,7 +33,7 @@ public class TipoCategoria {
     }
     
     /**
-     * @field id
+     * @field id 
      */
     private Long id;
     

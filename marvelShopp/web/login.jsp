@@ -23,12 +23,12 @@
                     <fieldset id="login"> <legend>Login</legend>
                         <input type="hidden" value="<%=request.getAttribute("errorValidate")%>">
                         <div class="form-group">
-                            <label for="cpf">E-mail</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email cadastrado">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email cadastrado" required>
                         </div>
                         <div class="form-group">
                             <label for="senha">Senha</label>
-                            <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha cadastrada">
+                            <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha cadastrada" required>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar" id="Enviar">

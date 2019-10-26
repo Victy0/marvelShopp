@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.dao;
 
 import br.com.marvelShopp.model.TipoSexo;
@@ -14,16 +9,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author Victor
  */
+//Classe referente a manipulação banco de dados e TipoSexo
 public class TipoSexoDao {
     
-    
+    //insere um novo tipo de sexo na tabela 'tipo_sexo'
     public void create(TipoSexo ts){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
-        
         try {
             stm = con.prepareStatement("INSERT INTO tipo_sexo(nome) VALUES(?)");
             stm.setString(1,ts.getNome());
@@ -36,13 +30,14 @@ public class TipoSexoDao {
         }
     }
 
-     public TipoSexo getById ( String id){
+    //recuperar TipoSexo informando o 'id' do mesmo da tabela 'tipo_sexo'
+    public TipoSexo getById ( String id){
         Connection con = Conexao.getConnection();
         PreparedStatement stm;
         ResultSet resultado = null;
         TipoSexo sexo = new TipoSexo();
         try{
-            stm = con.prepareStatement("select * from tipo_sexo where id =?");
+            stm = con.prepareStatement("select * from tipo_sexo where id =?");  
             stm.setString(1, id);
             resultado = stm.executeQuery();
             while(resultado.next()){
@@ -58,19 +53,16 @@ public class TipoSexoDao {
     }
     
      
-     
-     public List<TipoSexo> list(){
+    //recuperar todos os TipoSexo cadastrados na tabela 'tipo_sexo'
+    public List<TipoSexo> list(){
         Connection con = Conexao.getConnection();
         Statement st;
         ResultSet resultado = null;
         List<TipoSexo> listaSexo = new ArrayList();
         try{
-             st = con.createStatement();
-             //executa consulta e armazena dados
-             resultado = st.executeQuery("select * from tipo_sexo");
-        
+            st = con.createStatement();
+            resultado = st.executeQuery("select * from tipo_sexo");  
             while(resultado.next()) {
-       
                 TipoSexo sexo = new TipoSexo();
                 sexo.setId(resultado.getLong("id"));
                 sexo.setNome(resultado.getString("nome"));
