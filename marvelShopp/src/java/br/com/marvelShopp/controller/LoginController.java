@@ -7,6 +7,7 @@ package br.com.marvelShopp.controller;
 import br.com.marvelShopp.dao.CarrinhoDao;
 import javax.servlet.http.Cookie;
 import br.com.marvelShopp.dao.UsuarioDao;
+import br.com.marvelShopp.model.Carrinho;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,6 +50,7 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getSession().setAttribute("user", null);
+        request.getSession().setAttribute("carrinho", null);
         
         request.getRequestDispatcher("index.jsp").forward(request, response);
         
@@ -77,8 +79,15 @@ public class LoginController extends HttpServlet {
         Usuario user = new Usuario();
         user = userDao.validateUser(email, senha);
         if(user.getId()!=null){
+         Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
+         if(carrinho != null){
+            carrinhoDao.setUser(user.getId(), carrinho.getId());
+            carrinho.setUsuario(user);
+         }else{
+              carrinho = carrinhoDao.getByUser(user);
+         }
          request.getSession().setAttribute("user", user);
-         request.getSession().setAttribute("carinho", carrinhoDao.getByUser(user));
+         request.getSession().setAttribute("carrinho", carrinho);
           
          Cookie cookieemail=new Cookie("email",email);
          Cookie cookiesenha= new Cookie("senha",senha);
