@@ -6,6 +6,7 @@
 package br.com.marvelShopp.dao;
 
 import br.com.marvelShopp.model.Carrinho;
+import br.com.marvelShopp.model.Item;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import br.com.marvelShopp.utilitarios.Conexao;
@@ -99,12 +100,13 @@ public class CarrinhoDao {
     }
 
     
-    public List<Carrinho> list(Usuario user){
+    public List<Item> list(Usuario user){
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stm; //cria uma variavel para execução de SQL
         ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
-        List<Carrinho> listaItensPedidos = new ArrayList();
+        List<Item> listaItensPedidos = new ArrayList();
         try{
+            
             stm = con.prepareStatement("select p.identidade, p.nome_real, p.preco, p.imagem_ref\n" +
                                          "from personagem p, item i, item_pedido ip, pedido ped, usuario u\n" +
                                          "where p.id = i.personagem\n" +
@@ -114,9 +116,11 @@ public class CarrinhoDao {
                                          "  and u.id =?;");//cria uma instância de Statement para execução de SQL
             stm.setLong(1,user.getId());
             resultado = stm.executeQuery();
+            
+            
             while(resultado.next()) {       
                 Personagem personagem = new Personagem();
-                Carrinho item= new Carrinho();//cria um item
+                Item item= new Item();//cria um item
                 item.personagem = personagem;
                 item.personagem.setIdentidade(resultado.getString("identidade"));
                 item.personagem.setNomeReal(resultado.getString("nome_real"));
@@ -124,7 +128,8 @@ public class CarrinhoDao {
                 item.personagem.setImagemRef(resultado.getString("imagem_ref"));               
 
                 listaItensPedidos.add(item);//salva o item na lista criada
-           }
+            }
+            
         } 
         catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado!");

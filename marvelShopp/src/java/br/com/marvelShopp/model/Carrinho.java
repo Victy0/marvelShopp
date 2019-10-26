@@ -5,15 +5,31 @@
  */
 package br.com.marvelShopp.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Gleison
  */
 public class Carrinho {
-    public Personagem personagem;
-    private int qtd;
+    private Usuario usuario;
     private String status;
     private String dtInicio;
+    private ArrayList<Item> itens = new ArrayList();
+
+    public void insereItemLista (Item item){
+        itens.add(item);
+    }
+    
+    public Item retornaItem(long id){
+        Item itemPedido = null;
+        for(Item item : itens){
+            if(item.getIdPedido()==id){
+                itemPedido = item;
+            }
+        }
+        return itemPedido;
+    }
 
     public String getDtInicio() {
         return dtInicio;
@@ -29,13 +45,5 @@ public class Carrinho {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public int getQtd() {
-        return qtd;
-    }
-
-    public void setQtd(int qtd) {
-        this.qtd = qtd;
     }
 }
