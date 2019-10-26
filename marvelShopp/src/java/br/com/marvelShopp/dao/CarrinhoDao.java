@@ -31,16 +31,23 @@ public class CarrinhoDao {
     
     PersonagemDao personaDao = new PersonagemDao();
     
-    public Carrinho create (String idPersonagem){
+    public Carrinho create (String idPersonagem, Long idUser){
         Carrinho carrinho = new Carrinho();
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmItem= null; //cria uma variavel para execução de SQL. Evitar ataques de Injeção de SQL. Mais eficiente
         PreparedStatement stmPedido= null;
+        PreparedStatement stmItemPedido = null;
         try {
             Date now = new Date();
             String dt_inicio = ""+(now.getYear()+1900)+(now.getMonth()+1)+now.getDate();
-            stmPedido = con.prepareStatement("INSERT INTO pedido(dt_inicio) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
-            stmPedido.setString(1, dt_inicio);
+            if(idUser == null){
+                stmPedido = con.prepareStatement("INSERT INTO pedido(dt_inicio) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+                stmPedido.setString(1, dt_inicio);
+            }else{
+                stmPedido = con.prepareStatement("INSERT INTO pedido(dt_inicio, usuario) VALUES (?,?)", Statement.RETURN_GENERATED_KEYS);
+                stmPedido.setString(1, dt_inicio); 
+                stmPedido.setLong(2, idUser); 
+            }
             stmPedido.executeUpdate();//executa o comando SQL
             final ResultSet rsPedido = stmPedido.getGeneratedKeys();
             String pedidoId = "";
@@ -69,6 +76,11 @@ public class CarrinhoDao {
 //            stmItemPedido.setString(2,pedidoId);
 //            stmItemPedido.executeUpdate();//executa o comando SQL
         carrinho.insereItemLista(item);
+            
+            stmItemPedido = con.prepareStatement("INSERT INTO item_pedido(pedido,item) VALUES (?,?)");
+            stmItemPedido.setLong(1, carrinho.getId());
+            stmItemPedido.setLong(2, item.getId());
+            stmItemPedido.executeUpdate();
         }
         catch (SQLException ex) {
             Logger.getLogger(Personagem.class.getName()).log(Level.SEVERE, null, ex);
@@ -84,7 +96,6 @@ public class CarrinhoDao {
         Connection con = Conexao.getConnection();
         PreparedStatement deleteItemPedido; 
         PreparedStatement deleteItem;
-        PreparedStatement deletePedido;
         ResultSet resultado = null;
         
         try{
@@ -93,7 +104,7 @@ public class CarrinhoDao {
             deleteItem.setString(1, idItem);
             deleteItem.executeUpdate();
             
-            deleteItemPedido = con.prepareStatement("DELETE FROM item_pedido WHERE ID=?;");
+            deleteItemPedido = con.prepareStatement("DELETE FROM item_pedido WHERE id=?;");
             deleteItemPedido.setString(1, idPedido);
             deleteItemPedido.executeUpdate();
             
@@ -111,7 +122,7 @@ public class CarrinhoDao {
         Carrinho carrinho = new Carrinho();
         try{
             if(user!= null){
-                stm = con.prepareStatement("select p.id, p.status, p.user, p.dt_inicio, \n" +
+                stm = con.prepareStatement("select p.id, p.status, p.dt_inicio \n" +
                                              "from pedido p\n" +
                                              "where p.usuario = ?\n" +
                                              "  and p.status = 'aberto';");//cria uma instância de Statement para execução de SQL
@@ -125,7 +136,7 @@ public class CarrinhoDao {
                 }
                 stm = con.prepareStatement("select i.id, i.personagem, i.qtd \n" +
                                              "from item i, item_pedido ip\n" +
-                                             "where ip.pedido = "+carrinho.getId().toString()+";");
+                                             "where ip.pedido = "+carrinho.getId().toString()+" and i.id=ip.item;");
                 resultado = stm.executeQuery();
                 while(resultado.next()) {
                     Item item = new Item();
@@ -215,7 +226,7 @@ public class CarrinhoDao {
             stm = con.prepareStatement("INSERT INTO item_pedido(item, pedido) VALUES(?,?)");
             stm.setString(1, itemId);
             stm.setLong(2, idPedido);
-            stm.executeQuery();
+            stm.executeUpdate();
         } 
         catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado!");
@@ -226,4 +237,27 @@ public class CarrinhoDao {
         item.setId(Long.parseLong(itemId));
         return item;
     }
+    
+    public void setUser(Long idUser, Long idPedido){
+        Connection con = Conexao.getConnection(); //cria uma conexao
+        PreparedStatement stm; //cria uma variavel para execução de SQL
+        ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
+        try{
+            stm = con.prepareStatement("UPDATE pedido SET status='abandonado' WHERE usuario=? and status='aberto'");
+            stm.setLong(1, idUser);
+            stm.executeUpdate();
+            
+            stm = con.prepareStatement("UPDATE pedido SET usuario=? WHERE id=?");
+            stm.setLong(1, idUser);
+            stm.setLong(2, idPedido);
+            stm.executeUpdate();
+        } 
+        catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado!");
+        } 
+        finally{
+            Conexao.closeConnection(con, null, resultado);
+        } 
+    }
+
 }

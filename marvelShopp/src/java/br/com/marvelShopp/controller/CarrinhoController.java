@@ -82,7 +82,12 @@ public class CarrinhoController extends HttpServlet {
                 request.getSession().removeAttribute("carrinho");
                 request.getSession().setAttribute("carrinho",carrinho); 
             }else{
-                carrinho = carrinhoDao.create(idPersonagem);
+                Usuario usuario = (Usuario)request.getSession().getAttribute("user");
+                Long idUser = null;
+                if(usuario != null){
+                    idUser = usuario.getId();
+                }
+                carrinho = carrinhoDao.create(idPersonagem, idUser);
                 request.getSession().removeAttribute("carrinho");
                 request.getSession().setAttribute("carrinho", carrinho);
             }
