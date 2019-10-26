@@ -16,10 +16,52 @@
         <nav id="menu">
             <ul >
                 <li><a href="index.jsp">Home</a></li>
+                <li><a href="#">Produtos</a>
+                    <ul>
+                        <li><a href="#">Ocupação</a>
+                            <ul>
+                                <li><a href="/marvelShopp/BuscaController?busca=heroi">Herói</a></li>
+                                <li><a href="/marvelShopp/BuscaController?busca=anti-heroi">Anti-Herói</a></li>
+                                <li><a href="/marvelShopp/BuscaController?busca=vilao">Vilão</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Categoria</a>
+                            <ul>
+                                <li><a href="/marvelShopp/BuscaController?busca=cosmico">Cósmico</a></li>
+                                <li><a href="/marvelShopp/BuscaController?busca=habilidade">Habilidade</a></li>
+                                <li><a href="/marvelShopp/BuscaController?busca=mistico">Místico</a></li>
+                                <li><a href="/marvelShopp/BuscaController?busca=mutante">Mutante</a></li>
+                                <li><a href="/marvelShopp/BuscaController?busca=tecnologia">Tecnologia</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Sexo</a>
+                            <ul>
+                                <li><a href="/marvelShopp/BuscaController?busca=masculino">Masculino</a></li>
+                                <li><a href="/marvelShopp/BuscaController?busca=feminino">Feminino</a></li>
+                                <li><a href="/marvelShopp/BuscaController?busca=indeterminado">Indeterminado</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </li>
                 <li><a href="top10.jsp">Top 10</a></li>
                 <li><a href="promocao.jsp">Promoção</a></li>
                 <% if(login != null){%>
-                    <li><a method="GET" href="LoginController">Logout</a></li>
+                <% Usuario user = (Usuario)request.getSession().getAttribute("user"); %>
+                    <li><a><%= user.getNome() %></a>
+                        <ul>
+                            <li><a method="GET" href="LoginController">Logout</a></li>
+                            
+                            <% if(user.getHasAdm()){ %>
+                            <li><a href="cadastroDeProduto.jsp">Cadastrar Produto</a></li>
+                            <li><a href="tipoOcupacao.jsp">Cadastrar Ocupação</a></li>
+                            <li><a href="tipoCategoria.jsp">Cadastrar Categoria</a></li>
+                            <li><a href="tipoSexo.jsp">Cadastrar Sexo</a></li>                            
+                            <% } %>
+
+                        </ul>
+
+                    </li>
                 <%}else{%>
                     <li><a href="login.jsp">Login</a></li>
                 <%} %>

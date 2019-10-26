@@ -23,6 +23,7 @@
         <div id="interface">
             <%@ include file="header.jsp"%>
             <h1>Lista de produtos</h1>
+            <div class="space"></div>
             
             <%
                // int limite=6;

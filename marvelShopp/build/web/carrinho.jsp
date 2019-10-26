@@ -42,6 +42,12 @@
                             </div>
                             <br/>
                             <p>R$ <%= car.personagem.getPreco()%></p>
+                            
+                            <form action="/marvelShopp/CarrinhoController" method="POST">
+                                <input type="hidden" value="delete" name="funcao"/>
+                                <input type="hidden" value="<%= car.personagem.getId() %>" name="idItem"/>
+                                <input type="submit" value="Remover" name="remover" style="width:90px;">
+                            </form>
                         </div>
                 <%        
                     }            

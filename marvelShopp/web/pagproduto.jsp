@@ -38,6 +38,7 @@
                 <p> R$<%= request.getAttribute("preco") %> </p>
                 
                 <form action="/marvelShopp/CarrinhoController" method="POST">
+                    <input type="hidden" value="create" name="funcao"/>
                     <input type="hidden" value="<%= request.getAttribute("idPersonagem")%>" name="idItem"/>
                     <input type="submit" value="Comprar" style="width:90px; ">
                 </form>

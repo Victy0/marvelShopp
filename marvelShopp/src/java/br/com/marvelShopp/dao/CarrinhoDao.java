@@ -70,6 +70,33 @@ public class CarrinhoDao {
         }
         return pedidoId; //retorna o id de pedido para salvar na sessão
     }
+    
+    public void delete (String idItem, String idPedido){
+        Connection con = Conexao.getConnection();
+        PreparedStatement deleteItemPedido; 
+        PreparedStatement deleteItem;
+        PreparedStatement deletePedido;
+        ResultSet resultado = null;
+        
+        try{
+            deleteItemPedido = con.prepareStatement("delete from item_pedido \n" +
+                                                    "where item_pedido.id = (select ip.id\n" +
+                                                                "from item_pedido ip, pedido p, usuario u, item i, personagem pe\n" +
+                                                                "where ip.pedido = p.id\n" +
+                                                                "and p.id = ?\n" +
+                                                                "and ip.item = i.id\n" +
+                                                                "and i.personagem = pe.id\n" +
+                                                                "and pe.id = ? );");
+            deleteItemPedido.setString(1, idPedido);
+            deleteItemPedido.setString(2, idItem);
+            deleteItemPedido.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+    }
 
     
     public List<Carrinho> list(Usuario user){
