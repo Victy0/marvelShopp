@@ -10,18 +10,18 @@ package br.com.marvelShopp.model;
  * @author Gleison
  */
 public class Item {
-    long pedidoId;
+    public Long id;
     public Personagem personagem;
     int qtd;
 
-    public long getIdPedido() {
-        return pedidoId;
+     public Long getId() {
+        return this.id;
     }
 
-    public void setIdPedido(long id) {
-        this.pedidoId = id;
+    public void setId(Long id) {
+        this.id = id;
     }
-
+    
     public Personagem getPersonagem() {
         return personagem;
     }

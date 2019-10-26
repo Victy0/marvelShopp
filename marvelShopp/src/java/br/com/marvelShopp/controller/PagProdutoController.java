@@ -46,6 +46,7 @@ ComentariosDao dao;
         request.setAttribute("lugar", persona.getLugar());
         request.setAttribute("imagemRef", persona.getImagemRef());
         request.setAttribute("idPersonagem",persona.getId());
+        request.setAttribute("qtdEstoque",persona.getQtdEstoque());
         request.setAttribute("comentList", dao.list(persona.getId().toString()));
         
         request.getRequestDispatcher("pagproduto.jsp").forward(request, response);
@@ -66,6 +67,7 @@ ComentariosDao dao;
         request.setAttribute("lugar", persona.getLugar());
         request.setAttribute("imagemRef", persona.getImagemRef());
         request.setAttribute("idPersonagem",persona.getId());
+        request.setAttribute("qtdEstoque",persona.getQtdEstoque());
         request.setAttribute("comentList", dao.list(persona.getId().toString()));
         
         request.getRequestDispatcher("pagproduto.jsp").forward(request, response);

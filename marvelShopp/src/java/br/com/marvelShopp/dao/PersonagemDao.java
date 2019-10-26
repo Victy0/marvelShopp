@@ -63,6 +63,7 @@ public class PersonagemDao {
                 personagem.setSexo(tsd.getById(resultado.getString("id")));
                 personagem.setLugar(resultado.getString("lugar"));
                 personagem.setImagemRef(resultado.getString("imagem_ref"));
+                personagem.setQtdEstoque(resultado.getInt("qtd_estoque"));
             }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
@@ -106,6 +107,7 @@ public class PersonagemDao {
                 personagem.setSexo(tsd.getById(resultado.getString("id")));
                 personagem.setLugar(resultado.getString("lugar"));
                 personagem.setImagemRef(resultado.getString("imagem_ref"));
+                personagem.setQtdEstoque(resultado.getInt("qtd_estoque"));
                 listaPersonagem.add(personagem);
             }
         } catch (SQLException ex) {

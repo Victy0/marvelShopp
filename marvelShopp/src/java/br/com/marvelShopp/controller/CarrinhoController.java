@@ -1,7 +1,9 @@
 package br.com.marvelShopp.controller;
 
 import br.com.marvelShopp.dao.CarrinhoDao;
+import br.com.marvelShopp.dao.PersonagemDao;
 import br.com.marvelShopp.model.Carrinho;
+import br.com.marvelShopp.model.Item;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CarrinhoController", urlPatterns = {"/CarrinhoController"})
 public class CarrinhoController extends HttpServlet {
     CarrinhoDao carrinhoDao;//instancia um carrinho
+    PersonagemDao personagemDao = new PersonagemDao();
     
     public CarrinhoController() {
         super();
@@ -58,17 +61,30 @@ public class CarrinhoController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String funcao = request.getParameter("funcao");
-        String idItem = request.getParameter("idItem");
-        String idPedido = (String)request.getSession().getAttribute("pedidoId");
+        String idPersonagem = request.getParameter("idPersonagem");
+        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
         
         if(funcao.equals("delete")){
-            carrinhoDao.delete(idItem, idPedido);
+            String idItem = (String)request.getParameter("itemRemove");
+            carrinhoDao.delete(idItem, carrinho.getId().toString());
+            Long itemId = Long.parseLong(idItem);
+            carrinho.removeItem(itemId);
         }        
         
         if(funcao.equals("create")){
-            String pedidoId = carrinhoDao.create(idItem, idPedido);
-            if(idItem == null){
-                request.getSession().setAttribute("pedidoId", pedidoId);
+            if(carrinho != null){
+                Item item = new Item();
+                Personagem persona = personagemDao.getById(idPersonagem);
+                item.setPersonagem(persona);
+                item.setQtd(1);
+                item = carrinhoDao.saveItem(item, carrinho.getId());
+                carrinho.insereItemLista(item);
+                request.getSession().removeAttribute("carrinho");
+                request.getSession().setAttribute("carrinho",carrinho); 
+            }else{
+                carrinho = carrinhoDao.create(idPersonagem);
+                request.getSession().removeAttribute("carrinho");
+                request.getSession().setAttribute("carrinho", carrinho);
             }
         }        
         

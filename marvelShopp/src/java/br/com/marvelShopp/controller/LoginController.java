@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.marvelShopp.controller;
+import br.com.marvelShopp.dao.CarrinhoDao;
 import javax.servlet.http.Cookie;
 import br.com.marvelShopp.dao.UsuarioDao;
 import br.com.marvelShopp.model.Usuario;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Victor
  */
 public class LoginController extends HttpServlet {
+    
+    CarrinhoDao carrinhoDao = new CarrinhoDao();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -65,7 +68,7 @@ public class LoginController extends HttpServlet {
          String email = null;
           String senha = null;
        
-            email = request.getParameter("email");
+         email = request.getParameter("email");
          senha = request.getParameter("senha");
         
       
@@ -74,7 +77,8 @@ public class LoginController extends HttpServlet {
         Usuario user = new Usuario();
         user = userDao.validateUser(email, senha);
         if(user.getId()!=null){
-          request.getSession().setAttribute("user", user);
+         request.getSession().setAttribute("user", user);
+         request.getSession().setAttribute("carinho", carrinhoDao.getByUser(user));
           
          Cookie cookieemail=new Cookie("email",email);
          Cookie cookiesenha= new Cookie("senha",senha);

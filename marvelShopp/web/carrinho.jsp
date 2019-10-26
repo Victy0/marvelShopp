@@ -28,9 +28,13 @@
                 <h1 id="titulo">Meu Carrinho</h1>
                 </br>
                 <%
-                    CarrinhoDao carrinhoDao = new CarrinhoDao();
-                    List<Item> itens = carrinhoDao.list(loginUser);
-                    for(Item item : itens){ 
+                    Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
+                    if(carrinho != null){
+                        List<Item> itens = carrinho.getItens();
+                        if(itens.size()!= 0){
+                            Double total = 0.0;
+                            for(Item item : itens){ 
+                                total += item.getPersonagem().getPreco();
                 %>      
                         <div id="item">
                             <img src="imagens/<%= item.personagem.getImagemRef() %>" id="imgItem">
@@ -46,12 +50,19 @@
                             
                             <form action="/marvelShopp/CarrinhoController" method="POST">
                                 <input type="hidden" value="delete" name="funcao"/>
-                                <input type="hidden" value="<%= item.personagem.getId() %>" name="idItem"/>
+                                <input type="text" value="<%= item.id %>" name="itemRemove"/>
                                 <input type="submit" value="Remover" name="remover" style="width:90px;">
                             </form>
                         </div>
                 <%        
-                    }            
+                            } 
+                            System.out.println("<div id='item'><h5> R$ "+total+"</h5></div");
+                        }else{%>
+                            <div align="center"><h1 style="color: red;">NENHUM ITEM NO CARRINHO!!!</h1></div>
+                   <%   }
+                    }else{%>
+                    <div align="center"><h1 style="color: red;">NENHUM ITEM NO CARRINHO!!!</h1></div>
+                   <% }
                 %>
                 </br>
                 </br>

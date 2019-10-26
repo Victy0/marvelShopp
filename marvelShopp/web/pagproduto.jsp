@@ -24,25 +24,26 @@
         %>
         <div id="interface">
             <%@ include file="header.jsp"%>
-            <div class="container space">
                 <div class="row">
                     
                     <div class="col-xs-5 col-md-5 col-lg-5">
-                <a href="form .html">  <img src="imagens/<%= request.getAttribute("imagemRef") %>" class="img-fluid" width="100%" height="400px" class="grid-item"></a>
+                <a href="form.html"><img src="imagens/<%= request.getAttribute("imagemRef") %>" class="img-fluid" width="100%"></a>
                         </div>
                        
                         
-            <div class="col-xs-8 col-md-3 col-lg-5 mrgl ">
+            <div class="col-xs-8 col-md-3 col-lg-5 mrgl" style="top: -60px">
 
                 <h1> <%= request.getAttribute("identidade") %> </h1>
-                <p> R$<%= request.getAttribute("preco") %> </p>
-                
+                <%  Integer qtd = (Integer)request.getAttribute("qtdEstoque");
+                    if( qtd == 0){%>
+                    <p style="color:red;"> Personagem indisponível</p>
+                <%}else{%><p> R$<%= request.getAttribute("preco") %> </p>
                 <form action="/marvelShopp/CarrinhoController" method="POST">
                     <input type="hidden" value="create" name="funcao"/>
-                    <input type="hidden" value="<%= request.getAttribute("idPersonagem")%>" name="idItem"/>
+                    <input type="hidden" value="<%= request.getAttribute("idPersonagem")%>" name="idPersonagem"/>
                     <input type="submit" value="Comprar" style="width:90px; ">
                 </form>
-                
+                <%}%>
             </div>
                 </div>
                 <div class="row">

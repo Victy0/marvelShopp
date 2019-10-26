@@ -22,8 +22,7 @@
         <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
-            <h1>Lista de produtos</h1>
-            <div class="space"></div>
+            <h1 align="center">Lista de produtos</h1>
             
             <%
                // int limite=6;
@@ -43,14 +42,19 @@
                 for(Personagem perso : lista){
 //                    Personagem perso=lista.get(i);
                    
-                   out.print("<div class='col-sm-4 listspace'>"+"<div class='card' style='width: 18rem;'>"+
-  "<img class='card-img-top' src='"+"imagens/"+perso.getImagemRef()+"' width=200px height=200px alt='Card image cap'>"+
- " <div class='card-body'>"+
-    "<h5 class='card-title'>"+perso.getIdentidade()+"</h5>"+
-    "<p class='card-text'>"+"R$"+perso.getPreco()+"</p>"+
-    "<a href='/marvelShopp/PagProdutoController?id="+perso.getId()+"' class='btn btn-primary'>Comprar</a>"+
+                   out.print("<div class='col-sm-4 listspace'>"+
+                                "<div class='card' style='width: 18rem;'>"+
+                                    "<hr><img class='card-img-top' src='imagens/"+perso.getImagemRef()+"' width=150px height=230px alt='Card image cap'>"+
+                                    "<div class='card-body'>"+
+                                        "<h5 class='card-title'>"+perso.getIdentidade()+"</h5>");
+    if(perso.getQtdEstoque()<1){
+       out.print("<p class='card-text' style='color: red;'>Personagem indisponível</p>"); 
+    }else{             
+        out.print("<p class='card-text'>"+"R$"+perso.getPreco()+"</p>");
+    }
+    out.print("<a href='/marvelShopp/PagProdutoController?id="+perso.getId()+"' class='btn btn-primary'>Visualizar</a>"+
   "</div>"+
-"</div>"+"</div>");
+"</div></div>");
                   
                }
            out.print("</div>"+"</div>");
@@ -61,17 +65,14 @@
                 Integer numPagina = (Integer)request.getAttribute("qtdBusca");
                 int totalpaginas= numPagina/limit;
                 
-               out.println( "<nav aria-label='Page navigation example'><nav aria-label='Page navigation example'>");
+               out.println( "<hr><nav aria-label='Page navigation example' align='center'><nav aria-label='Page navigation example'>");
                out.println("<ul class='pagination list'>");
              for(int j=1;j<=totalpaginas;j++){
                  out.println("<li class='page-item'><a  class='page-link'href='BuscaController?busca="+busca+"&numpagina="+j+"'>"+j+"</a></li>");
              }
-             out.println("<ul><nav>");
+             out.println("</ul></nav></nav><hr>");
                 
                 %>
-               
-                <div class="space"></div> 
-                <div class="space"></div> 
          <%@ include  file="footer.jsp"%>      
         </div>
         
