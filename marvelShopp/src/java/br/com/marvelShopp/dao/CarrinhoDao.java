@@ -10,6 +10,7 @@ import br.com.marvelShopp.model.Item;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import br.com.marvelShopp.utilitarios.Conexao;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -106,17 +107,28 @@ public class CarrinhoDao {
         ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
         List<Item> listaItensPedidos = new ArrayList();
         try{
-            
-            stm = con.prepareStatement("select p.identidade, p.nome_real, p.preco, p.imagem_ref\n" +
-                                         "from personagem p, item i, item_pedido ip, pedido ped, usuario u\n" +
-                                         "where p.id = i.personagem\n" +
-                                         "  and i.id = ip.item\n" +
-                                         "  and ip.pedido = ped.id\n" +
-                                         "  and ped.usuario = u.id\n" +
-                                         "  and u.id =?;");//cria uma instância de Statement para execução de SQL
-            stm.setLong(1,user.getId());
-            resultado = stm.executeQuery();
-            
+            if(user!= null){
+                stm = con.prepareStatement("select p.identidade, p.nome_real, p.preco, p.imagem_ref\n" +
+                                             "from personagem p, item i, item_pedido ip, pedido ped, usuario u\n" +
+                                             "where p.id = i.personagem\n" +
+                                             "  and i.id = ip.item\n" +
+                                             "  and ip.pedido = ped.id\n" +
+                                             "  and ped.usuario = u.id\n" +
+                                             "  and u.id =?;");//cria uma instância de Statement para execução de SQL
+                stm.setLong(1,user.getId());
+                resultado = stm.executeQuery();
+            }
+            if(user== null){
+                stm = con.prepareStatement("select p.identidade, p.nome_real, p.preco, p.imagem_ref\n" +
+                                             "from personagem p, item i, item_pedido ip, pedido ped, usuario u\n" +
+                                             "where p.id = i.personagem\n" +
+                                             "  and i.id = ip.item\n" +
+                                             "  and ip.pedido = ped.id\n" +
+                                             "  and ped.usuario = u.id\n" +
+                                             "  and u.id =1;");//cria uma instância de Statement para execução de SQL
+                //stm.setLong(1,user.getId());
+                resultado = stm.executeQuery();
+            }
             
             while(resultado.next()) {       
                 Personagem personagem = new Personagem();
