@@ -124,9 +124,9 @@ public class CarrinhoDao {
                                              "where p.id = i.personagem\n" +
                                              "  and i.id = ip.item\n" +
                                              "  and ip.pedido = ped.id\n" +
-                                             "  and ped.usuario = u.id\n" +
-                                             "  and u.id =1;");//cria uma instância de Statement para execução de SQL
-                //stm.setLong(1,user.getId());
+                                             "  and ped.usuario is null;");//cria uma instância de Statement para execução de SQL
+                //String idNull = null;
+                //stm.setString(1,"aberto");
                 resultado = stm.executeQuery();
             }
             
