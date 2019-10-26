@@ -29,9 +29,10 @@ public class Carrinho {
     }
     
     public void removeItem (Long idItem){
-        for(Item item : itens){
-            if(Objects.equals(item.getId(), idItem)){
-                this.itens.remove(item);
+        for(int i=0; i<this.itens.size(); i++){
+            Item item = this.itens.get(i);
+            if(item.getId() == idItem){
+                this.itens.remove(i);
             }
         }
     }

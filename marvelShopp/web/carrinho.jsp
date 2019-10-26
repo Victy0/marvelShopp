@@ -41,17 +41,17 @@
                             <h1><%= item.personagem.getIdentidade()%></h2>
                             <h3>(<%= item.personagem.getNomeReal()%>)</h3>
                             <div id="qtd">
-                                <button  onClick="AumentaPerc()">+</button>
+                                <button  class="btn btn-primary" onClick="AumentaPerc()">+</button>
                                 <input type='text' id="percentage" name="percentage" value="1" readonly="readonly"/>
-                                <button onClick="DiminuiPerc()">-</button>
+                                <button class="btn btn-primary" onClick="DiminuiPerc()">-</button>
                             </div>
                             <br/>
                             <p>R$ <%= item.personagem.getPreco()%></p>
                             
                             <form action="/marvelShopp/CarrinhoController" method="POST">
                                 <input type="hidden" value="delete" name="funcao"/>
-                                <input type="text" value="<%= item.id %>" name="itemRemove"/>
-                                <input type="submit" value="Remover" name="remover" style="width:90px;">
+                                <input type="hidden" value="<%= item.id %>" name="itemRemove"/>
+                                <input type="submit" class="btn btn-primary" value="Remover" name="remover" style="width:90px;">
                             </form>
                         </div>
                 <%        
