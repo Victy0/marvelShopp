@@ -3,8 +3,6 @@
     Created on : 15/09/2019, 22:24:13
     Author     : victo
 --%>
-<%@page import="br.com.marvelShopp.model.Personagem"%>
-<%@page import="br.com.marvelShopp.model.Carrinho"%>
 <%@page import="br.com.marvelShopp.model.Usuario"%>
 <%@page import="br.com.marvelShopp.model.Comentarios"%>
 <%@page import="java.util.List"%>

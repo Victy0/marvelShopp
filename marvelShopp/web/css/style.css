@@ -32,60 +32,106 @@ header#cabecalho{/*cor e posição do cabeçalho*/
     padding-right: 110px;
     padding-left: 0px;
     padding-bottom: 10px;
-    margin: -10px; 
-    
+    margin: -10px;
+    height: 220px;
 }
 
 /*formatação logo*/
 header#cabecalho img#logo{
     position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
-    left: 0%;
+    left: -2%;
     top: 10px;
     width: 30%;
     vertical-align: middle;
 }
 
 /*Formatação do menu*/
-nav#menu{
-    display:block;
+nav#menu {
+	margin: 35px 0;
+        text-transform: uppercase;/*todo o texto em caixa alta*/
+        position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
+        top:-190px;/*posição em relação ao topo*/
+        left: 25%;/*posção em relação a margem esquerda*/
+        width: 82%;
+        font-weight: bold;/*colocar em negrito*/
+        transition: color 0.3s;
+        font-size: 15pt;
 }
-nav#menu ul{
-    list-style: none;/*tirar os marcadores*/
-    text-transform: uppercase;/*todo o texto em caixa alta*/
-    position: relative;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
-    top:-190px;/*posição em relação ao topo*/
-    left: 25%;/*posção em relação a margem esquerda*/
-    
+nav#menu ul {
+	padding: 0;
+        margin: 0;
+	list-style: none;
+	position: relative;
+        z-index: 1;
+	}	
+nav#menu ul li {
+	display:inline-block;
+        margin-right: 3.5%;
+        z-index: 1;
+	}
+nav#menu a {
+	display:block;
+	padding:0 10px;	
+	color: white;
+	line-height: 60px;
+	text-decoration:none;
 }
-nav#menu li{
-    display: inline-block; /*colocar o menu em linha*/
-    margin:25px;
-    margin-right: 75px;/*margem em relação a esquerda*/
-    font-weight: bold;/*colocar em negrito*/
-    transition: color 0.3s;
-    font-size: 15pt;
+nav#menu a:hover { 
+	background-color: #FF4500; 
+        color: white
+}
+nav#menu ul ul {
+	display: none;
+	position: absolute; 
+	top: 60px; 
+        z-index: 1;
+        font-size: 12pt;
+}	
+nav#menu ul li:hover > ul {
+	display:inherit;
+}	
+nav#menu ul ul li {
+	width:230px;
+	float:none;
+	display:list-item;
+	position: relative;
+        z-index: 1;
+        background-color: rgba(7,0,200,0.9);
 }
 
-nav#menu a{
-    color:white;
+nav#menu ul ul li a{
+    /*color: #FF4500;*/
 }
-nav#menu a:hover{
-    color: #FF4500;
+
+nav#menu ul ul ul li {
+	position: relative;
+	top:-60px; 
+	left:230px;
+        z-index: 1;
 }
+nav#menu ul ul li {
+	/*border: 1px solid white;*/
+        border-bottom: 1px solid white;
+        z-index: 1;
+}	
+li > a:after { content:  '▼'; }
+li li > a:after { content:  '►'; }
+li > a:only-child:after { content: ''; }
 
 /*formatação img carrinho de compras*/
 .carrinho-img{
     position: absolute;/*coloca o bloco em uma posição relativa (relativa: presa dentro do conteiner; absoluta: fica livre dentro do site)*/
-    left: 90%;
-    top: 50px;
+    left: 85%;
+    top: -18px;
+    width: 20%;
 }
 
 /*Formatação do menu busca*/
 form#busca{/*formata a posição do campo de busca*/
     position: relative;
-    margin-top: -190px;
-    margin-left: 29%;
+    margin-top: 20px;
     padding-bottom: 15px;
+    width: 90%;
 }
 label {
     display:block;

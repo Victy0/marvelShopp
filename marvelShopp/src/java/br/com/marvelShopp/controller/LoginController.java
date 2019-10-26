@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.marvelShopp.controller;
-
+import javax.servlet.http.Cookie;
 import br.com.marvelShopp.dao.UsuarioDao;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
@@ -46,7 +46,9 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getSession().setAttribute("user", null);
+        
         request.getRequestDispatcher("index.jsp").forward(request, response);
+        
     }
 
     /**
@@ -60,13 +62,27 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
+         String email = null;
+          String senha = null;
+       
+            email = request.getParameter("email");
+         senha = request.getParameter("senha");
+        
+      
+         
         UsuarioDao userDao = new UsuarioDao();
         Usuario user = new Usuario();
         user = userDao.validateUser(email, senha);
         if(user.getId()!=null){
           request.getSession().setAttribute("user", user);
+          
+         Cookie cookieemail=new Cookie("email",email);
+         Cookie cookiesenha= new Cookie("senha",senha);
+         cookieemail.setMaxAge(60*60);
+         cookiesenha.setMaxAge(60*60);
+         response.addCookie(cookieemail);
+         response.addCookie(cookiesenha);
+          
           request.getRequestDispatcher("index.jsp").forward(request, response);
         }else{
           boolean erro = true;
