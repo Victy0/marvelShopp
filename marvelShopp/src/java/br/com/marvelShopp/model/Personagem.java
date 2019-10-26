@@ -1,223 +1,153 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.model;
 
 /**
  *
  * @author Victor
  */
+//Classe referente a entidade "personagem"
 public class Personagem {
 
-    /**
-     * @return the descricao
-     */
+    //@return descricao
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
-    /**
-     * @param descricao the descricao to set
-     */
+    //descricao to set
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    /**
-     * @return the preco
-     */
+    //@return preco
     public Double getPreco() {
-        return preco;
+        return this.preco;
     }
 
-    /**
-     * @param preco the preco to set
-     */
+    //preco to set
     public void setPreco(Double preco) {
         this.preco = preco;
     }
 
-    /**
-     * @return the ocupacao
-     */
+    //@return ocupacao
     public TipoOcupacao getOcupacao() {
-        return ocupacao;
+        return this.ocupacao;
     }
 
-    /**
-     * @param ocupacao the ocupacao to set
-     */
+    //ocupacao to set
     public void setOcupacao(TipoOcupacao ocupacao) {
         this.ocupacao = ocupacao;
     }
 
-    /**
-     * @return the sexo
-     */
+    //@return sexo
     public TipoSexo getSexo() {
-        return sexo;
+        return this.sexo;
     }
 
-    /**
-     * @param sexo the sexo to set
-     */
+    //sexo to set
     public void setSexo(TipoSexo sexo) {
         this.sexo = sexo;
     }
 
-    /**
-     * @return the qtdEstoque
-     */
+    //@return qtdEstoque
     public Integer getQtdEstoque() {
-        return qtdEstoque;
+        return this.qtdEstoque;
     }
 
-    /**
-     * @param qtdEstoque the qtdEstoque to set
-     */
+    //qtdEstoque to set
     public void setQtdEstoque(Integer qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
 
-    /**
-     * @return the lugar
-     */
+    //@return lugar
     public String getLugar() {
-        return lugar;
+        return this.lugar;
     }
 
-    /**
-     * @param lugar the lugar to set
-     */
+    //lugar to sset
     public void setLugar(String lugar) {
         this.lugar = lugar;
     }
 
-    /**
-     * @return the imagemRef
-     */
+    //@return imagemRef
     public String getImagemRef() {
-        return imagemRef;
+        return this.imagemRef;
     }
 
-    /**
-     * @param imagemRef the imagemRef to set
-     */
+    //imagemRef to set
     public void setImagemRef(String imagemRef) {
         this.imagemRef = imagemRef;
     }
 
-    /**
-     * @return the nomeReal
-     */
+    //@return nomeReal
     public String getNomeReal() {
-        return nomeReal;
+        return this.nomeReal;
     }
 
-    /**
-     * @param nomeReal the nomeReal to set
-     */
+    //nomeReal to set
     public void setNomeReal(String nomeReal) {
         this.nomeReal = nomeReal;
     }
 
-    /**
-     * @return the identidade
-     */
+    //@return identidade
     public String getIdentidade() {
-        return identidade;
+        return this.identidade;
     }
 
-    /**
-     * @param identidade the identidade to set
-     */
+    //identidade to set
     public void setIdentidade(String identidade) {
         this.identidade = identidade;
     }
 
-    /**
-     * @return the categoria
-     */
+    //@return categoria
     public TipoCategoria getCategoria() {
-        return categoria;
+        return this.categoria;
     }
 
-    /**
-     * @param categoria the categoria to set
-     */
+    //categoria to set
     public void setCategoria(TipoCategoria categoria) {
         this.categoria = categoria;
     }
 
-    /**
-     * @return the id
-     */
+    //@return id
     public Long getId() {
-        return id;
+        return this.id;
     }
 
-    /**
-     * @param id the id to set
-     */
+    //id to set
     public void setId(Long id) {
         this.id = id;
     }
     
-    /**
-     * @field id
-     */
+    //@field id
     private Long id;
     
-    /**
-     * @field nome_real
-     */
+    //@field nome_real
     private String nomeReal;
     
-    /**
-     * @field identidade
-     */
+    //@field identidade
     private String identidade;
     
-    /**
-     * @field categoria
-     */
+    //@field categoria
     private TipoCategoria categoria;
     
-    /**
-     * @field descricao
-     */
+    //@field descricao
     private String descricao;
     
-    /**
-     * @field preco
-     */
+    //@field preco
     private Double preco;
     
-    /**
-     * @field ocupacao
-     */
+    //@field ocupacao
     private TipoOcupacao ocupacao;
             
-    /**
-     * @field sexo
-     */
+    //@field sexo
     private TipoSexo sexo;
     
-    /**
-     * @field qtd_estoque
-     */
+    //@field qtd_estoque
     private Integer qtdEstoque;        
     
-    /**
-     * @field lugar
-     */
+    //@field lugar
     private String lugar;
     
-    /**
-     * @field imagem_ref
-     */
+    //@field imagem_ref
     private String imagemRef;
     
 }

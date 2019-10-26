@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.dao;
 
 import br.com.marvelShopp.model.TipoOcupacao;
@@ -17,12 +12,13 @@ import java.util.logging.Logger;
  *
  * @author Victor
  */
+//Classe referente a manipulação banco de dados e TipoOcupacao
 public class TipoOcupacaoDao {
     
-     public void create(TipoOcupacao to){
+    //insere um novo tipo de sexo na tabela 'tipo_ocupacao'
+    public void create(TipoOcupacao to){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
-        
         try {
             stm = con.prepareStatement("INSERT INTO tipo_ocupacao(nome) VALUES(?)");
             stm.setString(1,to.getNome());
@@ -35,7 +31,8 @@ public class TipoOcupacaoDao {
         }
     }
     
-     public TipoOcupacao getById ( String id){
+    //recuperar TipoOcupacao informando o 'id' do mesmo da tabela 'tipo_ocupacao'
+    public TipoOcupacao getById ( String id){
         Connection con = Conexao.getConnection();
         PreparedStatement stm;
         ResultSet resultado = null;
@@ -55,7 +52,8 @@ public class TipoOcupacaoDao {
         }
         return ocupacao;
     } 
-     
+    
+    //recuperar todos os TipoOcupacao cadastrados na tabela 'tipo_ocupacao'
     public List<TipoOcupacao> list(){
         Connection con = Conexao.getConnection();
         Statement st;
@@ -64,15 +62,10 @@ public class TipoOcupacaoDao {
         try{
              st = con.createStatement();
              resultado = st.executeQuery("select * from tipo_ocupacao");
-        
             while(resultado.next()) {
-
                 TipoOcupacao ocupacao = new TipoOcupacao();
-
-
                 ocupacao.setId(resultado.getLong("id"));
                 ocupacao.setNome(resultado.getString("nome"));
-
                 listaOcupacao.add(ocupacao);
            }
         } catch (SQLException ex) {
@@ -80,7 +73,6 @@ public class TipoOcupacaoDao {
         } finally{
             Conexao.closeConnection(con, null, resultado);
         }
-
         return listaOcupacao;
    }
 }
