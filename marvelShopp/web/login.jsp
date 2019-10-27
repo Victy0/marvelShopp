@@ -4,7 +4,7 @@
     Author     : chris
 --%>
 
-<%@page import="org.apache.tomcat.util.http.Cookies"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

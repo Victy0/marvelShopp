@@ -20,7 +20,6 @@ div#interface{
     background-color: #ffffff;/*cor do fundo da iterface*/
     margin: 50px auto 50px auto;/*margem top direita baixo esquerda*/
     padding: 10px 10px 10px 10px;/*espaço interno dentro do objeto*/
-    
 }
 
 /*formatação cabecalho*/
@@ -315,4 +314,51 @@ div#item img{
 .space1{
   
     margin-bottom: 100px;
+}
+
+div#resumoDaCompra{
+    position:absolute;
+    margin-left: 700px;
+    margin-top: -600px;
+    width: 600px;
+}
+
+form#resumoCompra{
+    background-color: #e9e9e9;
+    padding: 20px;
+    font-size: 20pt;
+    padding-right:  0px;
+}
+div#resumoDaCompra h1{
+    padding: 20px;
+    font-size: 30pt;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+form#resumoCompra td{
+    padding: 20px;
+    font-size: 20pt;
+}
+form#resumoCompra td#preco{
+    text-align: center;
+    padding-left: 200px;
+}
+
+div#resumoDaCompra form#resumoCompra input#irPag{
+    margin-left: 150px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+section#cadEndereco{
+    position: absolute;
+    width: 600px;
+    margin-left: 700px;
+    margin-top: -600px;
+}
+section#cadEndereco h1{
+    font-size: 30pt;
+    text-align: center;
+    padding-bottom: 40px;
 }

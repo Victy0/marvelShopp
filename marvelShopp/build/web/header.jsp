@@ -50,13 +50,15 @@
                 <% Usuario user = (Usuario)request.getSession().getAttribute("user"); %>
                     <li><a><%= user.getNome() %></a>
                         <ul>
+                            <li><a href="listaFavoritos.jsp">Favoritos</a></li>
                             <li><a method="GET" href="LoginController">Logout</a></li>
                             
                             <% if(user.getHasAdm()){ %>
                             <li><a href="cadastroDeProduto.jsp">Cadastrar Produto</a></li>
                             <li><a href="tipoOcupacao.jsp">Cadastrar Ocupação</a></li>
                             <li><a href="tipoCategoria.jsp">Cadastrar Categoria</a></li>
-                            <li><a href="tipoSexo.jsp">Cadastrar Sexo</a></li>                            
+                            <li><a href="tipoSexo.jsp">Cadastrar Sexo</a></li>
+                            <li><a href="listaadmin.jsp">Listar Produtos</a></li>                            
                             <% } %>
 
                         </ul>

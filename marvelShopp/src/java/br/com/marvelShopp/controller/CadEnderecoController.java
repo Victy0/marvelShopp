@@ -26,7 +26,10 @@ public class CadEnderecoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        String idUser = request.getParameter("idUser");
+        request.setAttribute("enderecoList", enderecoDao.list(idUser));
+        RequestDispatcher view = request.getRequestDispatcher("/pagamento.jsp");
+        view.forward(request, response);
     }
     
     @Override
@@ -44,7 +47,7 @@ public class CadEnderecoController extends HttpServlet {
         
         enderecoDao.inserir(endereco);
         
-        RequestDispatcher view= request.getRequestDispatcher("/pagamento.jsp");
+        RequestDispatcher view= request.getRequestDispatcher("/fechamentoCompra.jsp");
         view.forward(request, response);
     }
     
