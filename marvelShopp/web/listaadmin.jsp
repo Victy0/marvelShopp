@@ -44,8 +44,8 @@
  " <div class='card-body'>"+
     "<h5 class='card-title'>"+rs.getString("identidade")+"</h5>"+
     "<p class='card-text'>"+"R$"+rs.getString("preco")+"</p>"+
-    "<a href='/marvelShopp/PagProdutoController?id="+rs.getString("id")+"' class='btn btn-primary spacebt'>Editar</a>"+
-     "<a href='/marvelShopp/PagProdutoController?id="+rs.getString("id")+"' class='btn btn-danger'>Deletar</a>"+    
+    "<a href='/marvelShopp/editarProduto.jsp?idPersonagem="+rs.getString("id")+"' class='btn btn-primary spacebt'>Editar</a>"+
+     "<a href='/marvelShopp/EditarPersonagemController?id="+rs.getString("id")+"' class='btn btn-danger'>Deletar</a>"+    
   "</div>"+
 "</div>"+"</div>");
                   

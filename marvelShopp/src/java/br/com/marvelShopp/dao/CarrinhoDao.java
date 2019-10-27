@@ -136,7 +136,7 @@ public class CarrinhoDao {
                 }
                 stm = con.prepareStatement("select i.id, i.personagem, i.qtd \n" +
                                              "from item i, item_pedido ip\n" +
-                                             "where ip.pedido = "+carrinho.getId().toString()+" and i.id=ip.item;");
+                                             "where ip.pedido = "+carrinho.getId()+" and i.id=ip.item;");
                 resultado = stm.executeQuery();
                 while(resultado.next()) {
                     Item item = new Item();

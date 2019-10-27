@@ -45,11 +45,15 @@
                             if( qtd == 0){%>
                                 <p style="color:red;"> Personagem indisponível</p>
                             <%}else{%>
-                            <p style="font-size: 15pt;"> R$<%= personagem.getPreco() %> </p>
+                            <p style="font-size: 15pt;"> R$ <%= personagem.getPreco() %> </p>
                                 <form action="/marvelShopp/CarrinhoController" method="POST">
                                     <input type="hidden" value="create" name="funcao"/>
                                     <input type="hidden" value="<%= personagem.getId()%>" name="idPersonagem"/>
                                     <input type="submit" class="btn btn-primary" value="Comprar" style="width:90px; ">
+                                    <% if (loginUser != null) {if(loginUser.getHasAdm()){ %>
+                                    <a href='/marvelShopp/editarProduto.jsp?idPersonagem=<%= personagem.getId()%>' class='btn btn-primary spacebt'>Editar</a>
+                                    <a href='/marvelShopp/EditarPersonagemController?id=<%= personagem.getId()%>' class='btn btn-danger' >Deletar</a>
+                                    <% }} %>
                                 </form>
                             <%}%>
                     </div>

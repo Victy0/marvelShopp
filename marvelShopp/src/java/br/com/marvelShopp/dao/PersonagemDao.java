@@ -145,4 +145,46 @@ public class PersonagemDao {
         }
         return qtd;
     }
+    
+    public void editarPersonagem(Personagem persona){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm = null;
+        try {
+            stm = con.prepareStatement("UPDATE personagem\n" +
+                                        "SET nome_real = ? , identidade = ?, categoria = ?, descricao = ?, preco = ?,\n" +
+                                        "ocupacao = ?, sexo = ?, qtd_estoque = ?, lugar = ?, imagem_ref = ?\n" +
+                                        "where id = ?;");
+            stm.setString(1,persona.getNomeReal());
+            stm.setString(2,persona.getIdentidade());
+            stm.setLong(3,persona.getCategoria().getId());
+            stm.setString(4,persona.getDescricao());
+            stm.setDouble(5,persona.getPreco());
+            stm.setLong(6,persona.getOcupacao().getId());
+            stm.setLong(7,persona.getSexo().getId());
+            stm.setLong(8,persona.getQtdEstoque());
+            stm.setString(9,persona.getLugar());
+            stm.setString(10,persona.getImagemRef());
+            stm.setLong(11,persona.getId());
+            stm.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(TipoSexoDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stm);
+        }
+    }
+    
+    public void deletarPersonagem(String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm = null;
+        try {
+            stm = con.prepareStatement("DELETE FROM personagem\n" +
+                                        "WHERE id= ?;");            
+            stm.setString(1,id);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TipoSexoDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stm);
+        }
+    }
 }

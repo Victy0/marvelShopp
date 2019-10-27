@@ -56,7 +56,8 @@
                             <li><a href="cadastroDeProduto.jsp">Cadastrar Produto</a></li>
                             <li><a href="tipoOcupacao.jsp">Cadastrar Ocupação</a></li>
                             <li><a href="tipoCategoria.jsp">Cadastrar Categoria</a></li>
-                            <li><a href="tipoSexo.jsp">Cadastrar Sexo</a></li>                            
+                            <li><a href="tipoSexo.jsp">Cadastrar Sexo</a></li>
+                            <li><a href="listaadmin.jsp">Listar Produtos</a></li>                            
                             <% } %>
 
                         </ul>
