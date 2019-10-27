@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  *
@@ -19,9 +13,27 @@ public class Carrinho {
     private String status;
     private String dtInicio;
     private List<Item> itens = new ArrayList();
+    private Endereco endereco;
+    private TipoPagamento pagamento;
 
     public Carrinho(){
         this.status = "aberto";
+    }
+    
+    public void setPagamento(TipoPagamento pagamento){
+        this.pagamento = pagamento;
+    }
+    
+    public TipoPagamento getPagamento(){
+        return this.pagamento;
+    }
+    
+    public void setEndereco(Endereco endereco){
+        this.endereco = endereco;
+    }
+    
+    public Endereco getEndereco(){
+        return this.endereco;
     }
     
     public void insereItemLista (Item item){

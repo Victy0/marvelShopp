@@ -10,8 +10,6 @@ import br.com.marvelShopp.model.Item;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import br.com.marvelShopp.utilitarios.Conexao;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
-import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,10 +69,6 @@ public class CarrinhoDao {
                itemId = rsItem.getString(1);
             } 
             item.setId(Long.parseLong(itemId));
-            
-//            stmItemPedido.setString(1,itemId);
-//            stmItemPedido.setString(2,pedidoId);
-//            stmItemPedido.executeUpdate();//executa o comando SQL
         carrinho.insereItemLista(item);
             
             stmItemPedido = con.prepareStatement("INSERT INTO item_pedido(pedido,item) VALUES (?,?)");
@@ -181,8 +175,6 @@ public class CarrinhoDao {
                                              "  and i.id = ip.item\n" +
                                              "  and ip.pedido = ped.id\n" +
                                              "  and ped.usuario is null;");//cria uma instância de Statement para execução de SQL
-                //String idNull = null;
-                //stm.setString(1,"aberto");
                 resultado = stm.executeQuery();
             }
             
@@ -259,5 +251,47 @@ public class CarrinhoDao {
             Conexao.closeConnection(con, null, resultado);
         } 
     }
+    
+//    public List<Carrinho> listPedidos(Usuario user){
+//        Connection con = Conexao.getConnection(); //cria uma conexao
+//        PreparedStatement stm; //cria uma variavel para execução de SQL
+//        ResultSet resultado = null;
+//        List<Carrinho> carrinhoList = new ArrayList();
+//        try{
+//            stm = con.prepareStatement("select * \n" +
+//                                        "from pedido p\n" +
+//                                        "where p.usuario = ?\n" +
+//                                        "  and p.status = 'aberto';");//cria uma instância de Statement para execução de SQL
+//                stm.setLong(1,user.getId());
+//                resultado = stm.executeQuery();
+//                while(resultado.next()) {
+//                    Carrinho carrinho = new Carrinho();
+//                    carrinho.setId(resultado.getLong("id"));
+//                    carrinho.setStatus(resultado.getString("status"));
+//                    carrinho.setDtInicio(resultado.getString("dt_inicio"));
+//                    carrinho.setUsuario(user);
+//                    carrinho.setEndereco()
+//                }
+//                stm = con.prepareStatement("select i.id, i.personagem, i.qtd \n" +
+//                                             "from item i, item_pedido ip\n" +
+//                                             "where ip.pedido = "+carrinho.getId()+" and i.id=ip.item;");
+//                resultado = stm.executeQuery();
+//                while(resultado.next()) {
+//                    Item item = new Item();
+//                    item.setId(resultado.getLong("id"));
+//                    item.setQtd(resultado.getInt("qtd"));
+//                    Personagem persona = personaDao.getById(resultado.getString("personagem"));
+//                    item.setPersonagem(persona);
+//                    carrinho.insereItemLista(item);
+//                }
+//                
+//        }catch (SQLException ex) {
+//            System.out.println("Driver não pôde ser carregado!");
+//        } 
+//        finally{
+//            Conexao.closeConnection(con, null, resultado);
+//        }                
+//        return carrinhoList;
+//    }
 
 }
