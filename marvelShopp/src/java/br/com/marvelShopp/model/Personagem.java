@@ -27,6 +27,16 @@ public class Personagem {
         this.preco = preco;
     }
 
+    //@return rank
+    public Double getRank() {
+        return this.rank;
+    }
+
+    //rank to set
+    public void setRank(Double rank) {
+        this.rank = rank;
+    }
+    
     //@return ocupacao
     public TipoOcupacao getOcupacao() {
         return this.ocupacao;
@@ -134,6 +144,9 @@ public class Personagem {
     
     //@field preco
     private Double preco;
+    
+    //Atributo temporário
+    private Double rank;
     
     //@field ocupacao
     private TipoOcupacao ocupacao;

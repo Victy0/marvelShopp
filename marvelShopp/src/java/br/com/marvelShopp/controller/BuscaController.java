@@ -8,7 +8,6 @@ package br.com.marvelShopp.controller;
 import br.com.marvelShopp.dao.PersonagemDao;
 import br.com.marvelShopp.model.Personagem;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -35,6 +35,7 @@ ComentariosDao dao;
             throws ServletException, IOException {
         PersonagemDao personaDao = new PersonagemDao();
         Personagem persona = personaDao.getById(request.getParameter("id"));
+        persona.setRank(dao.getRank(persona.getId().toString()));
         
         request.setAttribute("personagem", persona);
 //        request.setAttribute("identidade", persona.getIdentidade());
@@ -56,6 +57,7 @@ ComentariosDao dao;
             throws ServletException, IOException {
         PersonagemDao personaDao = new PersonagemDao();
         Personagem persona = personaDao.getById(idPersona);
+        persona.setRank(dao.getRank(persona.getId().toString()));
         
         request.setAttribute("personagem", persona);
 //        request.setAttribute("nomeReal", persona.getNomeReal());
@@ -86,7 +88,6 @@ ComentariosDao dao;
         coment.setUsuario((Usuario)request.getSession().getAttribute("user"));
         
         dao.create(coment);
-        RequestDispatcher view = request.getRequestDispatcher("/pagproduto.jsp");
         request.setAttribute("comentList", dao.list(persona.getId().toString()));
         doGet2(request,response,request.getParameter("idPersonagem"));
     }

@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 //Classe referente a manipulação banco de dados e Personagem
 public class PersonagemDao {
     
+    ComentariosDao comentarioDao = new ComentariosDao();
+    
     //insere um novo tipo de sexo na tabela 'personagem'
     public void create(Personagem persona){
         Connection con = Conexao.getConnection();
@@ -110,6 +112,7 @@ public class PersonagemDao {
                 personagem.setLugar(resultado.getString("lugar"));
                 personagem.setImagemRef(resultado.getString("imagem_ref"));
                 personagem.setQtdEstoque(resultado.getInt("qtd_estoque"));
+                personagem.setRank(comentarioDao.getRank(personagem.getId().toString()));
                 listaPersonagem.add(personagem);
             }
         } catch (SQLException ex) {
@@ -191,4 +194,28 @@ public class PersonagemDao {
             Conexao.closeConnection(con, stm);
         }
     }
+    
+     public List<Personagem> getTop6(){
+        Connection con = Conexao.getConnection();
+        Statement stm;
+        ResultSet resultado = null;
+        List<Personagem> list = new ArrayList();
+        Double rank = 0.0;
+        try{
+            stm = con.createStatement();
+            resultado = stm.executeQuery("Select personagem,avg(nota) mRank from comentario group by personagem order by mRank desc limit 6;");
+            while(resultado.next()) {
+                rank = resultado.getDouble("mrank");
+                Personagem persona = getById(resultado.getString("personagem"));
+                persona.setRank(rank);
+                list.add(persona);
+            }
+        } catch (SQLException ex){
+            System.out.println("Driver nao pode ser carregado!");
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return list;
+    }
+    
 }

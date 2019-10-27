@@ -59,4 +59,22 @@ public class ComentariosDao {
         return listaComent;
    }
     
+    public Double getRank(String id){
+        Connection con = Conexao.getConnection();
+        Statement stm;
+        ResultSet resultado = null;
+        Double rank = 0.0;
+        try{
+            stm = con.createStatement();
+            resultado = stm.executeQuery("Select avg(nota) as mrank from comentario  where personagem="+id+" group by personagem");
+            while(resultado.next()) {
+                rank = resultado.getDouble("mrank");
+            }
+        } catch (SQLException ex){
+            System.out.println("Driver nao pode ser carregado!");
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return rank;
+    }
 }

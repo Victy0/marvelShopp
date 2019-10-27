@@ -21,6 +21,7 @@
         <% 
             Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
             Personagem personagem = (Personagem)request.getAttribute("personagem"); 
+            List<Comentarios> listaComentarios = (List<Comentarios>) request.getAttribute("comentList");  
             String lugar = personagem.getLugar();
             if(lugar == null){
                 lugar = "Universo Marvel";
@@ -35,6 +36,7 @@
                     </div>
                     <div class="col-xs-8 col-md-3 col-lg-5 mrgl" vertical-align="center">
                         <h2> Ficha</h2>
+                        <p style="font-size: 15pt;">Rank: <%= personagem.getRank() %> (<%=listaComentarios.size() %>)      </p>
                         <p style="font-size: 15pt;">Nome real: <%= personagem.getNomeReal() %>       </p>
                         <p style="font-size: 15pt;">Categoria: <%= personagem.getCategoria().getNome() %>      </p>
                         <p style="font-size: 15pt;">Sexo: <%= personagem.getSexo().getNome() %>                </p>
@@ -117,7 +119,6 @@
                 <div class=" col-xs-5 col-md-5 col-lg-5 space1 ">
                     <h2> Avaliações </h2>
                     <%  
-                    List<Comentarios> listaComentarios = (List<Comentarios>) request.getAttribute("comentList");  
                     for (Comentarios comentario: listaComentarios){
                     %>
                     <hr>

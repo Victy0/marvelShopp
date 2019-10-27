@@ -44,8 +44,7 @@
                     </ul>
 
                 </li>
-                <li><a href="top10.jsp">Top 10</a></li>
-                <li><a href="promocao.jsp">Promoção</a></li>
+                <li><a href="top6.jsp">Top 6</a></li>
                 <% if(login != null){%>
                 <% Usuario user = (Usuario)request.getSession().getAttribute("user"); %>
                     <li><a><%= user.getNome() %></a>

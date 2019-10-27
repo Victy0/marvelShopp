@@ -1,7 +1,7 @@
 @charset "UTF-8";/*para utilizar acentos*/
 
 form#contato, form#login, form#cadUsu, form#cadastroProduto, form#tipoSexo {/*formata o formulario*/
-    width: 800px;/*define a largura*/
+    width: 650px;/*define a largura*/
     margin: auto;/*deixar centralizado*/
     margin-left: 20%;
     margin-bottom: 50px;
