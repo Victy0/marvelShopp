@@ -29,12 +29,11 @@ public class TipoCategoriaDao {
         }
     }
     
-    //recuperar TipoCategoria informando o 'id' do mesmo da tabela 'tipo_categoria'
-    public TipoCategoria delete (String id){
+    //deleta TipoCategoria informando o 'id' do mesmo da tabela 'tipo_categoria'
+    public void delete (String id){
         Connection con = Conexao.getConnection();
         PreparedStatement stm; 
         ResultSet resultado = null;
-        TipoCategoria categoria = new TipoCategoria();
         try{
             stm = con.prepareStatement("delete from tipo_categoria where id =?");
             stm.setString(1, id);
@@ -45,10 +44,9 @@ public class TipoCategoriaDao {
         } finally{
             Conexao.closeConnection(con, null, resultado);
         }
-        return categoria;
     }
     
-    //deleta tipo de categoria da tabela 'tipo_categoria' pelo 'id' informado
+    //recupera tipo de categoria da tabela 'tipo_categoria' pelo 'id' informado
     public TipoCategoria getById ( String id){
         Connection con = Conexao.getConnection();
         PreparedStatement stm; 

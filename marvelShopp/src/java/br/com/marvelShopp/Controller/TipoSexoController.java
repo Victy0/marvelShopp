@@ -19,8 +19,18 @@ import javax.servlet.http.HttpServletResponse;
  * @author Victor
  */
 public class TipoSexoController extends HttpServlet {
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+       
+        String id = request.getParameter("idTSexo");
+        TipoSexoDao tipoDao = new TipoSexoDao();
+        tipoDao.delete(id);
+        response.sendRedirect("tipoSexo.jsp");
+    }
+    
 @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
        
         TipoSexo ts = new TipoSexo();
         ts.setNome(request.getParameter("tSexo"));

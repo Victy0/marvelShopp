@@ -21,9 +21,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "TipoOcupacaoController", urlPatterns = {"/TipoOcupacaoController"})
 public class TipoOcupacaoController extends HttpServlet {
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+       
+        String id = request.getParameter("idTOcup");
+        TipoOcupacaoDao tipoDao = new TipoOcupacaoDao();
+        tipoDao.delete(id);
+        response.sendRedirect("tipoOcupacao.jsp");
+    }
 
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
        
         TipoOcupacao to = new TipoOcupacao();
         to.setNome(request.getParameter("tOcup"));

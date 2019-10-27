@@ -32,7 +32,16 @@ public class TipoCategoriaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+       
+        String id = request.getParameter("idTCat");
+        TipoCategoriaDao tipoDao = new TipoCategoriaDao();
+        tipoDao.delete(id);
+        response.sendRedirect("tipoCategoria.jsp");
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
        
         TipoCategoria tc = new TipoCategoria();
         tc.setNome(request.getParameter("tCat"));

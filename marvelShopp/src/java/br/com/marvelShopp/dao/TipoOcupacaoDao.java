@@ -31,6 +31,23 @@ public class TipoOcupacaoDao {
         }
     }
     
+    //deleta TipoOcupação informando o 'id' do mesmo da tabela 'tipo_ocupacao'
+    public void delete (String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm; 
+        ResultSet resultado = null;
+        try{
+            stm = con.prepareStatement("delete from tipo_ocupacao where id =?");
+            stm.setString(1, id);
+            stm.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+    }
+    
     //recuperar TipoOcupacao informando o 'id' do mesmo da tabela 'tipo_ocupacao'
     public TipoOcupacao getById ( String id){
         Connection con = Conexao.getConnection();

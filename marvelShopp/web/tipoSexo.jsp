@@ -22,7 +22,7 @@
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <form action="TipoSexoController" method="get" id="tipoSexo">            
+                <form action="TipoSexoController" method="POST" id="tipoSexo">            
                     <h1>Tipo Sexo</h1>
                     
                     <table id="exibeSexoCad">
@@ -40,7 +40,7 @@
                        <tr>
                            <td><%= ts.getId()%> </td>
                            <td><%= ts.getNome()%> </td>
-                           <td><a href="TipoSexoController"><img id="delete" src="imagens/delete.png"/></td>
+                           <td><a href="TipoSexoController?idTSexo=<%= ts.getId()%>"><img id="delete" src="imagens/delete.png"/></td>
                        </tr>
                        <% } %>
                     </table>

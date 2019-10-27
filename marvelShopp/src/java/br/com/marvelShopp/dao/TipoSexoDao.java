@@ -29,6 +29,23 @@ public class TipoSexoDao {
             Conexao.closeConnection(con, stm);
         }
     }
+    
+    //deleta TipoSexo informando o 'id' do mesmo da tabela 'tipo_sexo'
+    public void delete (String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm; 
+        ResultSet resultado = null;
+        try{
+            stm = con.prepareStatement("delete from tipo_sexo where id =?");
+            stm.setString(1, id);
+            stm.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+    }
 
     //recuperar TipoSexo informando o 'id' do mesmo da tabela 'tipo_sexo'
     public TipoSexo getById ( String id){
