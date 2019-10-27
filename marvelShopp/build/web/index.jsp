@@ -11,9 +11,9 @@
 
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Marvel Shopp</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
-       <!-- <link rel = "shortcut icon" type = "imagem/x-icon" href = "imagens/favicon.ico"/> -->
         <link rel="stylesheet" href="css/style.css" /> 
     </head>
     <body>
@@ -21,7 +21,7 @@
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <hr></hr>
+                <hr>
                 <div class="container" style="width: 100%;">
                     <div class="col-md-auto" align="center">
                         <a href='/marvelShopp/BuscaController?busca=heroi'>
@@ -80,7 +80,7 @@
                         </a>
                     </div>              
                 </div> 
-                <hr></hr>
+                <hr>
             </section>
             
             <%@ include file="footer.jsp"%>
