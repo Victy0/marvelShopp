@@ -18,7 +18,7 @@ public class EnderecoDao {
         PreparedStatement stmEndereco= null;
         try {
             stmEndereco = con.prepareStatement("INSERT INTO endereco(rua, bairro, cep, numero, complemento, cidade, usuario) "
-                                                + "values ?, ?, ?, ?, ?, ?, ?)");
+                                                + "values (?, ?, ?, ?, ?, ?, ?)");
             stmEndereco.setString(1,endereco.getRua());
             stmEndereco.setString(2,endereco.getBairro());
             stmEndereco.setString(3,endereco.getCep());
