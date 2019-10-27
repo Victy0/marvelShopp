@@ -100,19 +100,19 @@ public class UsuarioController extends HttpServlet {
         }
         usu.setRecebeEmail(recebeEmail);
   
-        if (request.getParameter("editar").equals("editar")) {
-            this.usudao.editar(usu, request.getParameter("idUser"));
-            RequestDispatcher view= request.getRequestDispatcher("/index.jsp");
-            view.forward(request, response);
-        }
-        else
+        if(request.getParameter("editar") == null)
         {
             this.usudao.create(usu);
             RequestDispatcher view= request.getRequestDispatcher("/login.jsp");
             view.forward(request, response);
         }
+        else if (request.getParameter("editar").equals("editar"))
+        {
+            this.usudao.editar(usu, request.getParameter("idUser"));
+            RequestDispatcher view= request.getRequestDispatcher("/index.jsp");
+            view.forward(request, response);
+        }
     }
-
     /**
      * Returns a short description of the servlet.
      *
