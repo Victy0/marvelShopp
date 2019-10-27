@@ -13,8 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/style.css" /> 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
+        <link rel="stylesheet" href="css/style.css" />  
         <title>Marvel Shopp</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
     </head>
@@ -50,12 +49,23 @@
                                     <input type="hidden" value="create" name="funcao"/>
                                     <input type="hidden" value="<%= personagem.getId()%>" name="idPersonagem"/>
                                     <input type="submit" class="btn btn-primary" value="Comprar" style="width:90px; ">
+                                    <%}
+                            if(loginUser != null){ 
+                                    if(loginUser.hasThisFavorito(personagem.getId())){%>
+                                <a href='/marvelShopp/UsuarioController?acao=remove&idPersonagem=<%=personagem.getId()%>'>
+                                    <input type='button' class='btn btn-primary' value='Remover dos favoritos' style='width:200px; background: orange; color:black'></a>
+                               <% }else{%>
+                                    <a href='/marvelShopp/UsuarioController?acao=add&idPersonagem=<%=personagem.getId()%>'>
+                                    <input type='button' class='btn btn-primary' value='Adicionar aos favoritos' style='width:200px; background: yellowgreen; color:black'></a>
+                                <%}
+                            }%>
                                     <% if (loginUser != null) {if(loginUser.getHasAdm()){ %>
                                     <a href='/marvelShopp/editarProduto.jsp?idPersonagem=<%= personagem.getId()%>' class='btn btn-primary spacebt'>Editar</a>
                                     <a href='/marvelShopp/EditarPersonagemController?id=<%= personagem.getId()%>' class='btn btn-danger' >Deletar</a>
                                     <% }} %>
                                 </form>
-                            <%}%>
+                                <br>
+                            
                     </div>
                 </div>
                 <br>

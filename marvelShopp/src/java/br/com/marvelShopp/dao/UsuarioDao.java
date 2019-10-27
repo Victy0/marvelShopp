@@ -1,11 +1,14 @@
 package br.com.marvelShopp.dao;
 
+import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import br.com.marvelShopp.utilitarios.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,6 +17,8 @@ import java.util.logging.Logger;
  */
 //Classe referente a manipulação banco de dados e Usuario
 public class UsuarioDao {
+    //@autowired PersonagemDao
+    PersonagemDao personagemDao = new PersonagemDao();
     
     //inserir novo usuário na tabela 'usuario'
     public void create (Usuario usu){
@@ -60,6 +65,7 @@ public class UsuarioDao {
                usuario.setSexo(resultado.getString("sexo"));
                usuario.setDt_nascimento(resultado.getString("dt_nascimento"));
             }
+            usuario.setFavoritos(getFavoritos(con, usuario.getId()));
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
         } finally{
@@ -74,7 +80,6 @@ public class UsuarioDao {
         PreparedStatement stm; 
         ResultSet resultado = null;
         Usuario usuario = new Usuario();
-        
         try{
             stm = con.prepareStatement("select * from usuario where email = ? and senha = ?");
             stm.setString(1, email);
@@ -89,6 +94,7 @@ public class UsuarioDao {
                usuario.setSexo(resultado.getString("sexo"));
                usuario.setDt_nascimento(resultado.getString("dt_nascimento"));
                usuario.setHasAdm(resultado.getBoolean("has_adm"));
+               usuario.setFavoritos(getFavoritos(con, usuario.getId()));
             }
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
@@ -97,6 +103,57 @@ public class UsuarioDao {
         }
         return usuario;
     } 
+    
+    public List<Personagem> getFavoritos(Connection con,Long userId){
+        PreparedStatement stm; 
+        ResultSet resultado = null;
+        List<Personagem> favoritos = new ArrayList();
+        try{
+            stm = con.prepareStatement("select * from personagens_favorito where usuario = ?");
+            stm.setLong(1, userId);
+            resultado = stm.executeQuery();
+            while(resultado.next()){
+               Personagem persona = personagemDao.getById(resultado.getString("personagem")); 
+               favoritos.add(persona);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado:"+ex);
+        } finally{
+            Conexao.closeConnection(con, null, resultado);
+        }
+        return favoritos;
+    }
+    
+    public void addFavorito(Long idUser, Long idPersona){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm= null;
+        try {
+            stm=con.prepareStatement("INSERT INTO personagens_favorito(usuario, personagem) VALUES (?,?) ");
+            stm.setLong(1, idUser);
+            stm.setLong(2, idPersona);
+            stm.executeUpdate();
+        }catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stm);
+        }
+    }
+    
+    public void removeFavorito(Long idUser, Long idPersona){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm= null;
+        try {
+            stm=con.prepareStatement("DELETE FROM personagens_favorito WHERE usuario= ? and personagem = ? ");
+            stm.setLong(1, idUser);
+            stm.setLong(2, idPersona);
+            stm.executeUpdate();
+        }catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stm);
+        }
+    }
 }
+
     
 

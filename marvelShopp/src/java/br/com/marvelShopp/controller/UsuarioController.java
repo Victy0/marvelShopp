@@ -5,6 +5,7 @@
  */
 package br.com.marvelShopp.controller;
 
+import br.com.marvelShopp.dao.PersonagemDao;
 import br.com.marvelShopp.dao.UsuarioDao;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UsuarioController extends HttpServlet {
     
     private UsuarioDao usudao;
+    private PersonagemDao personagemDao = new PersonagemDao();
     
     
     public UsuarioController(){
@@ -58,6 +60,19 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String acao = request.getParameter("acao");
+        Long idPersona = Long.parseLong(request.getParameter("idPersonagem"));
+        Usuario user = (Usuario)request.getSession().getAttribute("user");
+        if("add".equals(acao)){
+            usudao.addFavorito(user.getId(), idPersona);
+            user.insereFavorito(personagemDao.getById(idPersona.toString()));
+        }else{
+            usudao.removeFavorito(user.getId(), idPersona);
+            user.removeFavorito(idPersona);
+        }
+        request.getSession().setAttribute("user", user);
+        request.getRequestDispatcher("/PagProdutoController?id="+idPersona).forward(request, response);
+        
     }
 
     /**

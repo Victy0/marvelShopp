@@ -1,5 +1,8 @@
 package br.com.marvelShopp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author victo
  */
@@ -32,6 +35,45 @@ public class Usuario {
     
     //@field has_adm
     private boolean hasAdm;
+    
+    //@field relação table personagem_favorito
+    private List<Personagem> favoritos = new ArrayList();
+    
+    //@return favoritos
+    public List<Personagem> getFavoritos(){
+        return this.favoritos;
+    }
+    
+    //insere novo persnagem favorito
+    public void insereFavorito(Personagem personagem){
+        this.favoritos.add(personagem);
+    }
+    
+    //favoritos to set
+    public void setFavoritos(List<Personagem> favoritos){
+        this.favoritos = favoritos;
+    }
+    
+    //confere se possui o favorito pelo 'id' do Persnagem
+    public boolean hasThisFavorito(Long idPersonagem){
+        for(int i=0; i<this.favoritos.size(); i++){
+            Personagem personagem = this.favoritos.get(i);
+            if(personagem.getId() == idPersonagem){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //remove determinado personagem
+    public void removeFavorito(Long idPersonagem){
+        for(int i=0; i<this.favoritos.size(); i++){
+            Personagem p = this.favoritos.get(i);
+            if(p.getId() == idPersonagem){
+                this.favoritos.remove(i);
+            }
+        }
+    }
     
     //@return recebeEmail
     public boolean getRecebeEmail(){

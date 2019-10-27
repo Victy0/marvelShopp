@@ -22,6 +22,7 @@
         <% Usuario loginUser = (Usuario) request.getSession().getAttribute("user");%>
         <div id="interface">
             <%@ include file="header.jsp"%>
+            <hr>
             <h1 align="center">Lista de produtos</h1>
 
             <%
