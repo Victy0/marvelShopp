@@ -27,6 +27,9 @@
             <section id="carrinho"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
                 <h1 id="titulo" align="center">Meu Carrinho</h1>
                 </br>
+                <table>
+                    <tr>
+                    <th>
                 <%
                     Boolean carrinhoVazio =true;
                     Double totalCompra=0.0;
@@ -42,28 +45,22 @@
                                 totalCompra = totalCompra+total;
                 %>      
                         <div id="item">
-                            <img src="imagens/<%= item.personagem.getImagemRef() %>" id="imgItem">
-                            <h1><%= item.personagem.getIdentidade()%></h2>
-                            <h3>(<%= item.personagem.getNomeReal()%>)</h3>
-                            <div id="qtd">
+                            <img src="imagens/<%= item.personagem.getImagemRef() %>" class="img-rounded" width="30%" align="left">
+                            <h2 align="center"><%= item.personagem.getIdentidade()%></h2>
+                            <h3 align="center">R$ <%= item.personagem.getPreco() * item.getQtd() %></h3>
+                            <div id="qtd" align="center">
                                 <button  class="btn btn-primary" onClick="AumentaPerc()">+</button>
                                 <input type='text' id="percentage" name="percentage" value="1" readonly="readonly"/>
                                 <button class="btn btn-primary" onClick="DiminuiPerc()">-</button>
+                                <form action="/marvelShopp/CarrinhoController" method="POST" align="center">
+                                    <input type="hidden" value="delete" name="funcao"/>
+                                    <input type="hidden" value="<%= item.id %>" name="itemRemove"/>
+                                    <input type="submit" class="btn btn-primary" value="Remover" name="remover" style="width:90px;background: #000;">
+                                </form>
                             </div>
-                            <br/>
-                            <p>R$ <%= item.personagem.getPreco()%></p>
-                            
-                            <form action="/marvelShopp/CarrinhoController" method="POST">
-                                <input type="hidden" value="delete" name="funcao"/>
-                                <input type="hidden" value="<%= item.id %>" name="itemRemove"/>
-                                <input type="submit" class="btn btn-primary" value="Remover" name="remover" style="width:90px;">
-                            </form>
-                        </div>
-                                
-                                
+                        </div> 
                     <%        
                             } 
-                            System.out.println("<div id='item'><h5> R$ "+total+"</h5></div");
                         }else{%>
                             <div align="center"><h1 style="color: red;">NENHUM ITEM NO CARRINHO!!!</h1></div>
                    <%   }
@@ -77,41 +74,44 @@
                     if(!carrinhoVazio){
                         Double desconto = totalCompra*0.1;
                 %>
-                        <div id="resumoDaCompra">
+                </th><th>
+                        <div id="resumoDaCompra" align="right">
                             <h1>Resumo da compra</h1>
                             <form action="/marvelShopp/PagamentoController" method="GET" id="resumoCompra">            
-                                <table id="resumoDaCompra">
-                                    <tr>
+                                <table id="resumoDaCompra" style="margin-right: -5px; margin-left: -40px;">
+                                    <tr align="left">
                                         <td>Subtotal</td>
-                                        <td id="preco">R$ <%= totalCompra%></td>
+                                        <td id="preco">R$ <%= String.format("%.2f", totalCompra)%></td>
                                     </tr>
                                     <tr>
                                        <td>Frete</td>
-                                       <td id="preco">R$ 10.00</td>
+                                       <td id="preco">R$ 10,00</td>
                                     </tr>
                                     <tr>
                                        <td>Desconto</td>
-                                       <td id="preco">R$ <%= desconto%></td>
+                                       <td id="preco">R$ <%= String.format("%.2f", desconto)%></td>
                                     </tr>
                                     <tr>
                                        <td>Valor total</td>
-                                       <td id="preco">R$ <%= totalCompra + 10 - desconto%> </td>
+                                       <td id="preco">R$ <%= String.format("%.2f", totalCompra + 10 - desconto)%> </td>
                                     </tr>
                                 </table>
-                                    <input type="submit" value="CONTINUAR" ID="irPag" name="irPag" style="width:300px;"/>
+                                    <input type="submit" align="center" value="CONTINUAR" ID="irPag" name="irPag" style="width:300px;margin-right: 100px;"/>
                             </form>
                                     
                             <form action="index.jsp">
-                                <button type="submit" style="margin-left: 220px;">CONTINUAR COMPRANDO</button>
+                                <button type="submit">CONTINUAR COMPRANDO</button>
                             </form>
                         </div>
                 <%
                     }
                 %>
-                
+            </th></tr></table>
                 </br>
                 </br>
             </section>
+                </br>
+                </br>
             <%@ include file="footer.jsp"%>
         </div>
     </body>

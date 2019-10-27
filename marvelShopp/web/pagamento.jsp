@@ -12,8 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="css/style.css" /> 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> 
+        <link rel="stylesheet" href="css/style.css" />
         <title>Marvel Shopp</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
     </head>
@@ -24,6 +23,9 @@
                 <section id="carrinho"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
                     <h1 id="titulo">Meu Carrinho</h1>
                     </br>
+                     <table>
+                        <tr>
+                        <th>
                     <%
                         Boolean carrinhoVazio =true;
                         Double totalCompra=0.0;
@@ -38,26 +40,21 @@
                                     total += item.getPersonagem().getPreco();
                                     totalCompra = totalCompra+total;
                     %>      
-                            <div id="item">
-                                <img src="imagens/<%= item.personagem.getImagemRef() %>" id="imgItem">
-                                <h1><%= item.personagem.getIdentidade()%></h2>
-                                <h3>(<%= item.personagem.getNomeReal()%>)</h3>
-                                <div id="qtd">
-                                    <button  class="btn btn-primary" onClick="AumentaPerc()">+</button>
-                                    <input type='text' id="percentage" name="percentage" value="1" readonly="readonly"/>
-                                    <button class="btn btn-primary" onClick="DiminuiPerc()">-</button>
-                                </div>
-                                <br/>
-                                <p>R$ <%= item.personagem.getPreco()%></p>
-
-                                <form action="/marvelShopp/CarrinhoController" method="POST">
+                        <div id="item">
+                            <img src="imagens/<%= item.personagem.getImagemRef() %>" class="img-rounded" width="30%" align="left">
+                            <h2 align="center"><%= item.personagem.getIdentidade()%></h2>
+                            <h3 align="center">R$ <%= item.personagem.getPreco() * item.getQtd() %></h3>
+                            <div id="qtd" align="center">
+                                <button  class="btn btn-primary" onClick="AumentaPerc()">+</button>
+                                <input type='text' id="percentage" name="percentage" value="1" readonly="readonly"/>
+                                <button class="btn btn-primary" onClick="DiminuiPerc()">-</button>
+                                <form action="/marvelShopp/CarrinhoController" method="POST" align="center">
                                     <input type="hidden" value="delete" name="funcao"/>
                                     <input type="hidden" value="<%= item.id %>" name="itemRemove"/>
-                                    <input type="submit" class="btn btn-primary" value="Remover" name="remover" style="width:90px;">
+                                    <input type="submit" class="btn btn-primary" value="Remover" name="remover" style="width:90px;background: #000;">
                                 </form>
                             </div>
-
-
+                        </div> 
                         <%        
                                 } 
                                 System.out.println("<div id='item'><h5> R$ "+total+"</h5></div");
@@ -68,9 +65,8 @@
                         <div align="center"><h1 style="color: red;">NENHUM ITEM NO CARRINHO!!!</h1></div>
                     <% }
                     %>
-                </section>
-                <section id="cadEndereco">
-                    <form action="/marvelShopp/CadEnderecoController" method="POST" id="cadEndereco">
+                    </th><th>
+                    <form action="/marvelShopp/CadEnderecoController" method="POST" id="cadEndereco" style="margin-left: 20px; width: 550px; ">
                         <h1>Endereço de entrega</h1>
                         <div class="form-group">
                             <label for="rua">Rua: </label>
@@ -99,7 +95,11 @@
                         <input type="submit" value="enviar" ID="cadEndereco" name="cadEndereco" style="width:200px; margin-left: 200px;">
                         <input type="hidden" value="<%= user.getId()%>">
                     </form>
+                    </th>
+                    </tr>
+                </table>
                 </section>
+                
                 <br/>
                 </br>
             <%@ include file="footer.jsp"%>
