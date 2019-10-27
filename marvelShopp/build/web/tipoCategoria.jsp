@@ -22,8 +22,8 @@
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <form action="TipoCategoriaController" method="get" id="tipoCat">            
-                    <h1>Tipo Categoria</h1>
+                <form action="TipoCategoriaController" method="POST" id="tipoCat">            
+                        <h1>Tipo Categoria</h1>
                     <table id="exibeCatCad">
                         <tr>
                             <td>ID</td>
@@ -39,7 +39,7 @@
                        <tr>
                            <td><%= tc.getId()%> </td>
                            <td><%= tc.getNome()%> </td>
-                           <td><a href="TipoCategoriaController"><img id="delete" src="imagens/delete.png"/></td>
+                           <td><a href="TipoCategoriaController?idTCat=<%= tc.getId()%>"><img id="delete" src="imagens/delete.png"/></td>
                        </tr>
                        <% } %>
                     </table>

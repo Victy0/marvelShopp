@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,5 +58,40 @@ public class EnderecoDao {
             Logger.getLogger(EnderecoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return endereco;
+    }
+    
+    public List<Endereco> list(String idUser){
+        Connection con = Conexao.getConnection(); //cria uma conexao
+        PreparedStatement stmEnderecoList; //cria uma variavel para execução de SQL
+        ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
+        List<Endereco> listaEnderecos = new ArrayList();
+        try{
+            stmEnderecoList = con.prepareStatement("select * from personagem where usuario =?");//cria uma instância de Statement para execução de SQL
+                stmEnderecoList.setString(1,idUser);
+                resultado = stmEnderecoList.executeQuery();
+            
+            
+            while(resultado.next()) {       
+                Endereco endereco = new Endereco();
+                endereco.setId(resultado.getLong("id"));
+                endereco.setRua(resultado.getString("rua"));
+                endereco.setNumeroCasa(resultado.getString("numero"));
+                endereco.setBairro(resultado.getString("bairro")); 
+                endereco.setComplemento(resultado.getString("complemento"));
+                endereco.setCidade(resultado.getString("cidade"));
+                endereco.setCep(resultado.getString("cep"));
+                endereco.setUserId(resultado.getString("usuario"));
+
+                listaEnderecos.add(endereco);//salva o item na lista criada
+            }
+            
+        } 
+        catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado!");
+        } 
+        finally{
+            Conexao.closeConnection(con, null, resultado);
+        }                
+        return listaEnderecos;
     }
 }

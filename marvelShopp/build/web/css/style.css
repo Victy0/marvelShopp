@@ -20,7 +20,6 @@ div#interface{
     background-color: #ffffff;/*cor do fundo da iterface*/
     margin: 50px auto 50px auto;/*margem top direita baixo esquerda*/
     padding: 10px 10px 10px 10px;/*espaço interno dentro do objeto*/
-    
 }
 
 /*formatação cabecalho*/
@@ -270,39 +269,17 @@ div#item{
     padding-bottom: 30px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
     margin: 15px;
-    margin-left: 100px;
-    width: 500px;
+    margin-left: 30px;
+    width: 400px;
 }
 
-div#item h1 {
-    margin-left: 200px;
-    margin-top: -10px;
-}
-
-div#item h3 {
-    margin-left: 200px;
-    margin-top: -10px;
-    padding-bottom: 10px;
-    border-bottom: 1px #606060 solid; 
-    border-bottom-width: 5px;
-}
-
-div#item p {
-    margin-left: 200px;
-    margin-top: -10px;
-}
 
 div#item input#percentage{
     width: 40px;
 }
 
 div#item form#qtd{
-    margin-left: 200px;
-}
-
-div#item img{
-    width: 40%;
-    height: 40%;
+    margin-left: 50px;
 }
 .space{
     margin-top: 100px;
@@ -315,4 +292,53 @@ div#item img{
 .space1{
   
     margin-bottom: 100px;
+}
+
+/*div#resumoDaCompra{
+    position:relative;
+    margin-left: 500px;
+    margin-top: -600px;
+    width: 400px;
+}*/
+
+form#resumoCompra{
+    position:relative;
+    background-color: #e9e9e9;
+/*    padding: 20px;*/
+    font-size: 20pt;
+    margin-right: -50px;
+    width: 130%;
+/*    padding-right:  0px;*/
+}
+div#resumoDaCompra h1{
+/*    padding: 20px;*/
+    font-size: 30pt;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+form#resumoCompra td{
+    padding: 20px;
+    font-size: 20pt;
+}
+form#resumoCompra td#preco{
+    text-align: center;
+    padding-left: 200px;
+}
+
+div#resumoDaCompra form#resumoCompra input#irPag{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+section#cadEndereco{
+    position: absolute;
+    width: 600px;
+    margin-left: 700px;
+    margin-top: -600px;
+}
+section#cadEndereco h1{
+    font-size: 30pt;
+    text-align: center;
+    padding-bottom: 40px;
 }

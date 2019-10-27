@@ -1,7 +1,7 @@
 @charset "UTF-8";/*para utilizar acentos*/
 
 form#contato, form#login, form#cadUsu, form#cadastroProduto, form#tipoSexo {/*formata o formulario*/
-    width: 600px;/*define a largura*/
+    width: 800px;/*define a largura*/
     margin: auto;/*deixar centralizado*/
     margin-left: 20%;
     margin-bottom: 50px;
@@ -34,7 +34,7 @@ fieldset#sexo{/*ajusta a largura do campo sexo*/
 }
 
 form#tipoSexo, form#tipoOcup, form#tipoCat {/*formata o formulario*/
-    width: 1000px;/*define a largura*/
+    width: 100%;/*define a largura*/
     margin: auto;/*deixar centralizado*/
     margin-left: 23%;
     margin-bottom: 100px;
@@ -46,83 +46,35 @@ input#tSexo, input#tOcup, input#tCat{
     width: 300px;
 }
 
+input#bSexo, input#bOcup, input#bCat{
+    width: 100px;
+}
 
-table#exibeSexoCad {
+table#exibeSexoCad, table#exibeCatCad,  table#exibeOcupCad{
     border-collapse: collapse; /* CSS2 */
     position: relative;
     margin-left: -50px;
 }
  
-table#exibeSexoCad td {
+table#exibeSexoCad td, table#exibeCatCad td, table#exibeOcupCad td{
     border: 1px solid black;
     padding: 10px;
 }
  
-table#exibeSexoCad th {
+table#exibeSexoCad th, table#exibeCatCad th, table#exibeOcupCad th {
     border: 1px solid black;
     background: #F0FFF0;
 }
-form#tipoSexo h1 {
+
+form#tipoSexo h1, form#tipoCat h1, form#tipoOcup h1 {
     font-size: 35pt;
     padding-bottom: 50px;
-    margin-left: 220px;
+    margin-left: 150px;
+    align-content: center;
 }
 
-table#cadSexo{
-    position: relative;
-    margin-top: -280px;
-    margin-left: 300px;
+table#cadSexo, table#cadOcup, table#cadCat{
+    position: absolute;
+    margin-top: -180px;
+    margin-left: 250px;
 }
-
-table#exibeCatCad {
-    border-collapse: collapse; /* CSS2 */
-    position: relative;
-}
- 
-table#exibeCatCad td {
-    border: 1px solid black;
-    padding: 10px;
-}
- 
-table#exibeCatCad th {
-    border: 1px solid black;
-    background: #F0FFF0;
-}
-form#tipoCat h1 {
-    font-size: 35pt;
-    padding-bottom: 50px;
-    margin-left: 220px;
-}
-
-table#cadCat{
-    position: relative;
-    margin-top: -320px;
-    margin-left: 300px;
-}
-
-table#exibeOcupCad {
-    border-collapse: collapse; /* CSS2 */
-    position: relative;
-}
- 
-table#exibeOcupCad td {
-    border: 1px solid black;
-    padding: 10px;
-}
- 
-table#exibeOcupCad th {
-    border: 1px solid black;
-    background: #F0FFF0;
-}
-form#tipoOcup h1 {
-    font-size: 35pt;
-    padding-bottom: 50px;
-    margin-left: 220px;
-}
-
-table#cadOcup{
-    position: relative;
-    margin-top: -320px;
-    margin-left: 300px;
-}
-
