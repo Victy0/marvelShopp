@@ -83,15 +83,17 @@ public class PersonagemDao {
         List<Personagem> listaPersonagem = new ArrayList();
         TipoCategoriaDao tcd = new TipoCategoriaDao();
         TipoOcupacaoDao tod = new TipoOcupacaoDao();
-        TipoSexoDao tsd = new TipoSexoDao();  
+        TipoSexoDao tsd = new TipoSexoDao();
+        String prefixo = ("heroi".equals(termo)) ? "'" : "'%";
+        termo = prefixo + termo;
         try{
             stm = con.prepareStatement("select * from personagem p, tipo_categoria c, tipo_sexo s, tipo_ocupacao o \n" +
-                                        "where (nome_real like '%" + termo + "%'\n" +
-                                        "or identidade like '%" + termo + "%'\n" +
-                                        "or c.nome like '%" + termo + "%'\n" +
-                                        "or o.nome like '%" + termo + "%'\n" +
-                                        "or s.nome like '%" + termo + "%'\n" +
-                                        "or lugar like '%" + termo + "%')\n" +
+                                        "where (nome_real like " + termo + "%'\n" +
+                                        "or identidade like " + termo + "%'\n" +
+                                        "or c.nome like " + termo + "%'\n" +
+                                        "or o.nome like " + termo + "%'\n" +
+                                        "or s.nome like " + termo + "%'\n" +
+                                        "or lugar like " + termo + "%')\n" +
                                         "and p.ocupacao=o.id and p.sexo=s.id and p.categoria=c.id"
                                         + " Limit "+limit+" Offset "+offset+";");
             resultado = stm.executeQuery();
@@ -125,14 +127,16 @@ public class PersonagemDao {
         PreparedStatement stm = null;
         ResultSet resultado = null;
         int qtd = 0;
+        String prefixo = ("heroi".equals(termo)) ? "'" : "'%";
+        termo = prefixo + termo;
         try{
             stm = con.prepareStatement("select count(*) as registros from personagem p, tipo_categoria c, tipo_sexo s, tipo_ocupacao o \n" +
-                                        "where 	(nome_real like '%" + termo + "%'\n" +
-                                        "or identidade like '%" + termo + "%'\n" +
-                                        "or c.nome like '%" + termo + "%'\n" +
-                                        "or o.nome like '%" + termo + "%'\n" +
-                                        "or s.nome like '%" + termo + "%'\n" +
-                                        "or lugar like '%" + termo + "%')\n" +
+                                        "where 	(nome_real like " + termo + "%'\n" +
+                                        "or identidade like " + termo + "%'\n" +
+                                        "or c.nome like " + termo + "%'\n" +
+                                        "or o.nome like " + termo + "%'\n" +
+                                        "or s.nome like " + termo + "%'\n" +
+                                        "or lugar like " + termo + "%')\n" +
                                         "and p.ocupacao=o.id and p.sexo=s.id and p.categoria=c.id;");
             resultado = stm.executeQuery();
             while(resultado.next()){
