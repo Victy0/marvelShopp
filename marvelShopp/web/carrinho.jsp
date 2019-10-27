@@ -28,13 +28,18 @@
                 <h1 id="titulo">Meu Carrinho</h1>
                 </br>
                 <%
+                    Boolean carrinhoVazio =true;
+                    Double totalCompra=0.0;
+                    
                     Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
                     if(carrinho != null){
                         List<Item> itens = carrinho.getItens();
                         if(itens.size()!= 0){
+                            carrinhoVazio = false;
                             Double total = 0.0;
                             for(Item item : itens){ 
                                 total += item.getPersonagem().getPreco();
+                                totalCompra = totalCompra+total;
                 %>      
                         <div id="item">
                             <img src="imagens/<%= item.personagem.getImagemRef() %>" id="imgItem">
@@ -54,7 +59,9 @@
                                 <input type="submit" class="btn btn-primary" value="Remover" name="remover" style="width:90px;">
                             </form>
                         </div>
-                <%        
+                                
+                                
+                    <%        
                             } 
                             System.out.println("<div id='item'><h5> R$ "+total+"</h5></div");
                         }else{%>
@@ -64,6 +71,44 @@
                     <div align="center"><h1 style="color: red;">NENHUM ITEM NO CARRINHO!!!</h1></div>
                    <% }
                 %>
+                
+                <%
+                    
+                    if(!carrinhoVazio){
+                        Double desconto = totalCompra*0.1;
+                %>
+                        <div id="resumoDaCompra">
+                            <h1>Resumo da compra</h1>
+                            <form action="/marvelShopp/PagamentoController" method="GET" id="resumoCompra">            
+                                <table id="resumoDaCompra">
+                                    <tr>
+                                        <td>Subtotal</td>
+                                        <td id="preco">R$ <%= totalCompra%></td>
+                                    </tr>
+                                    <tr>
+                                       <td>Frete</td>
+                                       <td id="preco">R$ 10.00</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Desconto</td>
+                                       <td id="preco">R$ <%= desconto%></td>
+                                    </tr>
+                                    <tr>
+                                       <td>Valor total</td>
+                                       <td id="preco">R$ <%= totalCompra + 10 - desconto%> </td>
+                                    </tr>
+                                </table>
+                                    <input type="submit" value="CONTINUAR" ID="irPag" name="irPag" style="width:300px;"/>
+                            </form>
+                                    
+                            <form action="index.jsp">
+                                <button type="submit" style="margin-left: 220px;">CONTINUAR COMPRANDO</button>
+                            </form>
+                        </div>
+                <%
+                    }
+                %>
+                
                 </br>
                 </br>
             </section>

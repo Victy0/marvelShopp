@@ -1,5 +1,6 @@
 function AumentaPerc() {
     var campo = document.getElementById("percentage");
+    var preco = document.getElementById("preco")
     campo.value= parseInt(campo.value) + 1;
 }
 
