@@ -44,6 +44,34 @@ public class UsuarioDao {
             Conexao.closeConnection(con, stm);
         }
     }
+    
+    public void editar (Usuario usu, String id){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm= null;
+        try {
+            stm=con.prepareStatement("UPDATE usuario\n" +
+                                    "SET nome = ?, email = ?, senha = ?, cpf = ?,\n" +
+                                    "sexo = ?, dt_nascimento = ?, recebe_email = ?\n" +
+                                    "where id = ?;");
+            String recEmail = "0";
+            if(usu.getRecebeEmail()){
+                recEmail = "1";
+            }
+            stm.setString(1,usu.getNome());
+            stm.setString(2, usu.getEmail());
+            stm.setString(3, usu.getSenha());
+            stm.setString(4, usu.getCpf());
+            stm.setString(5, usu.getSexo());
+            stm.setString(6,usu.getDt_nascimento());
+            stm.setString(7, recEmail);
+            stm.setString(8, id);
+            stm.executeUpdate();
+        }catch (SQLException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            Conexao.closeConnection(con, stm);
+        }
+    }
      
     //recuperar Usuario informando o 'id' do mesmo
     public Usuario getById (String id){

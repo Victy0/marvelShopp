@@ -100,9 +100,17 @@ public class UsuarioController extends HttpServlet {
         }
         usu.setRecebeEmail(recebeEmail);
   
-        this.usudao.create(usu);
-        RequestDispatcher view= request.getRequestDispatcher("/login.jsp");
-        view.forward(request, response);
+        if (request.getParameter("editar").equals("editar")) {
+            this.usudao.editar(usu, request.getParameter("idUser"));
+            RequestDispatcher view= request.getRequestDispatcher("/index.jsp");
+            view.forward(request, response);
+        }
+        else
+        {
+            this.usudao.create(usu);
+            RequestDispatcher view= request.getRequestDispatcher("/login.jsp");
+            view.forward(request, response);
+        }
     }
 
     /**
