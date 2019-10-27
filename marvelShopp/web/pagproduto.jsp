@@ -59,10 +59,10 @@
                                     <input type='button' class='btn btn-primary' value='Adicionar aos favoritos' style='width:200px; background: yellowgreen; color:black'></a>
                                 <%}
                             }%>
-                                    <% if (loginUser != null) {if(loginUser.getHasAdm()){ %>
-                                    <a href='/marvelShopp/editarProduto.jsp?idPersonagem=<%= personagem.getId()%>' class='btn btn-primary spacebt'>Editar</a>
-                                    <a href='/marvelShopp/EditarPersonagemController?id=<%= personagem.getId()%>' class='btn btn-danger' >Deletar</a>
-                                    <% }} %>
+                            <% if (loginUser != null) {if(loginUser.getHasAdm()){ %>
+                                <a href='/marvelShopp/editarProduto.jsp?idPersonagem=<%= personagem.getId()%>' class='btn btn-primary spacebt'>Editar</a>
+                                <a href='/marvelShopp/EditarPersonagemController?id=<%= personagem.getId()%>' class='btn btn-danger' >Deletar</a>
+                            <% }} %>
                                 </form>
                                 <br>
                             

@@ -55,11 +55,11 @@
                                 <%} else {%>
                                 <p class='card-text'>R$ <%= perso.getPreco()%> </p>
                                 <% }%>
-                                <a href='/marvelShopp/PagProdutoController?id="<%= perso.getId()%>' class='btn btn-primary'>Visualizar</a>
-                                <% if (loginUser != null) {if(loginUser.getHasAdm()){ %>
+                                <a href='/marvelShopp/PagProdutoController?id=<%= perso.getId()%>' class='btn btn-primary'>Visualizar</a>
+                                <%{if(loginUser.getHasAdm()){ %>
                                     <a href='/marvelShopp/editarProduto.jsp?idPersonagem=<%= perso.getId()%>' class='btn btn-primary spacebt'>Editar</a>
                                     <a href='/marvelShopp/EditarPersonagemController?id=<%= perso.getId()%>' class='btn btn-danger' >Deletar</a>
-                                <% }} %>
+                                <% } %>
                             </div>
                         </div></div>
 
