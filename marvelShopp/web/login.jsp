@@ -4,6 +4,7 @@
     Author     : chris
 --%>
 
+<%@page import="org.apache.tomcat.util.http.Cookies"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,18 +18,36 @@
     <body>
         <div id="interface">
             <%@ include file="header.jsp"%>
+            <%
+               Cookie[] cookies = request.getCookies();
+               String email="";
+               String senha ="";
+               if(cookies!=null){
+               for(Cookie cookie: cookies){
+                if(cookie.getName().equals("email")){
+                  
+                   email= cookie.getValue();
+               }
+                 if(cookie.getName().equals("senha")){
+                    senha= cookie.getValue();
+               } 
+               }
+               }%>
+               
             
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
                 <form method="POST" id="login" action="LoginController">
                     <fieldset id="login"> <legend>Login</legend>
-                        <input type="hidden" value="<%=request.getAttribute("errorValidate")%>">
+                        <%if(request.getAttribute("errorValidate") != null){ %>
+                        <span style="color: red; font-size: 15pt;">Usuário ou senha inválido!</span>
+                        <%}%>
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email cadastrado" required>
+                            <input type="email" name="email" id="email" class="form-control" value="<%=email%>" placeholder="Email cadastrado" required>
                         </div>
                         <div class="form-group">
                             <label for="senha">Senha</label>
-                            <input type="password" name="senha" id="senha" class="form-control" placeholder="Senha cadastrada" required>
+                            <input type="password" name="senha" id="senha" class="form-control" value="<%=senha%>" placeholder="Senha cadastrada" required>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar" id="Enviar">
