@@ -84,6 +84,9 @@ public class LoginController extends HttpServlet {
                carrinho.setUsuario(user);
             }else{
                  carrinho = carrinhoDao.getByUser(user);
+                 if(carrinho.getId() == null){
+                    carrinho = null;
+                }
             }
             request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("carrinho", carrinho);
