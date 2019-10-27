@@ -73,7 +73,7 @@
 //                out.println("<a href=listaprodutos.jsp?numpagina=3>3</a><br>");
                 Integer limit = (Integer) request.getAttribute("limit");
                 Integer numPagina = (Integer) request.getAttribute("qtdBusca");
-                int totalpaginas = numPagina / limit;
+                int totalpaginas = ((numPagina / limit) + 1);
             %>
 
             <hr><nav aria-label='Page navigation example' align='center'><nav aria-label='Page navigation example'>

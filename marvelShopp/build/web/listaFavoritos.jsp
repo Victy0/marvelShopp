@@ -46,7 +46,7 @@
                             <td><%=persona.getCategoria().getNome()%></td>
                             <td><%=persona.getSexo().getNome()%></td>
                             <td><%=persona.getPreco()%></td>
-                            <td><a href="PagProdutoController?id=<%=persona.getId()%>"  data-toggle="tooltip" data-placement="bottom" title="<img src='imagens/<%=persona.getImagemRef()%>'/>">DETALHES</a></td>
+                            <td><a href="PagProdutoController?id=<%=persona.getId()%>">DETALHES</a></td>
                           </tr>
                           <%}%>
                         </tbody>
