@@ -34,21 +34,42 @@ public class CadEnderecoController extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        Usuario user = (Usuario)request.getSession().getAttribute("user");
-        Endereco endereco = new Endereco();
-        endereco.setRua(request.getParameter("rua"));
-        endereco.setNumeroCasa(request.getParameter("numero"));
-        endereco.setBairro(request.getParameter("bairro"));
-        endereco.setComplemento(request.getParameter("complemento"));
-        endereco.setCidade(request.getParameter("cidade"));
-        endereco.setCep(request.getParameter("cep"));
-        endereco.setUserId(user.getId().toString());
-        
-        enderecoDao.inserir(endereco);
-        
-        RequestDispatcher view= request.getRequestDispatcher("/fechamentoCompra.jsp");
-        view.forward(request, response);
+            throws ServletException, IOException {      
+        String acao = request.getParameter("acao");
+        if(acao != null){
+            if("delete".equals(acao)){
+                String enderecoId = request.getParameter("enderecoId");
+                enderecoDao.delete(enderecoId);
+                request.getRequestDispatcher("/enderecoUsuario.jsp").forward(request,response);
+            }else{
+                Usuario user = (Usuario)request.getSession().getAttribute("user");
+                Endereco endereco = new Endereco();
+                endereco.setRua(request.getParameter("rua"));
+                endereco.setNumeroCasa(request.getParameter("numero"));
+                endereco.setBairro(request.getParameter("bairro"));
+                endereco.setComplemento(request.getParameter("complemento"));
+                endereco.setCidade(request.getParameter("cidade"));
+                endereco.setCep(request.getParameter("cep"));
+                endereco.setUserId(user.getId().toString());
+
+                enderecoDao.inserir(endereco);
+                request.getRequestDispatcher("/enderecoUsuario.jsp").forward(request,response);
+            }              
+        }else{
+            Usuario user = (Usuario)request.getSession().getAttribute("user");
+            Endereco endereco = new Endereco();
+            endereco.setRua(request.getParameter("rua"));
+            endereco.setNumeroCasa(request.getParameter("numero"));
+            endereco.setBairro(request.getParameter("bairro"));
+            endereco.setComplemento(request.getParameter("complemento"));
+            endereco.setCidade(request.getParameter("cidade"));
+            endereco.setCep(request.getParameter("cep"));
+            endereco.setUserId(user.getId().toString());
+
+            enderecoDao.inserir(endereco);
+            RequestDispatcher view= request.getRequestDispatcher("/fechamentoCompra.jsp");
+            view.forward(request, response);
+        }
     }
     
     @Override

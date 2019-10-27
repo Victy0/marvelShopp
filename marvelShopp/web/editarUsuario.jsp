@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="CPF">CPF</label>
-                            <input type="cpf" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="Somente números" onkeydown="MaskDown(this)" onkeyup="MaskUp(this,'###.###.###-##')" onkeypress="somenteNumeros(event);"  value="<%= loginUser.getCpf()%>" readonly="true" required>
+                            <input type="cpf" class="form-control" name="cpf" id="cpf" maxlength="14" placeholder="Somente números" onkeydown="MaskDown(this)" onkeyup="MaskUp(this,'###.###.###-##')" onkeypress="somenteNumeros(event);"  value="<%= loginUser.getCpf()%>" required>
                         </div>
                         <div class="form-group">
                             <label for="sexo">Sexo</label>

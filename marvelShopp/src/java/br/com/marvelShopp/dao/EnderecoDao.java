@@ -66,7 +66,7 @@ public class EnderecoDao {
         ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
         List<Endereco> listaEnderecos = new ArrayList();
         try{
-            stmEnderecoList = con.prepareStatement("select * from personagem where usuario =?");//cria uma instância de Statement para execução de SQL
+            stmEnderecoList = con.prepareStatement("select * from endereco where usuario =?");//cria uma instância de Statement para execução de SQL
                 stmEnderecoList.setString(1,idUser);
                 resultado = stmEnderecoList.executeQuery();
             
@@ -93,5 +93,21 @@ public class EnderecoDao {
             Conexao.closeConnection(con, null, resultado);
         }                
         return listaEnderecos;
+    }
+    
+    public void delete(String idEndereco){
+        Connection con = Conexao.getConnection(); //cria uma conexao
+        PreparedStatement stmEnderecoList; //cria uma variavel para execução de SQL
+        try{
+            stmEnderecoList = con.prepareStatement("DELETE FROM endereco WHERE id=?");//cria uma instância de Statement para execução de SQL
+            stmEnderecoList.setString(1,idEndereco);
+            stmEnderecoList.executeUpdate();            
+        } 
+        catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado!");
+        } 
+        finally{
+            Conexao.closeConnection(con);
+        }                
     }
 }

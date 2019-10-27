@@ -68,12 +68,13 @@
                     <% }
                     %>
                 </section>
-                <section id="cadEndereco">
-                    <h1>Endereço de entrega</h1>
+            </th><th>
+                    <h1 style="margin-left:40px;">Endereço de entrega</h1>
                     <%
                         List<Endereco> listaEnderecos = (List<Endereco>) request.getAttribute("enderecoList");
                         for(Endereco endereco:listaEnderecos){
                     %>
+                    <hr>
                     <form action="/marvelShopp/PagamentoController" method="POST" id="pagamento">
                         <p>Logradouro: <%=endereco.getRua()%></p>
                         <p>Número: <%=endereco.getNumeroCasa()%></p>
@@ -83,14 +84,15 @@
                         <p>CEP: <%=endereco.getCep()%></p>
                         <input type="hidden" value="<%=endereco.getId()%>"/>
                         <input type="hidden" value="irPagar" id="funcao"/>
-                        <input type="submit" value="Selecionar endereço" id="selectEndereco" style="width:200px; margin-left: 200px;"/>
+                        <input type="submit" class="btn-primary" value="Selecionar endereço" id="selectEndereco" style="width:200px; margin-left: 200px;"/>
                         </form>
+                    <hr>
                     <%
                         }
                     %>
                     
                    
-                    <form action="/marvelShopp/CadEnderecoController" method="POST" id="cadEndereco">
+                    <form action="/marvelShopp/CadEnderecoController" method="POST" id="cadEndereco" style="margin-left:40px;">
                         <h3>Cadastrar novo endereço de entrega</h3>
                         <div class="form-group">
                             <label for="rua">Rua: </label>
@@ -116,7 +118,7 @@
                             <label for="cep">CEP: </label>
                             <input type="text" class="form-control" name="cep" id="cep" maxlength="50" placeholder="CEP" required>
                         </div>
-                        <input type="submit" value="enviar" ID="cadEndereco" name="cadEndereco" style="width:200px; margin-left: 200px;">
+                        <input type="submit" class="btn-primary" value="enviar" ID="cadEndereco" name="cadEndereco" style="width:200px; margin-left: 200px;">
                         <input type="hidden" value="<%= user.getId()%>">
                     </form>
                     </th>
