@@ -50,16 +50,16 @@
                             <div class='card-body'>
                                 <h5 class='card-title'> <%= perso.getIdentidade()%></h5>
                                 <%
-                        if (perso.getQtdEstoque() < 1) {%>
+                                    if (perso.getQtdEstoque() < 1) {%>
                                 <p class='card-text' style='color: red;'>Personagem indisponível</p>
                                 <%} else {%>
                                 <p class='card-text'>R$ <%= perso.getPreco()%> </p>
                                 <% }%>
                                 <a href='/marvelShopp/PagProdutoController?id=<%= perso.getId()%>' class='btn btn-primary'>Visualizar</a>
-                                <%{if(loginUser.getHasAdm()){ %>
-                                    <a href='/marvelShopp/editarProduto.jsp?idPersonagem=<%= perso.getId()%>' class='btn btn-primary spacebt'>Editar</a>
-                                    <a href='/marvelShopp/EditarPersonagemController?id=<%= perso.getId()%>' class='btn btn-danger' >Deletar</a>
-                                <% } %>
+                                <%if (loginUser != null){ if (loginUser.getHasAdm()) {%>
+                                <a href='/marvelShopp/editarProduto.jsp?idPersonagem=<%= perso.getId()%>' class='btn btn-primary spacebt'>Editar</a>
+                                <a href='/marvelShopp/EditarPersonagemController?id=<%= perso.getId()%>' class='btn btn-danger' >Deletar</a>
+                                <% }} %>
                             </div>
                         </div></div>
 
@@ -81,7 +81,7 @@
                         <%
                             for (int j = 1; j <= totalpaginas; j++) {
                                 out.println("<li class='page-item'><a  class='page-link'href='BuscaController?busca=" + busca + "&numpagina=" + j + "'>" + j + "</a></li>");
-                        }%>
+                            }%>
                     </ul>
                 </nav>
             </nav><hr>
