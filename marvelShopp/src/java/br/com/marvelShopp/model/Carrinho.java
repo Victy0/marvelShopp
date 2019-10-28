@@ -49,15 +49,6 @@ public class Carrinho {
             }
         }
     }
-//    public Item retornaItem(long id){
-//        Item itemPedido = null;
-//        for(Item item : itens){
-//            if(item.getIdPedido()==id){
-//                itemPedido = item;
-//            }
-//        }
-//        return itemPedido;
-//    }
 
     public List<Item> getItens(){
         return this.itens;

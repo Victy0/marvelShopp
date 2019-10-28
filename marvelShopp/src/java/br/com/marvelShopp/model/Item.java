@@ -10,9 +10,9 @@ package br.com.marvelShopp.model;
  * @author Gleison
  */
 public class Item {
-    public Long id;
-    public Personagem personagem;
-    int qtd;
+    private Long id;
+    private Personagem personagem;
+    private int qtd;
 
      public Long getId() {
         return this.id;

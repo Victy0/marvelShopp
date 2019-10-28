@@ -14,7 +14,6 @@ import br.com.marvelShopp.model.TipoCategoria;
 import br.com.marvelShopp.model.TipoOcupacao;
 import br.com.marvelShopp.model.TipoSexo;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

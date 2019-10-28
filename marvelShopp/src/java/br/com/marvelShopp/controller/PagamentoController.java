@@ -3,11 +3,8 @@ package br.com.marvelShopp.controller;
 
 import br.com.marvelShopp.dao.EnderecoDao;
 import br.com.marvelShopp.dao.PagamentoDao;
-import br.com.marvelShopp.model.Endereco;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -7,8 +7,6 @@ import br.com.marvelShopp.model.Item;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,7 +49,7 @@ public class CarrinhoController extends HttpServlet {
             Item atualizarItem = confereItens(carrinho, persona, request.getParameter("op"));
             carrinhoDao.atualizaItem(atualizarItem.getId().toString(), atualizarItem.getQtd());   
         }else{
-            request.setAttribute("comentList", carrinhoDao.list(loginUser));
+            request.setAttribute("comentList", carrinhoDao.listItensByUser(loginUser));
         }
         
         RequestDispatcher view = request.getRequestDispatcher("/carrinho.jsp");

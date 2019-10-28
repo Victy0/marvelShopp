@@ -2,13 +2,11 @@
 package br.com.marvelShopp.dao;
 
 import br.com.marvelShopp.model.Endereco;
-import br.com.marvelShopp.model.Usuario;
 import br.com.marvelShopp.utilitarios.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,7 +15,7 @@ import java.util.logging.Logger;
 public class EnderecoDao {
     public void inserir (Endereco endereco){
         Connection con = Conexao.getConnection(); //cria uma conexao
-        PreparedStatement stmEndereco= null;
+        PreparedStatement stmEndereco;
         try {
             stmEndereco = con.prepareStatement("INSERT INTO endereco(rua, bairro, cep, numero, complemento, cidade, usuario) "
                                                 + "values (?, ?, ?, ?, ?, ?, ?)");

@@ -8,7 +8,6 @@ package br.com.marvelShopp.controller;
 import br.com.marvelShopp.dao.TipoCategoriaDao;
 import br.com.marvelShopp.model.TipoCategoria;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

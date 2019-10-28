@@ -7,19 +7,19 @@ package br.com.marvelShopp.model;
 public class Comentarios {
     
     //@field id
-    long id;
+    private Long id;
     
     //@field usuario
-    Usuario usuario;
+    private Usuario usuario;
     
     //@field personagem
-    Personagem personagem;
+    private Personagem personagem;
     
     //@field descricao
-    String descricao;
+    private String descricao;
     
     //@field nota
-    int nota;
+    private int nota;
 
     //@return id
     public long getId() {

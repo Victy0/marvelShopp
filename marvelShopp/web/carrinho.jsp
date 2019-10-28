@@ -45,16 +45,16 @@
                                 totalCompra = totalCompra+total;
                 %>      
                         <div id="item">
-                            <img src="imagens/<%= item.personagem.getImagemRef() %>" class="img-rounded" width="30%" align="left">
-                            <h2 align="center"><%= item.personagem.getIdentidade()%></h2>
-                            <h3 align="center">R$ <%=String.format("%.2f", (item.personagem.getPreco() * item.getQtd())) %></h3>
+                            <img src="imagens/<%= item.getPersonagem().getImagemRef() %>" class="img-rounded" width="30%" align="left">
+                            <h2 align="center"><%= item.getPersonagem().getIdentidade()%></h2>
+                            <h3 align="center">R$ <%=String.format("%.2f", (item.getPersonagem().getPreco() * item.getQtd())) %></h3>
                             <div id="qtd" align="center">
-                                <a href='CarrinhoController?funcao=atualiza&op=m&idPersonagem=<%=item.personagem.getId()%>' class='btn btn-danger' >-</a>
+                                <a href='CarrinhoController?funcao=atualiza&op=m&idPersonagem=<%=item.getPersonagem().getId()%>' class='btn btn-danger' >-</a>
                                 <input type='text' id="percentage" name="percentage" value="<%=item.getQtd()%>" readonly="readonly"/>
-                                <a href='CarrinhoController?funcao=atualiza&idPersonagem=<%=item.personagem.getId()%>' class='btn btn-danger' >+</a> 
+                                <a href='CarrinhoController?funcao=atualiza&idPersonagem=<%=item.getPersonagem().getId()%>' class='btn btn-danger' >+</a> 
                                 <form action="/marvelShopp/CarrinhoController" method="POST" align="center">
                                     <input type="hidden" value="delete" name="funcao"/>
-                                    <input type="hidden" value="<%= item.id %>" name="itemRemove"/>
+                                    <input type="hidden" value="<%= item.getId() %>" name="itemRemove"/>
                                     <input type="submit" class="btn btn-primary" value="Remover" name="remover" style="width:90px;background: #000;">
                                 </form>
                             </div>

@@ -8,7 +8,6 @@ package br.com.marvelShopp.controller;
 import br.com.marvelShopp.dao.TipoSexoDao;
 import br.com.marvelShopp.model.TipoSexo;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

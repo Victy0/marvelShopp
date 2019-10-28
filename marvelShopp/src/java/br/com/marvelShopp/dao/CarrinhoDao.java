@@ -171,7 +171,7 @@ public class CarrinhoDao {
         return carrinho;
     }
     
-    public List<Item> list(Usuario user){
+    public List<Item> listItensByUser(Usuario user){
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stm; //cria uma variavel para execução de SQL
         ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
@@ -201,12 +201,12 @@ public class CarrinhoDao {
             while(resultado.next()) {       
                 Personagem personagem = new Personagem();
                 Item item= new Item();//cria um item
-                item.personagem = personagem;
-                item.personagem.setIdentidade(resultado.getString("identidade"));
-                item.personagem.setNomeReal(resultado.getString("nome_real"));
-                item.personagem.setPreco(resultado.getDouble("preco"));
-                item.personagem.setImagemRef(resultado.getString("imagem_ref"));               
-
+                personagem.setIdentidade(resultado.getString("identidade"));
+                personagem.setNomeReal(resultado.getString("nome_real"));
+                personagem.setPreco(resultado.getDouble("preco"));
+                personagem.setImagemRef(resultado.getString("imagem_ref"));               
+                item.setPersonagem(personagem);
+                
                 listaItensPedidos.add(item);//salva o item na lista criada
             }
             

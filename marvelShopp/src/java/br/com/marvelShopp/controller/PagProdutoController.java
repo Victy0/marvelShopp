@@ -10,8 +10,6 @@ import br.com.marvelShopp.dao.PersonagemDao;
 import br.com.marvelShopp.model.Personagem;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

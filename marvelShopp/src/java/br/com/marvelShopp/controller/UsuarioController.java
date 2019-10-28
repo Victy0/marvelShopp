@@ -9,13 +9,6 @@ import br.com.marvelShopp.dao.PersonagemDao;
 import br.com.marvelShopp.dao.UsuarioDao;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import java.text.ParseException;
-
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
