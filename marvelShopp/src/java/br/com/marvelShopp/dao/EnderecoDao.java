@@ -41,7 +41,7 @@ public class EnderecoDao {
         PreparedStatement stmEndereco= null;
         ResultSet resultado = null;
         try {
-            stmEndereco = con.prepareStatement("select * from personagem where id =?");
+            stmEndereco = con.prepareStatement("select * from endereco where id =?");
             stmEndereco.setString(1, id);
             resultado = stmEndereco.executeQuery();
             while(resultado.next()){

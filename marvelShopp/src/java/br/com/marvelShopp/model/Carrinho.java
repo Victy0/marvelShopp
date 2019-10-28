@@ -12,6 +12,7 @@ public class Carrinho {
     private Usuario usuario;
     private String status;
     private String dtInicio;
+    private String dtConfirmacao;
     private List<Item> itens = new ArrayList();
     private Endereco endereco;
     private TipoPagamento pagamento;
@@ -63,13 +64,21 @@ public class Carrinho {
     }
     
     public String getDtInicio() {
-        return dtInicio;
+        return this.dtInicio;
     }
 
     public void setDtInicio(String dtInicio) {
         this.dtInicio = dtInicio;
     }
 
+    public String getDtConfirmacao() {
+        return this.dtConfirmacao;
+    }
+
+    public void setDtConfirmacao(String dtConfirmacao) {
+        this.dtConfirmacao = dtConfirmacao;
+    }
+    
     public void setId(Long id){
         this.id = id;
     }

@@ -28,6 +28,8 @@ import java.util.logging.Logger;
 public class CarrinhoDao {
     
     PersonagemDao personaDao = new PersonagemDao();
+    EnderecoDao enderecoDao = new EnderecoDao();
+    TipoPagamentoDao pagamentoDao = new TipoPagamentoDao();
     
     public Carrinho create (String idPersonagem, Long idUser){
         Carrinho carrinho = new Carrinho();
@@ -252,46 +254,50 @@ public class CarrinhoDao {
         } 
     }
     
-//    public List<Carrinho> listPedidos(Usuario user){
-//        Connection con = Conexao.getConnection(); //cria uma conexao
-//        PreparedStatement stm; //cria uma variavel para execução de SQL
-//        ResultSet resultado = null;
-//        List<Carrinho> carrinhoList = new ArrayList();
-//        try{
-//            stm = con.prepareStatement("select * \n" +
-//                                        "from pedido p\n" +
-//                                        "where p.usuario = ?\n" +
-//                                        "  and p.status = 'aberto';");//cria uma instância de Statement para execução de SQL
-//                stm.setLong(1,user.getId());
-//                resultado = stm.executeQuery();
-//                while(resultado.next()) {
-//                    Carrinho carrinho = new Carrinho();
-//                    carrinho.setId(resultado.getLong("id"));
-//                    carrinho.setStatus(resultado.getString("status"));
-//                    carrinho.setDtInicio(resultado.getString("dt_inicio"));
-//                    carrinho.setUsuario(user);
-//                    carrinho.setEndereco()
-//                }
-//                stm = con.prepareStatement("select i.id, i.personagem, i.qtd \n" +
-//                                             "from item i, item_pedido ip\n" +
-//                                             "where ip.pedido = "+carrinho.getId()+" and i.id=ip.item;");
-//                resultado = stm.executeQuery();
-//                while(resultado.next()) {
-//                    Item item = new Item();
-//                    item.setId(resultado.getLong("id"));
-//                    item.setQtd(resultado.getInt("qtd"));
-//                    Personagem persona = personaDao.getById(resultado.getString("personagem"));
-//                    item.setPersonagem(persona);
-//                    carrinho.insereItemLista(item);
-//                }
-//                
-//        }catch (SQLException ex) {
-//            System.out.println("Driver não pôde ser carregado!");
-//        } 
-//        finally{
-//            Conexao.closeConnection(con, null, resultado);
-//        }                
-//        return carrinhoList;
-//    }
+    public List<Carrinho> listPedidos(Usuario user){
+        Connection con = Conexao.getConnection(); //cria uma conexao
+        PreparedStatement stmPedido; //cria uma variavel para execução de SQL
+        PreparedStatement stmItem;
+        ResultSet resultado = null;
+        List<Carrinho> carrinhoList = new ArrayList();
+        try{
+            stmPedido = con.prepareStatement("select * \n" +
+                                        "from pedido p\n" +
+                                        "where p.usuario = ?\n" +
+                                        "  and p.status = 'fechado';");//cria uma instância de Statement para execução de SQL
+                stmPedido.setLong(1,user.getId());
+                resultado = stmPedido.executeQuery();
+                while(resultado.next()) {
+                    Carrinho carrinho = new Carrinho();
+                    carrinho.setId(resultado.getLong("id"));
+                    carrinho.setStatus(resultado.getString("status"));
+                    carrinho.setDtInicio(resultado.getString("dt_inicio"));
+                    carrinho.setDtConfirmacao(resultado.getString("dt_confirmacao"));
+                    carrinho.setUsuario(user);
+                    carrinho.setEndereco(enderecoDao.getById(resultado.getString("endereco_cobranca")));
+                    carrinho.setPagamento(pagamentoDao.getById(resultado.getString("pagamento")));
+                    
+                    stmItem = con.prepareStatement("select i.id, i.qtd, i.personagem \n" +
+                                             "from item i, item_pedido ip\n" +
+                                             "where ip.pedido = "+carrinho.getId()+" and i.id=ip.item;");
+                    resultado = stmItem.executeQuery();
+                    while(resultado.next()) {
+                        Item item = new Item();
+                        item.setId(resultado.getLong("id"));
+                        item.setQtd(resultado.getInt("qtd"));
+                        Personagem persona = personaDao.getById(resultado.getString("personagem"));
+                        item.setPersonagem(persona);
+                        carrinho.insereItemLista(item);
+                    }
+                    carrinhoList.add(carrinho);
+                } 
+        }catch (SQLException ex) {
+            System.out.println("Driver não pôde ser carregado!");
+        } 
+        finally{
+            Conexao.closeConnection(con, null, resultado);
+        }                
+        return carrinhoList;
+    }
 
 }
