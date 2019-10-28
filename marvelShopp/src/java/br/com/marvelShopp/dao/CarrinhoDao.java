@@ -95,15 +95,16 @@ public class CarrinhoDao {
         ResultSet resultado = null;
         
         try{
+            deleteItemPedido = con.prepareStatement("DELETE FROM item_pedido WHERE pedido=? and item=?;");
+            deleteItemPedido.setString(1, idPedido);
+            deleteItemPedido.setString(2, idItem);
+            deleteItemPedido.executeUpdate();
+            
             deleteItem = con.prepareStatement("DELETE FROM item \n" +
                                                     "where id = ?;");
             deleteItem.setString(1, idItem);
             deleteItem.executeUpdate();
-            
-            deleteItemPedido = con.prepareStatement("DELETE FROM item_pedido WHERE id=?;");
-            deleteItemPedido.setString(1, idPedido);
-            deleteItemPedido.executeUpdate();
-            
+  
         } catch (SQLException ex) {
             System.out.println("Driver nao pode ser carregado:"+ex);
         } finally{
@@ -298,6 +299,24 @@ public class CarrinhoDao {
             Conexao.closeConnection(con, null, resultado);
         }                
         return carrinhoList;
+    }
+    
+    public void atualizaItem(String idItem, Integer valor){
+        Connection con = Conexao.getConnection(); //cria uma conexao
+        PreparedStatement stm; //cria uma variavel para execução de SQL
+        ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
+        try{
+            stm = con.prepareStatement("UPDATE item SET qtd=? WHERE id=?");
+            stm.setInt(1, valor);
+            stm.setString(2, idItem);
+            stm.executeUpdate();
+        } 
+        catch (SQLException ex) {
+            System.out.println("Driver nao pode ser carregado!");
+        } 
+        finally{
+            Conexao.closeConnection(con, null, resultado);
+        } 
     }
 
 }

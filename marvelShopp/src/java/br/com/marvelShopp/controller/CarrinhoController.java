@@ -43,8 +43,17 @@ public class CarrinhoController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
-        request.setAttribute("comentList", carrinhoDao.list(loginUser));
-        //processRequest(request, response);
+        String funcao = request.getParameter("funcao");
+        String idPersonagem = request.getParameter("idPersonagem");
+        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
+        if(funcao!=null){
+            Personagem persona = personagemDao.getById(idPersonagem);
+            Item atualizarItem = confereItens(carrinho, persona, request.getParameter("op"));
+            carrinhoDao.atualizaItem(atualizarItem.getId().toString(), atualizarItem.getQtd());   
+        }else{
+            request.setAttribute("comentList", carrinhoDao.list(loginUser));
+        }
+        
         RequestDispatcher view = request.getRequestDispatcher("/carrinho.jsp");
         view.forward(request, response);
     }
@@ -75,10 +84,15 @@ public class CarrinhoController extends HttpServlet {
             if(carrinho != null){
                 Item item = new Item();
                 Personagem persona = personagemDao.getById(idPersonagem);
-                item.setPersonagem(persona);
-                item.setQtd(1);
-                item = carrinhoDao.saveItem(item, carrinho.getId());
-                carrinho.insereItemLista(item);
+                Item atualizarItem = confereItens(carrinho, persona, null);
+                if(atualizarItem.getId() == null){
+                    item.setPersonagem(persona);
+                    item.setQtd(1);
+                    item = carrinhoDao.saveItem(item, carrinho.getId());
+                    carrinho.insereItemLista(item);
+                }else{
+                    carrinhoDao.atualizaItem(atualizarItem.getId().toString(), atualizarItem.getQtd());
+                }
                 request.getSession().removeAttribute("carrinho");
                 request.getSession().setAttribute("carrinho",carrinho); 
             }else{
@@ -91,21 +105,25 @@ public class CarrinhoController extends HttpServlet {
                 request.getSession().removeAttribute("carrinho");
                 request.getSession().setAttribute("carrinho", carrinho);
             }
-        }        
-        
-        
+        }
         RequestDispatcher view = request.getRequestDispatcher("carrinho.jsp");
         view.forward(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+   private Item confereItens(Carrinho carrinho, Personagem persona, String op){
+       Item idItem = new Item();
+       for(Item item : carrinho.getItens() ){
+           if(item.getPersonagem().getIdentidade().equals(persona.getIdentidade())){
+               idItem.setId(item.getId());
+               if(op==null){
+                   idItem.setQtd(item.getQtd()+1);
+               item.setQtd(item.getQtd()+1);
+               }else{
+                  idItem.setQtd(item.getQtd()-1);
+               item.setQtd(item.getQtd()-1); 
+               }
+           }
+       }
+       return idItem;
+   }
 }
