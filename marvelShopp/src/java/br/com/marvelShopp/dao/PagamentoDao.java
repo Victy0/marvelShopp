@@ -9,12 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PagamentoDao {
-    public void create (String idEndereco, String idUser, String formPag, String pedidoId){
+    public void create (String idEndereco, String idUser, String formPag, String pedidoId){//atualiza o campo status para fechado, finalizando a compra
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmPagamento;
         try {
             Date now = new Date();
-            String dt_pag = ""+(now.getYear()+1900)+(now.getMonth()+1)+now.getDate();
+            String dt_pag = ""+(now.getYear()+1900)+(now.getMonth()+1)+now.getDate();//pega a data e hora do fechamento da compra
             
             stmPagamento = con.prepareStatement("update pedido \n" +
                                                 "set usuario = ?, \n" +

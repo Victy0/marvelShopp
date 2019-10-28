@@ -44,7 +44,7 @@ public class UsuarioDao {
             Conexao.closeConnection(con, stm);
         }
     }
-    
+    //edita um usuario
     public void editar (Usuario usu, String id){
         Connection con = Conexao.getConnection();
         PreparedStatement stm= null;
@@ -131,7 +131,7 @@ public class UsuarioDao {
         }
         return usuario;
     } 
-    
+    //cria uma lista de personagens favoritos de um usuario
     public List<Personagem> getFavoritos(Connection con,Long userId){
         PreparedStatement stm; 
         ResultSet resultado = null;
@@ -151,7 +151,7 @@ public class UsuarioDao {
         }
         return favoritos;
     }
-    
+    //adiciona um personagem favorito de um usuario na tabela personagens_favorito
     public void addFavorito(Long idUser, Long idPersona){
         Connection con = Conexao.getConnection();
         PreparedStatement stm= null;
@@ -166,7 +166,7 @@ public class UsuarioDao {
             Conexao.closeConnection(con, stm);
         }
     }
-    
+    //remove um persoangem da lista de favoritos de um usuario
     public void removeFavorito(Long idUser, Long idPersona){
         Connection con = Conexao.getConnection();
         PreparedStatement stm= null;

@@ -153,7 +153,7 @@ public class PersonagemDao {
         return qtd;
     }
     
-    public void editarPersonagem(Personagem persona){
+    public void editarPersonagem(Personagem persona){//altera os dados de um personagem
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
         try {
@@ -179,7 +179,7 @@ public class PersonagemDao {
             Conexao.closeConnection(con, stm);
         }
     }
-    
+    //deleta um personagem
     public void deletarPersonagem(String id){
         Connection con = Conexao.getConnection();
         PreparedStatement stm = null;
@@ -194,7 +194,7 @@ public class PersonagemDao {
             Conexao.closeConnection(con, stm);
         }
     }
-    
+    //cria uma lista 6 mais bens avaliados personagens
      public List<Personagem> getTop6(){
         Connection con = Conexao.getConnection();
         Statement stm;

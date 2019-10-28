@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EnderecoDao {
-    public void inserir (Endereco endereco){
+    public void inserir (Endereco endereco){//salva o endereço no banco de dados
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmEndereco;
         try {
@@ -27,13 +27,13 @@ public class EnderecoDao {
             stmEndereco.setString(6,endereco.getCidade());
             stmEndereco.setString(7,endereco.getUserId());
             
-            stmEndereco.executeUpdate();
+            stmEndereco.executeUpdate();//executa o SQL
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public Endereco getById(String id){
+    public Endereco getById(String id){ //recupera endereço do banco de dados
         Endereco endereco = new Endereco();
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmEndereco= null;
@@ -55,21 +55,21 @@ public class EnderecoDao {
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return endereco;
+        return endereco;//retorna um endereço
     }
     
-    public List<Endereco> list(String idUser){
+    public List<Endereco> list(String idUser){//salvar em uma lista os endereços de um usuario
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmEnderecoList; //cria uma variavel para execução de SQL
         ResultSet resultado = null; //interface utilizada pra guardar dados vindos de um banco de dados
         List<Endereco> listaEnderecos = new ArrayList();
         try{
-            stmEnderecoList = con.prepareStatement("select * from endereco where usuario =?");//cria uma instância de Statement para execução de SQL
+            stmEnderecoList = con.prepareStatement("select * from endereco where usuario =?");
                 stmEnderecoList.setString(1,idUser);
                 resultado = stmEnderecoList.executeQuery();
             
             
-            while(resultado.next()) {       
+            while(resultado.next()) {  //insere o resultado da busca no objeto endereço     
                 Endereco endereco = new Endereco();
                 endereco.setId(resultado.getLong("id"));
                 endereco.setRua(resultado.getString("rua"));
@@ -80,7 +80,7 @@ public class EnderecoDao {
                 endereco.setCep(resultado.getString("cep"));
                 endereco.setUserId(resultado.getString("usuario"));
 
-                listaEnderecos.add(endereco);//salva o item na lista criada
+                listaEnderecos.add(endereco);//salva o endereço na lista criada
             }
             
         } 
@@ -90,10 +90,10 @@ public class EnderecoDao {
         finally{
             Conexao.closeConnection(con, null, resultado);
         }                
-        return listaEnderecos;
+        return listaEnderecos;//retorna a lista de endereços
     }
     
-    public void delete(String idEndereco){
+    public void delete(String idEndereco){//deletar um endereço
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmEnderecoList; //cria uma variavel para execução de SQL
         try{
