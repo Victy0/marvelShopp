@@ -342,3 +342,6 @@ section#cadEndereco h1{
     text-align: center;
     padding-bottom: 40px;
 }
+label#formaPagamento{
+    font-size: 50pt;
+}

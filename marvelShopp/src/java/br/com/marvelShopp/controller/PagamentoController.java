@@ -45,17 +45,15 @@ public class PagamentoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String funcao = (String)request.getParameter("funcao");
-        if(funcao.equals("irPagar")){
+        
+            String idUser = (String)request.getParameter("idUser");
+            String idEndereco = (String)request.getParameter("idEndereco");
+            String formPag = (String)request.getParameter("formPag");
+            String pedidoId = (String)request.getParameter("pedidoId");
+            pagamentoDao.create(idEndereco, idUser, formPag, pedidoId);
             RequestDispatcher view = request.getRequestDispatcher("/fechamentoCompra.jsp");
             view.forward(request, response);
-        }
-        
-        String idUser = (String)request.getParameter("idUser");
-        String idEndereco = (String)request.getParameter("idEndereco");
-        String formPag = (String)request.getParameter("formPag");
-        String pedidoId = (String)request.getParameter("pedidoId");
-        pagamentoDao.create(idEndereco, idUser, formPag, pedidoId);
+       
     }
 
     @Override
