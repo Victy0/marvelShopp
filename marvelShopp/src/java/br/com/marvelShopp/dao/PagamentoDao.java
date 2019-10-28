@@ -17,22 +17,10 @@ public class PagamentoDao {
     public void create (String idEndereco, String idUser, String formPag, String pedidoId){
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmPagamento= null;
-        PreparedStatement stmFormPag= null;
         try {
             Date now = new Date();
             String dt_pag = ""+(now.getYear()+1900)+(now.getMonth()+1)+now.getDate();
             
-            stmFormPag = con.prepareStatement("insert into tipo_pagamento (nome) values (?);", Statement.RETURN_GENERATED_KEYS);
-           
-            stmFormPag.setString(1,formPag);
-            
-            stmFormPag.executeQuery();
-            
-            final ResultSet rsIdFormPag = stmFormPag.getGeneratedKeys();
-            String idFormPag = "";
-                if (rsIdFormPag.next()) { 
-                   idFormPag = rsIdFormPag.getString(1);
-                } 
             stmPagamento = con.prepareStatement("update pedido \n" +
                                                 "set usuario = ?, \n" +
                                                 "    status = \"Pago\",\n" +
@@ -42,7 +30,7 @@ public class PagamentoDao {
                                                 "where id = ?;");
                                                 
             stmPagamento.setString(1,idUser);
-            stmPagamento.setString(2,idFormPag);
+            stmPagamento.setString(2,formPag);
             stmPagamento.setString(3,dt_pag);
             stmPagamento.setString(4,idEndereco);
             stmPagamento.setString(5,pedidoId);
