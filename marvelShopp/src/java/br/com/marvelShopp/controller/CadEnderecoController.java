@@ -67,7 +67,8 @@ public class CadEnderecoController extends HttpServlet {
             endereco.setUserId(user.getId().toString());
 
             enderecoDao.inserir(endereco);
-            RequestDispatcher view= request.getRequestDispatcher("/fechamentoCompra.jsp");
+            request.setAttribute("enderecoList", enderecoDao.list(user.getId().toString()));
+            RequestDispatcher view= request.getRequestDispatcher("/pagamento.jsp");
             view.forward(request, response);
         }
     }

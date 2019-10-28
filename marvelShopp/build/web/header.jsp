@@ -44,14 +44,15 @@
                     </ul>
 
                 </li>
-                <li><a href="top10.jsp">Top 10</a></li>
-                <li><a href="promocao.jsp">Promoção</a></li>
+                <li><a href="top6.jsp">Top 6</a></li>
                 <% if(login != null){%>
                 <% Usuario user = (Usuario)request.getSession().getAttribute("user"); %>
                     <li><a><%= user.getNome() %></a>
                         <ul>
                             <li><a href="listaFavoritos.jsp">Favoritos</a></li>
-                            <li><a href="editarUsuario.jsp">Editar Cadastro</a></li>
+                            <li><a href="editarUsuario.jsp">Editar Dados</a></li>
+                            <li><a href="enderecoUsuario.jsp">Meus Endereços</a></li>
+                            <li><a href="pedidosUsuario.jsp">Meus Pedidos</a></li>
                             <li><a method="GET" href="LoginController">Logout</a></li>
                             
                             <% if(user.getHasAdm()){ %>

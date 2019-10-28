@@ -48,7 +48,7 @@
                         <tr>
                             <td>Cadastrar Novo: </td>
                             <td><input type="text" name="tOcup" id="tOcup"/></td>
-                            <td><input type="submit" value="Cadastrar" id="bOcup"/></td>
+                            <td style="padding-left:20px; "><input type="submit" class=" btn btn-primary"  value="Cadastrar" id="bOcup"/></td>
                         </tr>
                     </table>
                 </form>
