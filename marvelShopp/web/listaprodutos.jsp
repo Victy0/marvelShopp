@@ -41,10 +41,18 @@
                                 <%
                                     if (perso.getQtdEstoque() < 1) {%>
                                 <p class='card-text' style='color: red;'>Personagem indisponível</p>
+                                <a href='/marvelShopp/PagProdutoController?id=<%= perso.getId()%>' class='btn btn-primary' style="margin-left: 85px;">Visualizar</a>
+                                <form action="/marvelShopp/CarrinhoController?funcao=create&idPersonagem=<%= perso.getId()%>" method="POST">
+                                    <input type="submit" class="btn btn-primary" value="Comprar" style="width:85px;background: green;"  disabled>
+                                </form>
                                 <%} else {%>
                                 <p class='card-text'>R$ <%= perso.getPreco()%> </p>
-                                <% }%>
+                                
                                 <a href='/marvelShopp/PagProdutoController?id=<%= perso.getId()%>' class='btn btn-primary'>Visualizar</a>
+                                <form action="/marvelShopp/CarrinhoController?funcao=create&idPersonagem=<%= perso.getId()%>" method="POST">
+                                    <input type="submit" class="btn btn-primary" value="Comprar" style="width:85px;background: green;margin-left: 85px;">
+                                </form>
+                                    <% }%>
                                 <%if (loginUser != null){ if (loginUser.getHasAdm()) {%>
                                 <a href='/marvelShopp/editarProduto.jsp?idPersonagem=<%= perso.getId()%>' class='btn btn-primary spacebt'>Editar</a>
                                 <a href='/marvelShopp/EditarPersonagemController?id=<%= perso.getId()%>' class='btn btn-danger' >Deletar</a>
