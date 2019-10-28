@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController extends HttpServlet {
     
     CarrinhoDao carrinhoDao = new CarrinhoDao();
+    PagamentoController pc = new PagamentoController();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,13 +67,10 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String email = null;
-          String senha = null;
-       
-         email = request.getParameter("email");
-         senha = request.getParameter("senha");
-        
-      
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String pagamento = request.getParameter("pagamento");
+        request.setAttribute("pagamento", "p");
          
         UsuarioDao userDao = new UsuarioDao();
         Usuario user = new Usuario();
@@ -97,8 +95,11 @@ public class LoginController extends HttpServlet {
             cookiesenha.setMaxAge(60*60);
             response.addCookie(cookieemail);
             response.addCookie(cookiesenha);
-
-             request.getRequestDispatcher("index.jsp").forward(request, response);
+            if(pagamento == null){
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }else{
+                pc.doGet(request, response);
+            }
         }else{
           boolean erro = true;
           request.setAttribute("errorValidate", erro);

@@ -98,7 +98,7 @@
                                 for(Endereco endereco:listaEnderecos){
                             %>
                             <hr>
-                            <form action="/marvelShopp/PagamentoController" method="POST" id="pagamento">
+                            
                                 <p style="font-size: 18pt;">Selecione</>
                                     <input type="radio" id = "idEndereco" name="idEndereco" value="<%=endereco.getId()%>" style=" transform: scale(2);"/>
                                 <p>Logradouro: <%=endereco.getRua()%></p>
@@ -107,9 +107,8 @@
                                 <p>Complemento: <%=endereco.getComplemento()%></p>
                                 <p>Cidade: <%=endereco.getCidade()%></p>
                                 <p>CEP: <%=endereco.getCep()%></p>
-                                <input type="hidden" value="<%=endereco.getId()%>"/>
-                                <input type="hidden" value="irPagar" id="funcao"/>
-                            </form>
+                                
+                            
                                 <hr>
                                 <%
                                 }
@@ -142,7 +141,7 @@
                                     <label for="cep">CEP: </label>
                                     <input type="text" class="form-control" name="cep" id="cep" maxlength="50" placeholder="CEP" required>
                                 </div>
-                                <input type="submit" class="btn-primary" value="enviar" ID="cadEndereco" name="cadEndereco" style="width:200px; margin-left: 200px;">
+                                <input type="submit" value="enviar" ID="cadEndereco" name="cadEndereco" style="width:200px; margin-left: 200px;">
                                 <input type="hidden" value="<%= user.getId()%>">
                             </form>
                             </th>
@@ -153,7 +152,7 @@
                         <input type="hidden" value="<%= user.getId()%>" id="idUser" name="idUser">
                         <input type="hidden" value="<%= carrinho.getId() %>" id="pedidoId" name="pedidoId">
                         <input type="hidden" value="finalCompra" id="finalCompra"/>
-                        <input type="submit" value="Finalizar compra" id="finalCompra" style="width:400px; margin-left: 200px; margin-left: 585px;">
+                        <input type="submit" value="Finalizar compra" class="btn-primary" id="finalCompra" style="width:400px; margin-left: 200px; margin-left: 585px;">
                     </form>    
                 </section>
                 

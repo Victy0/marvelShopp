@@ -41,6 +41,7 @@
                         <%if(request.getAttribute("errorValidate") != null){ %>
                         <span style="color: red; font-size: 15pt;">Usuário ou senha inválido!</span>
                         <%}%>
+                        <input type="hidden" name="pagamento" value="<%=request.getAttribute("pagamento")%>">
                         <div class="form-group">
                             <label for="email">E-mail</label>
                             <input type="email" name="email" id="email" class="form-control" value="<%=email%>" placeholder="Email cadastrado" required>

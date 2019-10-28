@@ -30,27 +30,23 @@ public class PagamentoController extends HttpServlet {
             throws ServletException, IOException {
         Usuario user = (Usuario)request.getSession().getAttribute("user");
         if(user == null){
+            request.setAttribute("pagamento", "p");
             request.getRequestDispatcher("/login.jsp").forward(request,response);
-            //RequestDispatcher view = request.getRequestDispatcher("/login.jsp");
-            //view.forward(request, response);
         }
-        else{
-            String idUser = user.getId().toString();
-            request.setAttribute("enderecoList", enderecoDao.list(idUser));
-            RequestDispatcher view = request.getRequestDispatcher("/pagamento.jsp");
-            view.forward(request, response);
-        }
+        String idUser = user.getId().toString();
+        request.setAttribute("enderecoList", enderecoDao.list(idUser));
+        request.getRequestDispatcher("/pagamento.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
             String idUser = (String)request.getParameter("idUser");
             String idEndereco = (String)request.getParameter("idEndereco");
             String formPag = (String)request.getParameter("formPag");
             String pedidoId = (String)request.getParameter("pedidoId");
             pagamentoDao.create(idEndereco, idUser, formPag, pedidoId);
+            request.getSession().setAttribute("carrinho", null);
             RequestDispatcher view = request.getRequestDispatcher("/fechamentoCompra.jsp");
             view.forward(request, response);
        

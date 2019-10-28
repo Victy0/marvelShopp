@@ -75,9 +75,13 @@ public class CarrinhoController extends HttpServlet {
         
         if(funcao.equals("delete")){
             String idItem = (String)request.getParameter("itemRemove");
-            carrinhoDao.delete(idItem, carrinho.getId().toString());
+            carrinhoDao.deleteItem(idItem, carrinho.getId().toString());
             Long itemId = Long.parseLong(idItem);
             carrinho.removeItem(itemId);
+            if(carrinho.getItens().isEmpty()){
+                carrinhoDao.delete(carrinho.getId());
+                carrinho = null;
+            }
         }        
         
         if(funcao.equals("create")){
@@ -93,8 +97,6 @@ public class CarrinhoController extends HttpServlet {
                 }else{
                     carrinhoDao.atualizaItem(atualizarItem.getId().toString(), atualizarItem.getQtd());
                 }
-                request.getSession().removeAttribute("carrinho");
-                request.getSession().setAttribute("carrinho",carrinho); 
             }else{
                 Usuario usuario = (Usuario)request.getSession().getAttribute("user");
                 Long idUser = null;
@@ -102,10 +104,10 @@ public class CarrinhoController extends HttpServlet {
                     idUser = usuario.getId();
                 }
                 carrinho = carrinhoDao.create(idPersonagem, idUser);
-                request.getSession().removeAttribute("carrinho");
-                request.getSession().setAttribute("carrinho", carrinho);
             }
         }
+        request.getSession().removeAttribute("carrinho");
+                request.getSession().setAttribute("carrinho", carrinho);
         RequestDispatcher view = request.getRequestDispatcher("carrinho.jsp");
         view.forward(request, response);
     }

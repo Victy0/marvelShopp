@@ -23,7 +23,7 @@ public class PagamentoDao {
             
             stmPagamento = con.prepareStatement("update pedido \n" +
                                                 "set usuario = ?, \n" +
-                                                "    status = \"Pago\",\n" +
+                                                "    status = 'fechado',\n" +
                                                 "    pagamento = ?,\n" +
                                                 "    dt_confirmacao = ?, \n" +
                                                 "    endereco_cobranca = ?\n" +

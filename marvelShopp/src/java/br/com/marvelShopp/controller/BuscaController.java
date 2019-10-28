@@ -39,7 +39,6 @@ public class BuscaController extends HttpServlet {
         Integer qtdBusca = personaDao.quantidadePersonagem(request.getParameter("busca"));
         request.setAttribute("qtdBusca", qtdBusca);
         request.setAttribute("busca", busca);
-        //response.sendRedirect("busca.jsp");
         request.getRequestDispatcher("listaprodutos.jsp").forward(request, response);
     }
     

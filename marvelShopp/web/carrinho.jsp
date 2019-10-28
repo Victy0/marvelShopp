@@ -25,7 +25,7 @@
         <div id="interface">
             <%@ include file="header.jsp"%>
             <section id="carrinho"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
-                <h1 id="titulo" align="left">Meu Carrinho</h1>
+                <h1 align="center">Meu Carrinho</h1>
                 </br>
                 <table>
                     <tr>
