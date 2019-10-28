@@ -36,22 +36,22 @@
                 PreparedStatement ps= con.prepareStatement("select* from personagem LIMIT 6 OFFSET ?");
                 ps.setInt(1,offset);
                 ResultSet rs=ps.executeQuery();
-               out.print("<div class='container'>");
+                out.print("<div class='container' style='width: 85%;'>");
                 out.print("<div class='row'>");
                 while(rs.next()){
                    
                    out.print("<div class='col-sm-4'>"+"<div class='card spacecard' style='width: 18rem;'>"+
-  "<img class='card-img-top' src='"+"imagens/"+rs.getString("imagem_ref")+"' width=200px height=200px alt='Card image cap'>"+
- " <div class='card-body'>"+
-    "<h5 class='card-title'>"+rs.getString("identidade")+"</h5>"+
-    "<p class='card-text'>"+"R$"+rs.getString("preco")+"</p>"+
-    "<a href='/marvelShopp/editarProduto.jsp?idPersonagem="+rs.getString("id")+"' class='btn btn-primary spacebt'>Editar</a>"+
-     "<a href='/marvelShopp/EditarPersonagemController?id="+rs.getString("id")+"' class='btn btn-danger'>Deletar</a>"+    
-  "</div>"+
-"</div>"+"</div>");
+                        "<img class='card-img-top' src='"+"imagens/"+rs.getString("imagem_ref")+"' width=150px height=230px alt='Card image cap'>"+
+                        " <div class='card-body'>"+
+                        "<h5 class='card-title'>"+rs.getString("identidade")+"</h5>"+
+                        "<p class='card-text'>"+"R$"+rs.getString("preco")+"</p>"+
+                        "<a href='/marvelShopp/editarProduto.jsp?idPersonagem="+rs.getString("id")+"' class='btn btn-primary spacebt'>Editar</a>"+
+                         "<a href='/marvelShopp/EditarPersonagemController?id="+rs.getString("id")+"' class='btn btn-danger'>Deletar</a>"+    
+                        "</div><br>"+
+                        "</div></div>");
                   
                }
-           out.print("</div>"+"</div>");
+            out.print("</div>"+"</div>");
                //out.println("<a href=listaprodutos.jsp?numpagina=1>1</a>");
                //out.println("<a href=listaprodutos.jsp?numpagina=2>2</a>");
                //out.println("<a href=listaprodutos.jsp?numpagina=3>3</a><br>");
@@ -67,14 +67,14 @@
                  }
                 
               
-               out.print( "<ul class='pagination'>");
+               out.print( "<nav aria-label='Page navigation example' align='center'><ul class='pagination'>");
              for(int j=1;j<=totalpaginas;j++){
               
              out.println("<li class='page-item'><a class='page-link' href='listaadmin.jsp?numpagina="+j+"'>"+j+"</a></li>");
 }
     
     
-           out.print ("</ul>");
+           out.print ("</ul></nav>");
               
                 
                 %>
