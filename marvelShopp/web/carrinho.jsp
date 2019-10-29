@@ -39,17 +39,19 @@
                         List<Item> itens = carrinho.getItens();
                         if(itens.size()!= 0){
                             carrinhoVazio = false;
-                            Double total = 0.0;
                             for(Item item : itens){ 
-                                total += item.getPersonagem().getPreco();
-                                totalCompra = totalCompra+total;
+                                totalCompra += item.getPersonagem().getPreco() * item.getQtd();
                 %>      
                         <div id="item">
                             <img src="imagens/<%= item.getPersonagem().getImagemRef() %>" class="img-rounded" width="30%" align="left">
                             <h2 align="center"><%= item.getPersonagem().getIdentidade()%></h2>
                             <h3 align="center">R$ <%=String.format("%.2f", (item.getPersonagem().getPreco() * item.getQtd())) %></h3>
                             <div id="qtd" align="center">
-                                <a href='CarrinhoController?funcao=atualiza&op=m&idPersonagem=<%=item.getPersonagem().getId()%>' class='btn btn-danger' >-</a>
+                                <%if(item.getQtd() == 1){%>
+                                    <a href='CarrinhoController?funcao=atualiza&op=m&idPersonagem=<%=item.getPersonagem().getId()%>' class='btn btn-danger' disabled>-</a>
+                                <%}else{%>
+                                    <a href='CarrinhoController?funcao=atualiza&op=m&idPersonagem=<%=item.getPersonagem().getId()%>' class='btn btn-danger' >-</a>
+                                <%}%>
                                 <input type='text' id="percentage" name="percentage" value="<%=item.getQtd()%>" readonly="readonly"/>
                                 <a href='CarrinhoController?funcao=atualiza&idPersonagem=<%=item.getPersonagem().getId()%>' class='btn btn-danger' >+</a> 
                                 <form action="/marvelShopp/CarrinhoController" method="POST" align="center">
@@ -99,7 +101,7 @@
                                     <input type="submit" align="center" value="CONTINUAR" ID="irPag" name="irPag" style="width:300px;margin-right: 100px;"/>
                             </form>
                                     <br>        
-                            <a href="javascript:history.back()" class='btn btn-danger' >CONTINUAR COMPRANDO</a>
+                            <a href="BuscaController?busca=" class='btn btn-danger' >CONTINUAR COMPRANDO</a>
                         </div>
                 <%
                     }

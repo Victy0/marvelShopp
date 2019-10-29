@@ -68,6 +68,7 @@ public class CarrinhoController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String funcao = request.getParameter("funcao");
+        String page = request.getParameter("page");
         String idPersonagem = request.getParameter("idPersonagem");
         Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
         
@@ -106,8 +107,12 @@ public class CarrinhoController extends HttpServlet {
         }
         request.getSession().removeAttribute("carrinho");
                 request.getSession().setAttribute("carrinho", carrinho);
+        if(page != null){
+                request.getRequestDispatcher("repass.jsp").forward(request, response);
+            }else{
         RequestDispatcher view = request.getRequestDispatcher("carrinho.jsp");
         view.forward(request, response);
+        }
     }
 
    private Item confereItens(Carrinho carrinho, Personagem persona, String op){
