@@ -67,9 +67,10 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String funcao = request.getParameter("funcao");//cria uma variaval que vai indicar a ação do doGet
-        String idPersonagem = request.getParameter("idPersonagem");//pega o id do personagem
-        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");//pega o carrinho da seção
+        String funcao = request.getParameter("funcao");
+        String page = request.getParameter("page");
+        String idPersonagem = request.getParameter("idPersonagem");
+        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
         
         if(funcao.equals("delete")){ //se a variavel funcao for igual a delete
             String idItem = (String)request.getParameter("itemRemove");//pega o id do item a removido
@@ -106,8 +107,12 @@ public class CarrinhoController extends HttpServlet {
         }
         request.getSession().removeAttribute("carrinho");
                 request.getSession().setAttribute("carrinho", carrinho);
+        if(page != null){
+                request.getRequestDispatcher("repass.jsp").forward(request, response);
+            }else{
         RequestDispatcher view = request.getRequestDispatcher("carrinho.jsp");
         view.forward(request, response);
+        }
     }
 
    private Item confereItens(Carrinho carrinho, Personagem persona, String op){
