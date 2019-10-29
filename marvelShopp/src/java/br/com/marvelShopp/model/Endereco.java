@@ -1,6 +1,6 @@
 
 package br.com.marvelShopp.model;
-
+//cria uma classe referente a entidade "endereço"
 public class Endereco {
     private long id;
     private String rua;
@@ -8,14 +8,14 @@ public class Endereco {
     private String numeroCasa;
     private String complemento;
     private String cep;
-    private String userId;
+    private String userId;//Variavel que recebe o id do usuário
      private String cidade;
 
-    public String getUserId() {
+    public String getUserId() {//retorna o id do usuario
         return this.userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(String userId) {//altera o id do usuario
         this.userId = userId;
     }
 

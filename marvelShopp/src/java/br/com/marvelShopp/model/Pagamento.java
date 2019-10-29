@@ -5,12 +5,12 @@
  */
 package br.com.marvelShopp.model;
 
-public class Pagamento {
-    private Usuario user;
-    private Endereco endereco;
-    private String status;
-    private String formaPag;
-    private String dataPag;
+public class Pagamento {//cria uma classe referente a entidade "pagamento"
+    private Usuario user;//usário que realiza o pagamento
+    private Endereco endereco;//endereco que sera assocido ao pagamento (compra)
+    private String status;//status atual da compra
+    private String formaPag;//forma de pagamento
+    private String dataPag;//data do pagamento
 
     public String getFormaPag() {
         return formaPag;

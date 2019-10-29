@@ -7,15 +7,15 @@ import java.util.List;
  *
  * @author Gleison
  */
-public class Carrinho {
+public class Carrinho { //cria uma classe referente a entidade "carrinho"
     private Long id;
-    private Usuario usuario;
-    private String status;
-    private String dtInicio;
-    private String dtConfirmacao;
-    private List<Item> itens = new ArrayList();
+    private Usuario usuario;//usuario ao qual pertence o carrinho
+    private String status;//status da compra
+    private String dtInicio;//data de início da compra
+    private String dtConfirmacao;//data de finalização da compra
+    private List<Item> itens = new ArrayList(); //Array que recebe os item do carrinho
     private Endereco endereco;
-    private TipoPagamento pagamento;
+    private TipoPagamento pagamento; //qual a forma de pagamento (boleto, cartão, etc)
 
     public Carrinho(){
         this.status = "aberto";
@@ -41,7 +41,7 @@ public class Carrinho {
         itens.add(item);
     }
     
-    public void removeItem (Long idItem){
+    public void removeItem (Long idItem){ //remove um item do carrinho
         for(int i=0; i<this.itens.size(); i++){
             Item item = this.itens.get(i);
             if(item.getId() == idItem){

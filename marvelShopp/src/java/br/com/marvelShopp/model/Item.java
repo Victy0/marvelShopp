@@ -9,10 +9,10 @@ package br.com.marvelShopp.model;
  *
  * @author Gleison
  */
-public class Item {
+public class Item {//cria uma classe referente a entidade "item"
     private Long id;
-    private Personagem personagem;
-    private int qtd;
+    private Personagem personagem;//personagem referente ao item
+    private int qtd;//quantidade de personagens do item
 
      public Long getId() {
         return this.id;

@@ -53,8 +53,6 @@
                             <li><a href="editarUsuario.jsp">Editar Dados</a></li>
                             <li><a href="enderecoUsuario.jsp">Meus Endereços</a></li>
                             <li><a href="pedidosUsuario.jsp">Meus Pedidos</a></li>
-                            <li><a method="GET" href="LoginController">Logout</a></li>
-                            
                             <% if(user.getHasAdm()){ %>
                             <li><a href="cadastroDeProduto.jsp">Cadastrar Produto</a></li>
                             <li><a href="tipoOcupacao.jsp">Cadastrar Ocupação</a></li>
@@ -62,7 +60,7 @@
                             <li><a href="tipoSexo.jsp">Cadastrar Sexo</a></li>
                             <li><a href="listaadmin.jsp">Listar Produtos</a></li>                            
                             <% } %>
-
+                            <li><a method="GET" href="LoginController">Logout</a></li>
                         </ul>
 
                     </li>
@@ -73,13 +71,17 @@
             <form  action="BuscaController" method="GET" id= "busca">
                 <div class="form-group row">
                     <div class="col-sm-10">
-                        <input class="form-control" type="search" id="busca" name="busca">
+                        <input class="form-control" type="search" id="busca" name="busca" placeholder="Buscar">
                     </div>
                     <button type="submit" class="btn btn-primary" style="background: #000">Buscar</button>
                 </div>
             </form>
             <a href='/marvelShopp/CarrinhoController'>
+                <%if(request.getSession().getAttribute("carrinho")==null){%>
                 <img id='carrinho' class="carrinho-img" src="imagens/carrinhoDeCompras.png" title="Carrinho" width="10%"/>
+                <%}else{%>
+                <img id='carrinho' class="carrinho-img" src="imagens/carrinhoDeComprasC.png" title="Carrinho" width="10%"/>
+                <%}%>
             </a> 
         </nav>
                            

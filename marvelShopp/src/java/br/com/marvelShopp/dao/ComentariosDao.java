@@ -59,7 +59,7 @@ public class ComentariosDao {
         return listaComent;
    }
     
-    public Double getRank(String id){
+    public Double getRank(String id){// retorna uma media das avaliacoes de um personagem
         Connection con = Conexao.getConnection();
         Statement stm;
         ResultSet resultado = null;

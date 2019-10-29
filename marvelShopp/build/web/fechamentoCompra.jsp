@@ -18,7 +18,7 @@
             <%@ include file="header.jsp"%>
             <section id="corpo"> <!--divisão da pagina. Aqui se inicia o corpo da pagina (seção do meio)-->
                 <hr>
-                <h1 style="text-align: center; font-size: 50pt"  >Parabéns, compra realizada com sucesso</h1> 
+                <h1 style="text-align: center; font-size: 50pt"  >Parabéns, compra realizada com sucesso!</h1> 
                 <img id="deadPoolFinal" class="img-rounded" alt="Responsive image" src="imagens/deadPoolFinal.png" width="90%"/>
                 <hr>
             </section>
