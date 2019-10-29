@@ -31,7 +31,7 @@ public class TipoCategoriaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{//deleta a categoria
        
         String id = request.getParameter("idTCat");
         TipoCategoriaDao tipoDao = new TipoCategoriaDao();
@@ -40,7 +40,7 @@ public class TipoCategoriaController extends HttpServlet {
     }
     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{//cria categoria
        
         TipoCategoria tc = new TipoCategoria();
         tc.setNome(request.getParameter("tCat"));

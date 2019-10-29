@@ -53,18 +53,18 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String acao = request.getParameter("acao");
+        String acao = request.getParameter("acao");//cria uma variavel que define a acao do doGet
         Long idPersona = Long.parseLong(request.getParameter("idPersonagem"));
         Usuario user = (Usuario)request.getSession().getAttribute("user");
-        if("add".equals(acao)){
+        if("add".equals(acao)){//se acao for "add", adiciona personagem favorito do usuario
             usudao.addFavorito(user.getId(), idPersona);
             user.insereFavorito(personagemDao.getById(idPersona.toString()));
-        }else{
+        }else{//se acao nao for "add", remove personagem favorito do usuario
             usudao.removeFavorito(user.getId(), idPersona);
             user.removeFavorito(idPersona);
         }
-        request.getSession().setAttribute("user", user);
-        request.getRequestDispatcher("/PagProdutoController?id="+idPersona).forward(request, response);
+        request.getSession().setAttribute("user", user);//salva usuario na seção
+        request.getRequestDispatcher("/PagProdutoController?id="+idPersona).forward(request, response);//redireciona pagProdutoController
         
     }
 
@@ -77,7 +77,7 @@ public class UsuarioController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)//cria ou edita usuario
             throws ServletException, IOException {
         Usuario usu= new Usuario();
         
@@ -87,22 +87,22 @@ public class UsuarioController extends HttpServlet {
         usu.setEmail(request.getParameter("mail"));
         usu.setSexo(request.getParameter("sexo"));
         usu.setCpf(request.getParameter("cpf"));
-        boolean recebeEmail = false;
+        boolean recebeEmail = false;//variavel que indica que o usuario quer receber e-mail
         if(request.getParameter("recebeEmail")!= null){
             recebeEmail = true;
         }
-        usu.setRecebeEmail(recebeEmail);
+        usu.setRecebeEmail(recebeEmail);//indica se usuario quer receber e-mail
   
-        if(request.getParameter("editar") == null)
+        if(request.getParameter("editar") == null)//se a variavel for null, cria usuario
         {
             this.usudao.create(usu);
-            RequestDispatcher view= request.getRequestDispatcher("/login.jsp");
+            RequestDispatcher view= request.getRequestDispatcher("/login.jsp");//redireciona para pagina de login
             view.forward(request, response);
         }
-        else if (request.getParameter("editar").equals("editar"))
+        else if (request.getParameter("editar").equals("editar"))//se nao for igual a "editar", edita o usuario
         {
             this.usudao.editar(usu, request.getParameter("idUser"));
-            RequestDispatcher view= request.getRequestDispatcher("/index.jsp");
+            RequestDispatcher view= request.getRequestDispatcher("/index.jsp");//redireciona para index
             view.forward(request, response);
         }
     }

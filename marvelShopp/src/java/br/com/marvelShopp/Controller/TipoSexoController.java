@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class TipoSexoController extends HttpServlet {
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{//deleta sexo
        
         String id = request.getParameter("idTSexo");
         TipoSexoDao tipoDao = new TipoSexoDao();
@@ -29,7 +29,7 @@ public class TipoSexoController extends HttpServlet {
     }
     
 @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{//cria personagem
        
         TipoSexo ts = new TipoSexo();
         ts.setNome(request.getParameter("tSexo"));

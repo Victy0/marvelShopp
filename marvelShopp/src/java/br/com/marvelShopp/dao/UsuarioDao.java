@@ -166,7 +166,7 @@ public class UsuarioDao {
             Conexao.closeConnection(con, stm);
         }
     }
-    //remove um persoangem da lista de favoritos de um usuario
+    //remove um personagem da lista de favoritos de um usuario
     public void removeFavorito(Long idUser, Long idPersona){
         Connection con = Conexao.getConnection();
         PreparedStatement stm= null;

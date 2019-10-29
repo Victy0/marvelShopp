@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class TipoOcupacaoController extends HttpServlet {
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{//deleta ocupacao
        
         String id = request.getParameter("idTOcup");
         TipoOcupacaoDao tipoDao = new TipoOcupacaoDao();
@@ -31,7 +31,7 @@ public class TipoOcupacaoController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{//cria ocupacao
        
         TipoOcupacao to = new TipoOcupacao();
         to.setNome(request.getParameter("tOcup"));

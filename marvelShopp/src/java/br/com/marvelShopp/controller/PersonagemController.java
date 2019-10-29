@@ -67,26 +67,26 @@ public class PersonagemController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)//cria personagem 
             throws ServletException, IOException {
         
         Personagem persona= new Personagem();
-        TipoCategoria categoria = categoriaDao.getById(request.getParameter("categoria"));
+        TipoCategoria categoria = categoriaDao.getById(request.getParameter("categoria"));//pega a categoria
         persona.setCategoria(categoria);
         persona.setDescricao(request.getParameter("descricao"));
         persona.setIdentidade(request.getParameter("identidade"));
         persona.setImagemRef(request.getParameter("imagemRef"));
         persona.setLugar(request.getParameter("lugar"));
         persona.setNomeReal(request.getParameter("nomeReal"));
-        TipoOcupacao ocupacao= ocupacaoDao.getById(request.getParameter("ocupacao"));
+        TipoOcupacao ocupacao= ocupacaoDao.getById(request.getParameter("ocupacao"));//pega a ocupacao
         persona.setOcupacao(ocupacao);
         persona.setPreco(Double.parseDouble(request.getParameter("preco")));
         persona.setQtdEstoque(Integer.parseInt(request.getParameter("estoque")));
-        TipoSexo sexo = sexoDao.getById(request.getParameter("sexo"));
+        TipoSexo sexo = sexoDao.getById(request.getParameter("sexo"));//pega o sexo
         persona.setSexo(sexo);
         
-        this.personagemDao.create(persona);
-        RequestDispatcher view= request.getRequestDispatcher("/cadastroDeProduto.jsp");
+        this.personagemDao.create(persona);//cria personagem
+        RequestDispatcher view= request.getRequestDispatcher("/cadastroDeProduto.jsp");//redireciona para cadastro de produto
         view.forward(request, response);    
     }
 

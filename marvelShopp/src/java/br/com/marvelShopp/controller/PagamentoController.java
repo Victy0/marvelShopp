@@ -25,26 +25,26 @@ public class PagamentoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario user = (Usuario)request.getSession().getAttribute("user");
-        if(user == null){
+        Usuario user = (Usuario)request.getSession().getAttribute("user");//pega o usuario da seção
+        if(user == null){//se nao tiver usuario logado
             request.setAttribute("pagamento", "p");
-            request.getRequestDispatcher("/login.jsp").forward(request,response);
+            request.getRequestDispatcher("/login.jsp").forward(request,response);//redireciona para pagina de login
         }
-        String idUser = user.getId().toString();
-        request.setAttribute("enderecoList", enderecoDao.list(idUser));
-        request.getRequestDispatcher("/pagamento.jsp").forward(request, response);
+        String idUser = user.getId().toString();//pega id do usuario
+        request.setAttribute("enderecoList", enderecoDao.list(idUser));//pega a lista de endereco do usuario
+        request.getRequestDispatcher("/pagamento.jsp").forward(request, response);//redireciona para pagina de pagamento
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String idUser = (String)request.getParameter("idUser");
-            String idEndereco = (String)request.getParameter("idEndereco");
-            String formPag = (String)request.getParameter("formPag");
-            String pedidoId = (String)request.getParameter("pedidoId");
-            pagamentoDao.create(idEndereco, idUser, formPag, pedidoId);
-            request.getSession().setAttribute("carrinho", null);
-            RequestDispatcher view = request.getRequestDispatcher("/fechamentoCompra.jsp");
+            String idUser = (String)request.getParameter("idUser");//pega id do usuario
+            String idEndereco = (String)request.getParameter("idEndereco");//pega id do endereco
+            String formPag = (String)request.getParameter("formPag");//pega id da forma de pagamento
+            String pedidoId = (String)request.getParameter("pedidoId");//pega id do pedido
+            pagamentoDao.create(idEndereco, idUser, formPag, pedidoId);//cria um pagamento
+            request.getSession().setAttribute("carrinho", null);//zera o carrinho da seção
+            RequestDispatcher view = request.getRequestDispatcher("/fechamentoCompra.jsp");//redireciona para pagina de confirmação da compra
             view.forward(request, response);
        
     }

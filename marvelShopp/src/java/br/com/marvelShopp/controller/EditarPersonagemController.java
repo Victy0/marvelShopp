@@ -37,12 +37,12 @@ public class EditarPersonagemController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)//deletar um personagem
             throws ServletException, IOException {
-        PersonagemDao personagemDao = new PersonagemDao();
-        String id = request.getParameter("id");
-        personagemDao.deletarPersonagem(id);
-        response.sendRedirect("listaadmin.jsp");
+        PersonagemDao personagemDao = new PersonagemDao();//instacia um personagemDao
+        String id = request.getParameter("id");//pega o id do personagem
+        personagemDao.deletarPersonagem(id);//deleta um personagem
+        response.sendRedirect("listaadmin.jsp");//redireciona para listaadm.jsp
     }
 
     /**
@@ -54,32 +54,32 @@ public class EditarPersonagemController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)//edita um personagem
             throws ServletException, IOException {
-        Personagem persona = new Personagem();
-        PersonagemDao personagemDao = new PersonagemDao();
-        TipoCategoriaDao categoriaDao = new TipoCategoriaDao();
-        TipoOcupacaoDao ocupacaoDao = new TipoOcupacaoDao();
-        TipoSexoDao sexoDao = new TipoSexoDao();
+        Personagem persona = new Personagem();//instacia um personagem
+        PersonagemDao personagemDao = new PersonagemDao();//instancia um personagemDao
+        TipoCategoriaDao categoriaDao = new TipoCategoriaDao();//instancia um tipoCategoriaDao
+        TipoOcupacaoDao ocupacaoDao = new TipoOcupacaoDao();//instancia um tipoOcupacaoDao
+        TipoSexoDao sexoDao = new TipoSexoDao();//instancia um tipoSexoDao
         
-        TipoCategoria categoria = categoriaDao.getById(request.getParameter("categoria"));
+        TipoCategoria categoria = categoriaDao.getById(request.getParameter("categoria"));//pega o categoria do personagem
         persona.setCategoria(categoria);
         persona.setDescricao(request.getParameter("descricao"));
         persona.setIdentidade(request.getParameter("identidade"));
         persona.setImagemRef(request.getParameter("imagemRef"));
         persona.setLugar(request.getParameter("lugar"));
         persona.setNomeReal(request.getParameter("nomeReal"));
-        TipoOcupacao ocupacao= ocupacaoDao.getById(request.getParameter("ocupacao"));
+        TipoOcupacao ocupacao= ocupacaoDao.getById(request.getParameter("ocupacao"));//pega a ocupacao do personagem
         persona.setOcupacao(ocupacao);
         persona.setPreco(Double.parseDouble(request.getParameter("preco")));
         persona.setQtdEstoque(Integer.parseInt(request.getParameter("estoque")));
         TipoSexo sexo = sexoDao.getById(request.getParameter("sexo"));
-        persona.setSexo(sexo);
+        persona.setSexo(sexo);//pega o sexo do personagem
         Long id = Long.parseLong(request.getParameter("idPersonagem"));
         persona.setId(id);
         
-        personagemDao.editarPersonagem(persona);
-        response.sendRedirect("listaadmin.jsp");
+        personagemDao.editarPersonagem(persona);//edita o personagem
+        response.sendRedirect("listaadmin.jsp");//redireciona para a pagina do administrador
     }
 
     /**

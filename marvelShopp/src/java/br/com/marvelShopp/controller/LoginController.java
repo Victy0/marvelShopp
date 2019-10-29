@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginController extends HttpServlet {
     
-    CarrinhoDao carrinhoDao = new CarrinhoDao();
+    CarrinhoDao carrinhoDao = new CarrinhoDao();//instancia carrinhoDao
     PagamentoController pc = new PagamentoController();
 
     /**

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CarrinhoController", urlPatterns = {"/CarrinhoController"})
 public class CarrinhoController extends HttpServlet {
     CarrinhoDao carrinhoDao;//instancia um carrinho
-    PersonagemDao personagemDao = new PersonagemDao();
+    PersonagemDao personagemDao = new PersonagemDao();//instancia um personagem
     
     public CarrinhoController() {
         super();
@@ -40,19 +40,19 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
-        String funcao = request.getParameter("funcao");
-        String idPersonagem = request.getParameter("idPersonagem");
-        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
-        if(funcao!=null){
-            Personagem persona = personagemDao.getById(idPersonagem);
-            Item atualizarItem = confereItens(carrinho, persona, request.getParameter("op"));
-            carrinhoDao.atualizaItem(atualizarItem.getId().toString(), atualizarItem.getQtd());   
-        }else{
-            request.setAttribute("comentList", carrinhoDao.listItensByUser(loginUser));
+        Usuario loginUser = (Usuario)request.getSession().getAttribute("user");//pega o usuario da seção
+        String funcao = request.getParameter("funcao");//cria uma variaval que vai indicar a ação do doGet
+        String idPersonagem = request.getParameter("idPersonagem");//pega o id do personagem
+        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");//pega o carrinho da seção
+        if(funcao!=null){//se funcao for diferente de null
+            Personagem persona = personagemDao.getById(idPersonagem);//busca um personagem no banco
+            Item atualizarItem = confereItens(carrinho, persona, request.getParameter("op"));//chama a função confereItens (A ultima função)
+            carrinhoDao.atualizaItem(atualizarItem.getId().toString(), atualizarItem.getQtd());   //altera a quantidade de itens
+        }else{//se funcao for igual a null
+            request.setAttribute("comentList", carrinhoDao.listItensByUser(loginUser));//lista de itens de um usuario
         }
         
-        RequestDispatcher view = request.getRequestDispatcher("/carrinho.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/carrinho.jsp");//redireciona para pagina de carrinho do usuario
         view.forward(request, response);
     }
 
@@ -67,26 +67,26 @@ public class CarrinhoController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String funcao = request.getParameter("funcao");
-        String idPersonagem = request.getParameter("idPersonagem");
-        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
+        String funcao = request.getParameter("funcao");//cria uma variaval que vai indicar a ação do doGet
+        String idPersonagem = request.getParameter("idPersonagem");//pega o id do personagem
+        Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");//pega o carrinho da seção
         
-        if(funcao.equals("delete")){
-            String idItem = (String)request.getParameter("itemRemove");
-            carrinhoDao.deleteItem(idItem, carrinho.getId().toString());
-            Long itemId = Long.parseLong(idItem);
-            carrinho.removeItem(itemId);
-            if(carrinho.getItens().isEmpty()){
+        if(funcao.equals("delete")){ //se a variavel funcao for igual a delete
+            String idItem = (String)request.getParameter("itemRemove");//pega o id do item a removido
+            carrinhoDao.deleteItem(idItem, carrinho.getId().toString());//deleta o item do banco
+            Long itemId = Long.parseLong(idItem);//passa itemId para long
+            carrinho.removeItem(itemId);//removem o item do carrinho
+            if(carrinho.getItens().isEmpty()){//se o carrinho estiver vazio deleta ele
                 carrinhoDao.delete(carrinho.getId());
                 carrinho = null;
             }
         }        
         
-        if(funcao.equals("create")){
-            if(carrinho != null){
+        if(funcao.equals("create")){//se a variavel funcao for igual a create
+            if(carrinho != null){//se carrinho nao for null
                 Item item = new Item();
-                Personagem persona = personagemDao.getById(idPersonagem);
-                Item atualizarItem = confereItens(carrinho, persona, null);
+                Personagem persona = personagemDao.getById(idPersonagem);//pega o personagem no banco
+                Item atualizarItem = confereItens(carrinho, persona, null);//verifica se um item esta no carrinho
                 if(atualizarItem.getId() == null){
                     item.setPersonagem(persona);
                     item.setQtd(1);
