@@ -1,4 +1,3 @@
-
 package br.com.marvelShopp.controller;
 
 import br.com.marvelShopp.dao.EnderecoDao;
@@ -45,13 +44,6 @@ public class PagamentoController extends HttpServlet {
             pagamentoDao.create(idEndereco, idUser, formPag, pedidoId);//cria um pagamento
             request.getSession().setAttribute("carrinho", null);//zera o carrinho da seção
             RequestDispatcher view = request.getRequestDispatcher("/fechamentoCompra.jsp");//redireciona para pagina de confirmação da compra
-            view.forward(request, response);
-       
+            view.forward(request, response);      
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

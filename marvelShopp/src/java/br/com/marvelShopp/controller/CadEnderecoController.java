@@ -71,10 +71,4 @@ public class CadEnderecoController extends HttpServlet {
             view.forward(request, response);
         }
     }
-    
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

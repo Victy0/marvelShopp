@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.controller;
 
 import br.com.marvelShopp.dao.PersonagemDao;
@@ -25,15 +20,15 @@ public class BuscaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer limit = 6;
-        String numpagina=request.getParameter("numpagina");
-            if(numpagina==null){
+        Integer limit = 6;  //limita o numero de Personagem por página
+        String numpagina=request.getParameter("numpagina");  //informa o numero da página
+            if(numpagina==null){   //considera senda a primeira página se não for especificado
                 numpagina="1";
             }
-        Integer offset=(Integer.parseInt(numpagina)*limit)-limit;
+        Integer offset=(Integer.parseInt(numpagina)*limit)-limit;  //define offset para busca no banco
         PersonagemDao personaDao = new PersonagemDao();
-        String busca = request.getParameter("busca");
-        List<Personagem> lista = personaDao.busca(busca, limit.toString(), offset.toString());
+        String busca = request.getParameter("busca");   //define o termo de busca
+        List<Personagem> lista = personaDao.busca(busca, limit.toString(), offset.toString());  //recupera a lista de Personagens
         request.setAttribute("lista", lista);
         request.setAttribute("limit", limit);
         Integer qtdBusca = personaDao.quantidadePersonagem(request.getParameter("busca"));

@@ -28,15 +28,6 @@ public class CarrinhoController extends HttpServlet {
         carrinhoDao = new CarrinhoDao();//cria um carrinho
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,14 +47,6 @@ public class CarrinhoController extends HttpServlet {
         view.forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,7 +67,7 @@ public class CarrinhoController extends HttpServlet {
         }        
         
         if(funcao.equals("create")){//se a variavel funcao for igual a create
-            if(carrinho != null){//se carrinho nao for null
+            if(carrinho != null){//se carrinho existir
                 Item item = new Item();
                 Personagem persona = personagemDao.getById(idPersonagem);//pega o personagem no banco
                 Item atualizarItem = confereItens(carrinho, persona, null);//verifica se um item esta no carrinho
@@ -96,7 +79,7 @@ public class CarrinhoController extends HttpServlet {
                 }else{
                     carrinhoDao.atualizaItem(atualizarItem.getId().toString(), atualizarItem.getQtd());
                 }
-            }else{
+            }else{  //se carrinho não existir, cria um 
                 Usuario usuario = (Usuario)request.getSession().getAttribute("user");
                 Long idUser = null;
                 if(usuario != null){
@@ -115,15 +98,15 @@ public class CarrinhoController extends HttpServlet {
         }
     }
 
-   private Item confereItens(Carrinho carrinho, Personagem persona, String op){
+   private Item confereItens(Carrinho carrinho, Personagem persona, String op){ //Confere se Personagem já está no carrinho
        Item idItem = new Item();
        for(Item item : carrinho.getItens() ){
            if(item.getPersonagem().getIdentidade().equals(persona.getIdentidade())){
                idItem.setId(item.getId());
-               if(op==null){
-                   idItem.setQtd(item.getQtd()+1);
-               item.setQtd(item.getQtd()+1);
-               }else{
+               if(op==null){    //caso se queira adicionar mais um do mesmo Personagem
+                idItem.setQtd(item.getQtd()+1);
+                item.setQtd(item.getQtd()+1);
+               }else{               //caso se queira retirar um do mesmo Personagem
                   idItem.setQtd(item.getQtd()-1);
                item.setQtd(item.getQtd()-1); 
                }

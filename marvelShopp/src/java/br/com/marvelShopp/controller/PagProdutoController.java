@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.controller;
 import br.com.marvelShopp.dao.ComentariosDao;
 import br.com.marvelShopp.model.Comentarios;
@@ -34,20 +29,8 @@ ComentariosDao dao;
         PersonagemDao personaDao = new PersonagemDao();//instancia um personagemDao
         Personagem persona = personaDao.getById(request.getParameter("id"));//cria um personagem
         persona.setRank(dao.getRank(persona.getId().toString()));//pega o rank do personagem
-        
         request.setAttribute("personagem", persona);//retorna personagem
-//        request.setAttribute("identidade", persona.getIdentidade());
-//        request.setAttribute("categoria", persona.getCategoria().getNome());
-//        request.setAttribute("descricao", persona.getDescricao());
-//        request.setAttribute("preco", persona.getPreco());
-//        request.setAttribute("ocupacao", persona.getOcupacao().getNome());
-//        request.setAttribute("sexo", persona.getSexo().getNome());
-//        request.setAttribute("lugar", persona.getLugar());
-//        request.setAttribute("imagemRef", persona.getImagemRef());
-//        request.setAttribute("idPersonagem",persona.getId());
-//        request.setAttribute("qtdEstoque",persona.getQtdEstoque());
-        request.setAttribute("comentList", dao.list(persona.getId().toString()));//pega lista de comentarios
-        
+        request.setAttribute("comentList", dao.list(persona.getId().toString()));//pega lista de comentarios  
         request.getRequestDispatcher("pagproduto.jsp").forward(request, response);//redireciona para pagProduto.jsp
     }
     
@@ -56,21 +39,8 @@ ComentariosDao dao;
         PersonagemDao personaDao = new PersonagemDao();//instancia um personagemDao
         Personagem persona = personaDao.getById(idPersona);//cria um personagem
         persona.setRank(dao.getRank(persona.getId().toString()));//pega o rank do personagem
-        
         request.setAttribute("personagem", persona);
-//        request.setAttribute("nomeReal", persona.getNomeReal());
-//        request.setAttribute("identidade", persona.getIdentidade());
-//        request.setAttribute("categoria", persona.getCategoria().getNome());
-//        request.setAttribute("descricao", persona.getDescricao());
-//        request.setAttribute("preco", persona.getPreco());
-//        request.setAttribute("ocupacao", persona.getOcupacao().getNome());
-//        request.setAttribute("sexo", persona.getSexo().getNome());
-//        request.setAttribute("lugar", persona.getLugar());
-//        request.setAttribute("imagemRef", persona.getImagemRef());
-//        request.setAttribute("idPersonagem",persona.getId());
-//        request.setAttribute("qtdEstoque",persona.getQtdEstoque());
-        request.setAttribute("comentList", dao.list(persona.getId().toString()));//pega lista de comentarios
-        
+        request.setAttribute("comentList", dao.list(persona.getId().toString()));//pega lista de comentarios     
         request.getRequestDispatcher("pagproduto.jsp").forward(request, response);//redireciona para pagProduto.jsp
     }
     
@@ -83,8 +53,7 @@ ComentariosDao dao;
         coment.setDescricao(request.getParameter("descricao"));
         coment.setPersonagem(persona);
         coment.setNota(Integer.parseInt(request.getParameter("nota")));
-        coment.setUsuario((Usuario)request.getSession().getAttribute("user"));
-        
+        coment.setUsuario((Usuario)request.getSession().getAttribute("user"));   
         dao.create(coment);//cria comentario
         request.setAttribute("comentList", dao.list(persona.getId().toString()));//retorna lista de coemtnario
         doGet2(request,response,request.getParameter("idPersonagem"));//chama doGet2

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.marvelShopp.controller;
 import br.com.marvelShopp.dao.CarrinhoDao;
 import javax.servlet.http.Cookie;
@@ -23,65 +18,35 @@ public class LoginController extends HttpServlet {
     
     CarrinhoDao carrinhoDao = new CarrinhoDao();//instancia carrinhoDao
     PagamentoController pc = new PagamentoController();
+    UsuarioDao userDao = new UsuarioDao();
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //realiza o logout
         request.getSession().setAttribute("user", null);
-        request.getSession().setAttribute("carrinho", null);
-        
+        request.getSession().setAttribute("carrinho", null);   
         request.getRequestDispatcher("index.jsp").forward(request, response);
         
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        String pagamento = request.getParameter("pagamento");
-        request.setAttribute("pagamento", "p");
+        String email = request.getParameter("email");  //recupera o email informado
+        String senha = request.getParameter("senha");   //recupera a senha informada
+        String pagamento = request.getParameter("pagamento");  //considera se veio do pagamento.jsp
          
-        UsuarioDao userDao = new UsuarioDao();
         Usuario user = new Usuario();
-        user = userDao.validateUser(email, senha);
-        if(user.getId()!=null){
-            Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");
+        user = userDao.validateUser(email, senha);  //valida dados informados
+        if(user.getId()!=null){                     //caso tenha se autenticado
+            Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho"); //verifica se há carrinho atual
             if(carrinho != null){
-               carrinhoDao.setUser(user.getId(), carrinho.getId());
+               carrinhoDao.setUser(user.getId(), carrinho.getId());  //adiciona o carrinho stual ao usuário
                carrinho.setUsuario(user);
             }else{
-                 carrinho = carrinhoDao.getByUser(user);
+                 carrinho = carrinhoDao.getByUser(user);    //recupera último carrinho em aberrto para o usuário
                  if(carrinho.getId() == null){
                     carrinho = null;
                 }
@@ -89,32 +54,22 @@ public class LoginController extends HttpServlet {
             request.getSession().setAttribute("user", user);
             request.getSession().setAttribute("carrinho", carrinho);
 
-            Cookie cookieemail=new Cookie("email",email);
+            Cookie cookieemail=new Cookie("email",email);   //implementação de cookie dos dados de login
             Cookie cookiesenha= new Cookie("senha",senha);
             cookieemail.setMaxAge(60*60);
             cookiesenha.setMaxAge(60*60);
             response.addCookie(cookieemail);
             response.addCookie(cookiesenha);
-            if(pagamento == null){
+            if(pagamento == null){          //redireciona se não veio de pagamento
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-            }else{
+            }else{                              //redireciona se veio de pagamento
                 pc.doGet(request, response);
             }
         }else{
-          boolean erro = true;
+          boolean erro = true;                      //redireciona com erro se não conseguir autenticar o usuário
           request.setAttribute("errorValidate", erro);
           request.getRequestDispatcher("login.jsp").forward(request, response);
         }    
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-//    @Override
-//    public String getServletInfo() {
-//        return "Short description";
-//    }// </editor-fold>
 
 }
