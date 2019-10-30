@@ -217,5 +217,18 @@ public class PersonagemDao {
         }
         return list;
     }
+     
+    public void atualizaEstoque(Long idPersonagem, int qtd){
+        Connection con = Conexao.getConnection();
+        PreparedStatement stm = null;
+        try{
+            stm = con.prepareStatement("UPDATE personagem SET qtd_estoque="+qtd+" WHERE id="+idPersonagem+";");
+            stm.executeUpdate();
+        } catch (SQLException ex){
+            System.out.println("Driver nao pode ser carregado!");
+        } finally{
+            Conexao.closeConnection(con);
+        }
+    }
     
 }

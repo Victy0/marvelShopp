@@ -15,6 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Marvel Shopp</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
+        <script src="js/formConfig.js"></script>
     </head>
     <% Usuario loginUser = (Usuario)request.getSession().getAttribute("user");
         EnderecoDao enderecoDao = new EnderecoDao();
@@ -73,7 +74,7 @@
                         </div>
                         <div class="form-group">
                             <label for="complemento">Complemento: </label>
-                            <input type="text" class="form-control" name="complemento" id="complemento" maxlength="50" placeholder="Complemento">
+                            <input type="text" class="form-control" name="complemento" id="complemento" maxlength="50" onkeypress="somenteNumeros(event);" placeholder="Complemento">
                         </div>
                         <div class="form-group">
                             <label for="cidade">Cidade: </label>

@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
         String email = request.getParameter("email");  //recupera o email informado
         String senha = request.getParameter("senha");   //recupera a senha informada
         String pagamento = request.getParameter("pagamento");  //considera se veio do pagamento.jsp
-         
+        request.setAttribute("pagamento", pagamento);
         Usuario user = new Usuario();
         user = userDao.validateUser(email, senha);  //valida dados informados
         if(user.getId()!=null){                     //caso tenha se autenticado
@@ -60,7 +60,7 @@ public class LoginController extends HttpServlet {
             cookiesenha.setMaxAge(60*60);
             response.addCookie(cookieemail);
             response.addCookie(cookiesenha);
-            if(pagamento == null){          //redireciona se não veio de pagamento
+            if("null".equals(pagamento)){          //redireciona se não veio de pagamento
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }else{                              //redireciona se veio de pagamento
                 pc.doGet(request, response);

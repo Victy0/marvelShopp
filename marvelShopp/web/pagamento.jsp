@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="css/style.css" />
         <title>Marvel Shopp</title>
         <link rel="icon" type="imagem/png" href="imagens/deadpoolLogo.png" />
+        <script src="js/formConfig.js"></script>
     </head>
     <body>
         <%
@@ -48,7 +49,6 @@
                                 List<Item> itens = carrinho.getItens();
                                 if(itens.size()!= 0){
                                     carrinhoVazio = false;
-                                    Double total = 0.0;
                                     for(Item item : itens){ 
                                         total += item.getPersonagem().getPreco();
                                         totalCompra = totalCompra+total;
@@ -57,16 +57,7 @@
                                 <img src="imagens/<%= item.getPersonagem().getImagemRef() %>" class="img-rounded" width="30%" align="left">
                                 <h2 align="center"><%= item.getPersonagem().getIdentidade()%></h2>
                                 <h3 align="center">R$ <%= item.getPersonagem().getPreco() * item.getQtd() %></h3>
-                                <div id="qtd" align="center">
-<!--                                    <button  class="btn btn-primary" onClick="AumentaPerc()">+</button>
-                                    <input type='text' id="percentage" name="percentage" value="1" readonly="readonly"/>
-                                    <button class="btn btn-primary" onClick="DiminuiPerc()">-</button>-->
-                                    <form action="/marvelShopp/CarrinhoController" method="POST" align="center">
-                                        <input type="hidden" value="delete" name="funcao"/>
-                                        <input type="hidden" value="<%= item.getId() %>" name="itemRemove"/>
-                                        <input type="submit" class="btn btn-primary" value="Remover" name="remover" style="width:90px;background: #000;">
-                                    </form>
-                                </div>
+                                <br><br><br>
                             </div> 
                             <%        
                                     } 
@@ -83,7 +74,7 @@
 
                             <div class="form-group">
                                 <h1 style="margin-left:40px;">Selecione a forma de pagamento</h1>
-                                <select class="form-control" name="formPag" id="formPag">
+                                <select class="form-control" name="formPag" id="formPag" required>
                                     <option> Selecione... </option>
                                     <% 
                                         List<TipoPagamento> tipoPagamento = tipoPagamentoDao.list();
@@ -131,7 +122,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="complemento">Complemento: </label>
-                                    <input type="text" class="form-control" name="complemento" id="complemento" maxlength="50" placeholder="Complemento">
+                                    <input type="text" class="form-control" name="complemento" id="complemento" maxlength="50" onkeypress="somenteNumeros(event);" placeholder="Complemento">
                                 </div>
                                 <div class="form-group">
                                     <label for="cidade">Cidade: </label>

@@ -36,6 +36,4 @@ public class BuscaController extends HttpServlet {
         request.setAttribute("busca", busca);
         request.getRequestDispatcher("listaprodutos.jsp").forward(request, response);
     }
-    
-    
 }

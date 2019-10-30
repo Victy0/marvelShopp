@@ -2,6 +2,7 @@ package br.com.marvelShopp.controller;
 
 import br.com.marvelShopp.dao.EnderecoDao;
 import br.com.marvelShopp.dao.PagamentoDao;
+import br.com.marvelShopp.model.Carrinho;
 import br.com.marvelShopp.model.Usuario;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -40,8 +41,8 @@ public class PagamentoController extends HttpServlet {
             String idUser = (String)request.getParameter("idUser");//pega id do usuario
             String idEndereco = (String)request.getParameter("idEndereco");//pega id do endereco
             String formPag = (String)request.getParameter("formPag");//pega id da forma de pagamento
-            String pedidoId = (String)request.getParameter("pedidoId");//pega id do pedido
-            pagamentoDao.create(idEndereco, idUser, formPag, pedidoId);//cria um pagamento
+            Carrinho carrinho = (Carrinho)request.getSession().getAttribute("carrinho");//pega o carrinho
+            pagamentoDao.create(idEndereco, idUser, formPag, carrinho);//cria um pagamento
             request.getSession().setAttribute("carrinho", null);//zera o carrinho da seção
             RequestDispatcher view = request.getRequestDispatcher("/fechamentoCompra.jsp");//redireciona para pagina de confirmação da compra
             view.forward(request, response);      

@@ -47,7 +47,7 @@
                                     if (perso.getQtdEstoque() < 1) {%>
                                 <p class='card-text' style='color: red;'>Personagem indisponível</p>
                                 <p><a href='/marvelShopp/PagProdutoController?id=<%= perso.getId()%>' class='btn btn-primary' style="width:150px;">Visualizar</a>
-                                <form action="/marvelShopp/CarrinhoController?funcao=create&idPersonagem=<%= perso.getId()%>" method="POST">
+                                <form action="/marvelShopp/CarrinhoController?funcao=create&idPersonagem=<%= perso.getId()%>&page=p" method="POST">
                                     <input type="submit" class="btn btn-primary" value="Comprar" style="width:150px;background: green;"  disabled>
                                 </form></p>
                                 <%} else {%>

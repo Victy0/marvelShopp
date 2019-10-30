@@ -16,6 +16,10 @@ public class EnderecoDao {
     public void inserir (Endereco endereco){//salva o endereço no banco de dados
         Connection con = Conexao.getConnection(); //cria uma conexao
         PreparedStatement stmEndereco;
+        String compl="-";
+        if(endereco.getComplemento() != null){
+            compl = endereco.getComplemento();
+        }
         try {
             stmEndereco = con.prepareStatement("INSERT INTO endereco(rua, bairro, cep, numero, complemento, cidade, usuario) "
                                                 + "values (?, ?, ?, ?, ?, ?, ?)");
@@ -23,7 +27,7 @@ public class EnderecoDao {
             stmEndereco.setString(2,endereco.getBairro());
             stmEndereco.setString(3,endereco.getCep());
             stmEndereco.setString(4,endereco.getNumeroCasa());
-            stmEndereco.setString(5,endereco.getComplemento());
+            stmEndereco.setString(5,compl);
             stmEndereco.setString(6,endereco.getCidade());
             stmEndereco.setString(7,endereco.getUserId());
             
@@ -67,7 +71,6 @@ public class EnderecoDao {
             stmEnderecoList = con.prepareStatement("select * from endereco where usuario =?");
                 stmEnderecoList.setString(1,idUser);
                 resultado = stmEnderecoList.executeQuery();
-            
             
             while(resultado.next()) {  //insere o resultado da busca no objeto endereço     
                 Endereco endereco = new Endereco();

@@ -4,6 +4,8 @@
     Author     : Victor
 --%>
 
+<%@page import="br.com.marvelShopp.model.Item"%>
+<%@page import="br.com.marvelShopp.model.Carrinho"%>
 <%@page import="br.com.marvelShopp.model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -77,10 +79,14 @@
                 </div>
             </form>
             <a href='/marvelShopp/CarrinhoController'>
-                <%if(request.getSession().getAttribute("carrinho")==null){%>
+                <% Carrinho car = (Carrinho)request.getSession().getAttribute("carrinho");
+                    int total=0;
+                    if(car == null){%>
                 <img id='carrinho' class="carrinho-img" src="imagens/carrinhoDeCompras.png" title="Carrinho" width="10%"/>
                 <%}else{%>
                 <img id='carrinho' class="carrinho-img" src="imagens/carrinhoDeComprasC.png" title="Carrinho" width="10%"/>
+                <%for(Item item : car.getItens()){total+=item.getQtd();}%>
+                <div style="position:absolute;left: 87%;top: -18px;"><%=total%> Itens</div>
                 <%}%>
             </a> 
         </nav>

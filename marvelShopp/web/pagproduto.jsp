@@ -47,7 +47,8 @@
                                 <p style="color:red;"> Personagem indisponível</p>
                             <%}else{%>
                             <p style="font-size: 15pt;"> R$ <%= personagem.getPreco() %> </p>
-                                <form action="/marvelShopp/CarrinhoController?page=p" method="POST">
+                            <p style="font-size: 15pt;"> Quantidade disponível: <%= personagem.getQtdEstoque() %> </p>
+                                <form action="/marvelShopp/CarrinhoController" method="POST">
                                     <input type="hidden" value="create" name="funcao"/>
                                     <input type="hidden" value="<%= personagem.getId()%>" name="idPersonagem"/>
                                     <input type="submit" class="btn btn-primary" value="Comprar" style="width:90px; ">
